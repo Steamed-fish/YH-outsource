@@ -1,0 +1,137 @@
+<div class="news">
+        <div class="about_t">
+        	<div class="container ">
+                <h2>Technology</h2>
+                <div class="locat"><img src="../Public/images/home.png" alt=""> &gt <YP:catpos  catid="catid" space="&gt;" /></div>
+        	</div>
+        </div>
+
+    <div class="container pdt">
+    	<div class="bao">
+            <ul class="erji">
+            	
+            	<YP:subcat catid="56" id="rd" >
+                <li><a href="{$rd.url}" {if $catid==$rd[id]}class="cur"{/if} >{$rd.catname}</a></li>
+            	</YP:subcat>
+            	
+            </ul>
+        </div>
+    </div>    
+        
+        <div class="videos">
+        	<div class="shiping">
+        		{if $l==cn}
+        		<YP:list order="id desc" catid="80" limit="1" posid="10" field="*">
+            	<div class="vizz" style="background-image: url({$r.thumb});">
+            		<img src="../Public/images/video_sj.png" width="90"/>
+            	</div>
+            	
+
+            	<embed src='{$r.lianjie}' allowFullScreen='true' quality='high' width='300' height='400'  allowScriptAccess='always' type='application/x-shockwave-flash' style="display: none;"></embed>
+				 </YP:list>
+				 
+				 {else}
+				 
+        		<YP:list order="id desc" catid="58" limit="1" posid="10" field="*">
+            	<div class="vizz" style="background-image: url({$r.thumb});">
+            		<img src="../Public/images/video_sj.png" width="90"/>
+            	</div>
+            	
+
+            	<embed src='{$r.lianjie}' allowFullScreen='true' quality='high' width='300' height='400'  allowScriptAccess='always' type='application/x-shockwave-flash' style="display: none;"></embed>
+				 </YP:list>
+				 
+				 {/if}
+            </div>
+           
+            
+        	<script>
+        		$(function(){
+        			$('.vizz').click(function(){
+        				$(this).hide(0);
+        				$('.shiping embed').css('display','block');
+        			})
+        			
+        			
+        			
+        			
+        		})
+        		
+        		
+        	</script>
+        
+        </div>
+    	<div class="container pd">
+
+			<div class="col-sm-12 proj">
+	        <div class="downloads_con pd">
+	        	
+	        	<volist name="list" id="r">	
+	        	<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 vicur">
+	           		<div class="video_list">
+	                    
+	                    <div class="video_list_t">
+	                    	<img src="{$r.thumb}"  alt="{$r.title}">
+	                    	<img src="../Public/images/video_zz.png" data-video='{$r.lianjie}' width="100%" alt=""  class="video_list_zz">
+	                        <div class="video_list_b" style="background: rgba(0,0,0,0.39) url(../Public/images/video_sj.png) no-repeat center center;"  >
+	                        	<embed src='{$r.lianjie}' allowFullScreen='true' quality='high' width='100%' height='100%'  allowScriptAccess='always' type='application/x-shockwave-flash'></embed>
+	                        </div>
+	                    </div>
+	                        
+	                    <h4 class="f14 lh22">Obals RS-003 adjustable led downlight 
+	    Installation Tutorial
+	    </h4>
+	                   
+	               		 
+	           
+	                </div>
+	            </div>	
+	        	</volist>
+	        </div>
+	        
+	        
+	        <div class="clear"></div>
+	         <!-- huanye -->
+		        <div class="huanye">
+				    	{$pages}
+				</div>
+	
+	    </div>
+
+        <div class="clear"></div>
+        
+       
+    	</div>
+
+       
+
+        <div class="clear"></div>
+        
+    	</div>
+
+
+
+
+<script>
+$(function(){	
+
+		$(".video_list .video_list_zz").click(function(){
+					var  embed = '<embed  src="'+$(this).attr("data-video")+'" allowfullscreen="true" quality="high" width="680" height="417" allowscriptaccess="always"  type="application/x-shockwave-flash">';
+					
+					$(".shiping").html(embed);
+				
+		
+		});
+		$('.video_list_b').click(function(e) {
+			$('.vicur embed').css('display','none')
+            $(this).children().css('display','block')
+        });
+
+
+});
+
+
+</script>
+
+<script type="text/javascript" src="http://static.youku.com/h5/player/embed/unifull/unifull_.js"></script>
+

@@ -1,0 +1,70 @@
+<YP:flash flashid="1" />
+
+<div class='container product-list'>
+
+    <div class="row plist">
+    <ul class="products">
+    <volist name="list" id="r">
+        <li class='col-sm-4 col-md-4 col-xs-12'>
+            <div>
+                <!--362,290-->
+                <a href='{$r.url}'  
+                   class="overout not-margin" style='background-image: url({$r.thumb|thumb2=###,297,240,2})'>
+                    <img src="{$r.thumb|thumb2=###,297,240,2}" width="100%" />
+                </a>
+                <a href='{$r.url}' >
+                    <span>
+                        <h3>{$r.title}</h3>
+                        <p>{$r.summary}</p>
+                        <strong>{:L('查看详情&gt;&gt;')}</strong>
+                    </span>
+                </a>
+            </div>
+        </li>
+    </volist>
+    </ul>
+    </div>
+
+    <div class="row pagination-center">
+        <ul class="pagination">
+        {$pages}
+        </ul>
+    </div>
+    
+</div>
+
+<script type="text/javascript" src="../Public/js/owl.carousel.js"></script>
+<script type="text/javascript">
+	var bannerList = $('#banner-list').owlCarousel({
+		items: 1,
+		loop: true,
+		lazyLoad: true,
+		slideBy:1,
+		nav:true,
+		navText:['',''],
+		merge: true,
+		video: true,
+		autoplay: 5000,
+		videoPlay:false,
+		autoPlayHoverPause:true,
+		responsive:{}
+	});
+	$('#banner-list .carousel-left').click(function(){
+		bannerList.trigger('prev.owl', 500);
+	});
+	$('#banner-list .carousel-right').click(function(){
+		bannerList.trigger('next.owl', 500);
+	});
+</script>
+
+
+<!--
+    
+<form method="GET" action="index.php?">
+    <input type="hidden" id=""  name="m" value="Search"/>{if  APP_LANG}<input type="hidden" name="l" value="{:LANG_NAME}" />{/if}
+    <input type="text" name="keyword" id="" class="input-text" value="{$keyword}" />
+    {:Form::select(array('field'=>'module','options'=>$search_module),$module)}
+    <input type="submit" class="sea-button" value="{:L(SEARCH)}" />
+</form>
+
+-->

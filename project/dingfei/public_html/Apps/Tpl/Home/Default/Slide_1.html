@@ -1,0 +1,11 @@
+<div class="banner owl-carousel" id="banner-list">
+	{loop}
+	<div style='position: relative;'>
+		<div class='carousel-left'></div>
+		<div class='carousel-right'></div>
+		<a href='{if empty($r[link])}javascript:void(0){else}{$r[link]}{/if}'>
+			<img src="{$r['pic']}" width="100%">
+		</a>
+	</div>
+	{/loop}
+</div>

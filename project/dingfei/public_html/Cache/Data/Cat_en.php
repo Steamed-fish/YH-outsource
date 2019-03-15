@@ -1,0 +1,2 @@
+<?php
+return array ( 'company' => '130', 'industry' => '131', 'service' => '151', 'after_sale' => '134', 'support' => '152', 'services' => '136', 'jobs' => '137', 'download' => '138', 'contact' => '139', 'for_police' => '140', 'for_fire' => '141', 'cooperation' => '128', 'aboutus' => '109', 'about' => '124', 'certificate' => '125', 'college' => '127', 'news' => '129', 'uav' => '105', 'product' => '103', 'research' => '126', 'platform' => '106', '' => '108', 'contactus' => '133', 'parts' => '107', 'case' => '123', ); ?>

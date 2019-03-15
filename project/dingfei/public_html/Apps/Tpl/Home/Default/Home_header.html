@@ -1,0 +1,131 @@
+	<div class="langbox">
+		<div class="container">
+			<div class="row">
+				<span>{$welcome}</span>
+			</div>
+		</div>
+	</div>
+	<div class="header">
+		<div class="pan-header">
+			<div class="clearfix pan-search">
+				<div class="container">
+					
+					<div class='search-lang'>
+						
+						<div class="lang relative">
+							Language
+							<ul>
+								<volist name="Lang" id="r">
+								<li>
+									<a {if $r['id'] == $langid } class="active" {/if}href="{:str_replace('//', '/', '/'.HOMEURL($r[mark]))}" style="background:none">
+										{$r.name}
+									</a>
+								</li>
+								</volist>
+							</ul>
+						</div>
+	
+						<div class="sharebox relative">
+							<span class="icons share">分享</span>
+							<ul class="jiathis_style">
+								<li><a class="jiathis_button_fb"></a></li>
+								<li><a class="jiathis_button_twitter"></a></li>
+								<li><a class="jiathis_button_linkedin"></a></li>
+								<li><a class="jiathis_button_weixin"></a></li>
+								<li><a class="jiathis_button_tsina"></a></li>
+								<li><a class="jiathis_button_cqq"></a></li>
+							</ul>
+							
+						</div>
+						<div class='search-box relative'>
+							<form name="myform" action="/" method="GET">
+								<input type="hidden" name="module" value="Product"/>
+								<input type="hidden" name="m" value="Search"/>
+								{if APP_LANG}<input type="hidden" name="l" value="{$l}" />{/if}
+								<input value='{$keyword}' class="search-input" type="text" name="keyword" id="keyword" />
+								<span class="pan-xian"></span>
+								<button type="submit"></button>
+								
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+		<div class="relative pan-nav"> 
+			<div class="container">
+			
+				<div class="logo">
+					<a href="{:str_replace('//', '/', '/'.HOMEURL($l))}"><img src='{$logo}' /></a>
+				</div>
+				<div class="header-u">
+					<div class="ol-nav">
+						<div class="nav-app">
+							<span></span>
+							<span></span>
+							<span></span>
+						</div>
+						<ul id="mobile-nav" class="nav-hide no-animates">
+							<li>
+								<a class="top" href="{:str_replace('//', '/', '/'.HOMEURL($l))}"
+								{if $_SERVER['REQUEST_URI'] == str_replace('//', '/', '/'.HOMEURL($l))  }
+								id="nav-li"
+								{/if}
+								>{:L('网站首页')}</a>
+							</li>
+							
+							<YP:subcat catid="0" id="r" key="k">
+								<li>
+								<a class="top {$r.cssclass}" href="{$r.url}"
+								{if $r[id]==$catid}id="nav-li"{/if}
+								{if $r[id]==$Categorys[$catid]['parentid']}id="nav-li"{/if}
+								>{$r.catname}</a>
+								{if $r['arrchildid'] != $r['id'] }
+								<ul class='no-animates'>
+									<YP:subcat catid="$r['id']" id="r2">
+										<li>
+										<a href="{$r2.url}">{$r2.catname}</a>
+										</li>
+									</YP:subcat>
+								</ul>
+								{/if}
+								</li>
+							</YP:subcat>
+							
+						</ul>
+						<ul id="pc-nav" class="nav-hide">
+							<li>
+								<a class="top" href="{:str_replace('//', '/', '/'.HOMEURL($l))}"
+								{if $_SERVER['REQUEST_URI'] == str_replace('//', '/', '/'.HOMEURL($l))  }
+								id="nav-li"
+								{/if}
+								>{:L('网站首页')}</a>
+							</li>
+							
+							<YP:subcat catid="0" id="r" key="k">
+								<li>
+								<a class="top {$r.cssclass}" href="{$r.url}"
+								{if $r[id]==$catid}id="nav-li"{/if}
+								{if $r[id]==$Categorys[$catid]['parentid']}id="nav-li"{/if}
+								>{$r.catname}</a>
+								{if $r['arrchildid'] != $r['id'] }
+								<ul class='no-animates'>
+									<YP:subcat catid="$r['id']" id="r2">
+										<li>
+										<a href="{$r2.url}">{$r2.catname}</a>
+										</li>
+									</YP:subcat>
+								</ul>
+								{/if}
+								</li>
+							</YP:subcat>
+							
+						</ul>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+	<div class="headerafter"></div>

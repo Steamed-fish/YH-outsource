@@ -1,0 +1,9 @@
+<div class="container class">
+	<div class="row">
+      {:L(HOME_TEXT)}
+      <YP:subcat catid="{$catid}" id="rd" >
+        <li><a href="{$rd.url}" {if $catid==$rd[id]}class="curpos"{/if} >{$rd.catname}</a></li>
+      </YP:subcat>
+            	
+	</div>
+</div>

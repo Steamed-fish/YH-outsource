@@ -1,0 +1,29 @@
+<div class="sub-cate">
+  <div class="container">
+    <div class="row">
+        
+	  <?php $ccatid = $catid;  ?>
+	  {if ($Categorys[$catid]&&$Categorys[$catid]['arrchildid']==$catid)}
+	  <?php $ccatid = $Categorys[$catid]['parentid'];  ?>
+	  {/if}
+
+	  <!--<div class='page-title'>
+            <h2>{$Categorys[$ccatid]['catname']}</h2>
+        </div>-->
+				
+        <div>
+          <YP:subcat catid="$ccatid" id="rd" >
+            <div class='no-animates cat-item {if $catid==$rd[id]}hover{/if} '>
+              <a href="{$rd.url}" class='sub-name'>{$rd.catname}</a>
+              <span class='sub-pot icons'></span>
+            </div>
+          </YP:subcat>
+          <div class="floatR padd-T-20 {$module}">
+            {if $content}<a class="shang" href="{$Categorys[$catid]['url']}">{:L('返回列表')}</a>{else}{/if}
+          </div>
+        </div>
+        
+       
+      </div>
+  </div>
+</div>

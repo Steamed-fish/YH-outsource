@@ -1,0 +1,119 @@
+
+<include file="Home:pos" />
+
+<include file="Home:cats" />
+
+<div class='container contact'>
+
+    <div class="contact-base">
+      <div class="contact-box">
+        <div class="barcode">
+            <img src="{$barcode}" />
+        </div>
+        <div class='baseinfo'>
+          <ul>
+            <li class='sitename'>{$site_name}</li>
+            <li class='siteenname'>{$en_title}</li>
+            <li class="ellipsis"><span>{:L('电话')}:</span>{$phone}</li>
+            <li class="ellipsis"><span>{:L('邮箱')}:</span>{$email}</li>
+            <li><span>{:L('地址')}:</span>{$address}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="offices no-animates">
+      <h2>各地办事处</h2><br/>
+      <ul id="office-list">
+        <YP:list name='Office' field="*" order='id desc' limit='0'>
+          <li {if $key == 0}class='active'{/if}>
+            <a class="icons"><span class="icons">{$r.title}</span></a>
+            <div>
+              <i class="icons"></i>
+              <p>地址：{$r.address}</p>
+              <p>联系人：{$r.contact}</p>
+              <p>联系电话：{$r.phone}</p>
+            </div>
+        </li>
+        </YP:list>
+      </ul>
+    </div>
+<!--
+    <div class="row">
+      <div class="contact-form">
+        <h2>在线留言</h2>
+        <p>感谢您的咨询，若您对我们的产品有什么疑问或建议，请填写以下信息，我们将快速回复您。</p>
+        <form name="myform" action="{:URL('User-Post/insert')}" method="post">
+          <input type="hidden" id="catid" name="catid" value="{catid}" />
+          <input type="hidden" name="moduleid" value="8" />
+          <input type="hidden" name="lang" value="{$langid}" />
+
+          <div class='col-sm-4 col-md-4 col-xs-12'>
+            <input class='ico-contact' name="username" placeholder="{:L('你的姓名')}" >
+          </div>
+
+          <div class='col-sm-4 col-md-4 col-xs-12'>
+            <input class='ico-email2' name="email" placeholder="{:L('你的邮箱')}" >
+          </div>
+
+          <div class='col-sm-4 col-md-4 col-xs-12'>
+            <input class='ico-nickname' name="telephone" placeholder="{:L('电话')}" >
+          </div>
+
+          <div class='col-sm-12 col-md-12 col-xs-12'>
+            <textarea class='ico-feedback' name='content' placeholder="{:L('你要说的话')}"></textarea>
+          </div>
+          <div class='col-sm-12 col-md-12 col-xs-12 center'>
+            <button class=''>{:L('提交内容')}</button>
+            <button class=''>{:L('重置')}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+-->
+    <div class="map-wrapper">
+      <div id="map"></div>
+    </div>
+
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=4YouFDaVxy0OEFOwGBKPhmTt"></script>
+    <script type="text/javascript">	
+      $(function(){
+        var map = new BMap.Map("map");
+        var point = new BMap.Point(113.464858,23.174213);
+        map.centerAndZoom(point, 19);
+        var marker = new BMap.Marker(point);  // 创建标注
+        map.addOverlay(marker);               // 将标注添加到地图中
+        marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+        map.enableScrollWheelZoom(true);
+        var opts = {
+          position : point,    // 指定文本标注所在的地理位置
+          offset   : new BMap.Size(-150, -70)    //设置文本偏移量
+        }
+        var label = new BMap.Label("广州开发区科学大道286号707室", opts);  // 创建文本标注对象
+          label.setStyle({
+            color : "#000000",
+            fontSize : "14px",
+            height : "20px",
+            lineHeight : "20px",
+            fontFamily:"微软雅黑",
+            border:"none",
+            background:"#fff",
+            display: 'inline-table',
+            width:"175px",
+            padding:"10px",
+            borderRadius:"15px",
+            marginTop:"-10px",
+            marginLeft:"40px",
+            
+          });
+        map.addOverlay(label);
+      });
+
+
+      $('#office-list a.icons').on('click', function(){
+        $('#office-list li').removeClass('active');
+        $(this).parent().addClass('active');
+      })
+      </script>
+
+</div>

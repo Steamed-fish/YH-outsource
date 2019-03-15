@@ -1,0 +1,34 @@
+<include file="Home:pos" />
+
+<include file="Home:cats" />
+
+<div class='container news-list'>
+    <volist name="list" id="r">
+      <div class="row">
+      <dl class='news'>
+        <dt class='col-sm-2 col-md-1 col-xs-3 nopad'>
+          <b>{$r.createtime|toDate=###,'d'}</b>
+          <span>{$r.createtime|toDate=###,'Y-m'}</span>
+        </dt>
+        <dd class='col-sm-3 col-md-2 col-xs-8'>
+          <a href='{$r.url}'  class="overout" 
+            style='background-image: url({$r.thumb|thumb2=###,300,175})'>
+            <img src="{$r.thumb}"  width="100%" />
+          </a>
+        </dd>
+        <dd class='col-sm-7 col-md-9 col-xs-12 xs-padding'>
+          <a href="{$r.url}"><h3>{$r.title}</h3></a>
+          <p>{$r.summary}</p>
+          <!--{:L('浏览次数')}: {$r.hits}-->
+        </dd>
+      </dl>
+      </div>
+    </volist>
+    <div class="row pagination-center">
+      <ul class="pagination">
+        {$pages}
+      </ul>
+    </div>
+</div>
+
+

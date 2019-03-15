@@ -1,0 +1,143 @@
+<include file="Home:pos" />
+
+<?php $ccatid = $catid;  ?>
+{if ($Categorys[$catid]&&$Categorys[$catid]['arrchildid']==$catid)}
+<?php $ccatid = $Categorys[$catid]['parentid'];  ?>
+{/if}
+
+
+<div class="sub-cate {$catid}">
+  <div class="container">
+    <div class="row tab-bar">
+          <div class='cat-item hover'>
+            <a href="#content" class='sub-name'>{:L('产品介绍')}</a>
+          </div>
+          <div class='cat-item'>
+            <a href="#advantage" class='sub-name'>{:L('产品优势')}</a>
+          </div>
+          <div class='cat-item'>
+            <a href="#parameter" class='sub-name'>{:L('产品参数')}</a>
+          </div>
+          <div class='cat-item'>
+            <a href="#composition" class='sub-name'>{:L('系统组成')}</a>
+          </div>
+          <div class='cat-item'>
+            <a href="#videos" class='sub-name'>{:L('视频演示')}</a>
+          </div>
+          <div class='cat-item'>
+            <a href="#downloads" class='sub-name'>{:L('资源下载')}</a>
+          </div>
+          <div class="floatR padd-T-20">
+            <a class="shang" style='display:block;' href="{$Categorys[$catid]['url']}">{:L('返回列表')}</a>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="tab-content margin-B-30 padd-B-20 margin-T-30 padd-T-20">
+  <div id="content" class="container tab-panel active">
+    {$content}
+  </div>
+  <div id="advantage" class="container tab-panel">
+    {$advantage}
+  </div>
+  <div id="parameter" class="container tab-panel">
+    {$parameter}
+  </div>
+  <div id="composition" class="container tab-panel">
+    {$composition}
+  </div>
+  <div id="videos" class="container tab-panel video-list">
+    <div class="row">
+      <ul>
+        <YP:list name='Provideo' field='*'  parentid='$id' order='id desc' limit='6'>
+          <li class='col-sm-6 col-md-4 col-xs-12'>
+            <a href="javascript:play('{$r.link}');">
+              <div class="layout">
+                <img alt='{$r.title}' src='{$r.thumb|thumb2=###,379,213,2}' />
+                <div class="mask"></div>
+              </div>
+              <div class='li-title ellipsis'>{$r.title}</div>
+              <div class='li-info ellipsis'>{:L('发布时间')}: {$r.createtime|toDate=###,'Y-m-d'}</div>
+            </a>
+          </li>
+        </YP:list>
+      </ul>
+    </div>
+  </div>
+  <div id="downloads" class="container tab-panel download-list">
+     <div class="row">
+        <ul class="padding-null">
+        <YP:list name='Prodocs' field='*'  parentid='$id' order='id desc' limit='6'>
+            <li class='col-sm-6 col-md-4 col-xs-12'>
+                <div class='col-xs-5'>
+                    <img src="{$r.thumb|thumb2=###,137,194,2}"  width="100%" />
+                </div>
+                <div class='col-xs-7'>
+                    <a target="_blank" href='{$r.link}' > 
+                        <h3>{$r.title}</h3>
+                        <div>{$r.summary}</div>
+                        <b class="icons">{:L('立即下载')}</b>
+                    </a>
+                </div>
+            </li>
+         </YP:list>
+        </ul>
+    </div>
+  </div>
+</div>
+
+<div class="video-layout" >
+  <div class="video-content">
+    <a class="video-close">X</a>
+    <iframe style='width:100%;height:100%;'
+            src="about:blank"
+            allowtransparency="true" 
+            allowfullscreen="true" 
+            allowfullscreenInteractive="true" 
+            scrolling="no" 
+            border="0"
+            frameborder="0">
+    </iframe>
+  </div>
+</div>
+
+<script>
+  $('.tab-bar').on('click','.cat-item', function() {
+    $(this).siblings('.cat-item').removeClass('hover');
+    $(this).addClass('hover');
+    var targetSel = $(this).find('a').attr('href');
+    $('.tab-content .tab-panel').removeClass('active');
+    $(targetSel).addClass('active');
+    return false;
+  });
+
+  function play(url) {
+    url = $.trim(url);
+    if(!url){
+      alert('{:L("无视频链接")}');
+      return;
+    }
+    var video = $('.video-layout');
+    if(!play._init){
+      play._init = true;
+      video.find('.video-close').on('click', function() {
+        video.hide();
+      });
+    }
+    var w = $(window).width();
+    w = w - 48;
+    w = Math.min(w, 800);
+    h = w * 3 / 4;
+    console.log(w);
+    console.log(h);
+
+    video.find('.video-content')
+        .width(w)
+        .height(h)
+        .css("margin-left", -1 * (w/2))
+        .css("margin-top", -1 * (h/2));
+    video.show().find('iframe').attr('src', url);
+  }
+</script>
+

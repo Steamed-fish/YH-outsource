@@ -1,0 +1,83 @@
+@charset "utf-8";
+
+#ie6-warning { background: #FFFFE1; position: absolute; left: 0; font-size: 12px; color: #333; width: 100%; padding: 2px 15px 2px 23px; text-align: left; z-index: 999; }
+#ie6-warning a { color: #00F; }
+
+.clear_both{clear:both; overflow: hidden; font-size:0px; line-height:1px; height:1px;}
+.cb{ clear:both;}
+.dib{ display:inline-block; height:1px; width:100%;}
+.dib_fz{letter-spacing:0px; word-spacing:0px; font-size:0;}
+.oh{ overflow:hidden;}
+.none{ display:none;}
+.blok{ display:block;}
+
+.i_zgs{width:100%;margin-top:40px;}
+.izgsc{width:100%; }
+.i_zgs_li{ display:inline-block; vertical-align:top; 
+width:18%; min-height:438px; max-height:438px; padding-bottom:65px; 
+position:relative; cursor:pointer; transition:all .4s ease 0s; overflow:hidden;}
+.i_zgs_li .i_zgstit,.i_zgs_li .i_zgsmc,.i_zgs_li span{ display:none;}
+.js_wzgs{width:64%;}
+
+.mr0{ margin-right:0 !important;}
+
+
+.hline{ height: 2px; overflow: hidden; background: #01c6b2; display: block; }
+.i_zgs_title{ 
+    width:170px; position: absolute; left:20px; top:30px;
+    -webkit-transition: all 0.6s ease-in-out;
+    -moz-transition: all 0.6s ease-in-out;
+    -o-transition: all 0.6s ease-in-out;
+    -ms-transition: all 0.6s ease-in-out;
+    transition: all 0.6s ease-in-out;
+}
+.i_zgs_title h2{
+  font-size: 22px!important;
+  color: rgb(255, 255, 255);
+  line-height: 1.364!important;
+  margin:5px 0;
+}
+.i_zgs_title h3{
+  font-weight: normal!important;
+  font-size: 14px!important;
+  color: rgb(252, 252, 252);
+  line-height: 1.797!important;
+  margin:5px 0;
+
+}
+.i_zgs_title .hline{
+    opacity: 1;
+}
+.i_zgs_content{
+    background: url(../images/back.png) no-repeat 0 0 ;
+    opacity: 0;
+    color:#fff;
+    margin-top:696px;
+    margin-left:28px;
+    padding-top:45px;
+    padding-left:38px;
+    width:60%;
+    font-size: 14px;
+    line-height: 1.797;
+    width: 550px;
+    height: 300px;
+    -webkit-transition: all 0.8s ease-in-out;
+    -moz-transition: all 0.8s ease-in-out;
+    -o-transition: all 0.8s ease-in-out;
+    -ms-transition: all 0.8s ease-in-out;
+    transition: all 0.8s ease-in-out;
+}
+.js_wzgs .i_zgs_content{
+    opacity: 1;
+    margin-top:96px;
+} 
+.i_zgs_content p {
+    margin-top:95px;
+}
+.js_wzgs .i_zgs_title{
+    left:65px;
+    top:145px;
+}
+.js_wzgs .i_zgs_title .hline{
+    opacity: 0;
+}

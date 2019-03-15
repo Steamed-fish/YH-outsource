@@ -1,0 +1,83 @@
+	<div class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 col-md-4 col-xs-12">
+					<div class="foot-contact">
+						<span class='foot-nav-title'>{:L('联系我们')}</span>
+						<ul>
+							<li><span class='icons address'></span>{$address}</li>
+							<li><span class='icons phone'></span>{$phone}</li>
+							<li><span class='icons email'></span>{$email}</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-sm-12 col-md-5 col-xs-12">
+					<YP:subcat catid="0" id="r" key="k" bottom="1">
+						<div class='foot-nav col-sm-3 col-md-3 col-xs-3'>
+							<span class='foot-nav-title'>{$r.catname}</span>
+							{if $r['arrchildid'] != $r['id'] }
+							<ul>
+							<YP:subcat catid="$r['id']" id="r2">
+								<li>
+									<a href="{$r2.url}">{$r2.catname}</a>
+								</li>
+							</YP:subcat>
+							</ul>
+							{/if}
+						</div>
+					</YP:subcat>
+				</div>
+				<div class="col-sm-12 col-md-3 col-xs-12">
+					<script>
+						function copytitle(){
+							$('.feedback-form input[name=title]').val(
+								$('.feedback-form textarea [name=content]').val()
+							);
+							return true;
+						}
+					</script>
+					<form name="myform" action="{:URL('User-Post/insert')}" onsubmit="return copytitle()" method="post">
+						<div class="feedback-form">
+							<input type="hidden" name="moduleid" value="8" />
+							<input type="hidden" name="lang" value="{$langid}" />
+							<input type="hidden" name="email" value="" />
+							<input type="hidden" name="title" value="" />
+							
+							<div><input name="username" placeholder="{:L('姓名')}" /></div>
+							<div><input name="telephone" placeholder="{:L('电话')}" /></div>
+							<div><textarea name='content' placeholder="{:L('内容')}"></textarea></div>
+							<div><button type="submit" class="linkdetail">{:L('提交')}</button></div>
+						</div>
+					</form>
+				</div>
+				
+			</div>
+			<div class="row friendlink">
+				<b>{:L('友情链接')}: </b>
+				<YP:link  typeid="2"  linktype="1" >
+				<a href="{$r['siteurl']}" target="_blank">{$r['name']}</a>
+				</YP:link>
+			</div>
+		</div>
+		<div class="copyright">
+			<div>
+				{$copyright} &nbsp;&nbsp;
+				<a href='http://www.miitbeian.gov.cn' target="_blank">{:L('粤ICP备16081341号')}</a>&nbsp;&nbsp;
+				<a href='http://mqu.cn' target="_blank">design by mqu.cn</a>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../Public/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../Public/js/all.js"></script>
+	<a style='display:none;' href='http://mqu.cn' target="_blank">Design By Mqu.cn</a>
+	<!-- JiaThis Button BEGIN -->
+	<script type="text/javascript" >
+	var jiathis_config={
+		summary:"",
+		shortUrl:false,
+		hideMore:false
+	}
+	</script>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+

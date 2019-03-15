@@ -1,0 +1,27 @@
+<include file="Home:pos" />
+
+<include file="Home:cats" />
+
+<div class="container solu-list">
+  <div class="row">
+    <ul class="carousel recommand-carousel">
+      <volist name="list" id="r">
+        <li class="col-sm-4 col-md-3 col-xs-6">
+          <a href='{$r.url}' title='{$r.title}'>
+            <img alt='{$r.title}' src='{$r.thumb}' />
+            <div>
+              {$r.title}
+              <span>{$r.en_title}</span>
+            </div>
+          </a>
+        </li>
+      </volist>
+    </ul>
+  </div>
+  <div class="row pagination-center">
+    <ul class="pagination">
+      {$pages}
+    </ul>
+  </div>
+</div>
+

@@ -1,0 +1,99 @@
+<!--about1 -->
+<php>$my_pics_arr = picstoarr($my_pics);</php>
+<div class="about">
+        <div class="about_t">
+        	<div class="container">
+                <h2>Factory</h2>
+                <div class="locat"><img src="../Public/images/home.png" alt=""> &gt <YP:catpos  catid="catid" space="&gt;" /> </div>
+        	</div>
+        </div>
+
+     <div class="container pd factory">
+        <h3>Factory equipment</h3>
+        <p class="p1 f14">{$content}
+
+</p>
+		<div class="fa_lunbo">
+      
+        	<p class="fap">
+        		<volist name="my_pics_arr" id="r">
+                		<span>{$r.desc}</span>
+                </volist>
+        	</p>
+        
+        <!-- pro轮播图 -->
+        
+		<div class="" >
+        	
+        	<div class="big-lunbo">
+                
+                <ul class="fa-big-picture">
+                	
+                	<li><img src="{$thumb}" width="100%" alt=""></li>
+                	
+
+                
+                </ul>
+               
+            
+            </div>
+            
+            
+            
+            <div class="small-lunbo">
+            	
+            	<div id="owl-example" class="owl-carousel">
+                	<volist name="my_pics_arr" id="r">
+                		<img src="{$r.file}" width="100%" alt="">
+                	</volist>
+                  
+                </div>
+                
+            </div>
+        	 <script>
+            	$(document).ready(function() {
+ 
+				  $("#owl-example").owlCarousel({
+				 	
+ 					items: 1,
+					loop: true,
+					lazyLoad: true,
+					dots:false,
+					slideBy:4,
+					margin:25,
+					nav:true,
+					navText:['',''],
+					merge: true,
+					video: true,
+					autoPlay: 500,
+					videoPlay:false,
+					autoplayHoverPause:true,
+					responsive:{400:{items:2},480:{items:2}, 678:{items:3}, 991:{items:4}, 1200:{items:5}}
+				  });
+				
+				
+
+				});
+            	
+				
+				
+            </script>
+        </div>
+
+        
+        
+        
+        
+        
+        
+        
+        
+        </div>
+
+
+        <div class="clear"></div>
+       
+    </div>
+
+</div>
+

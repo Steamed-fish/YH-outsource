@@ -1,0 +1,262 @@
+
+<YP:flash flashid="1" />
+<div class="container pan-product">
+	<h3 class='title'>{:L('Product Center')}</h3>
+	<h2 class='title'>{:L('产品中心')}</h2>
+	<!--<div class="title-line"></div>-->
+	<div class="row">
+		<!--<div class="summary-pro">
+			{$Categorys[$T[home_product_id]]['content']}
+		</div>
+		<a href='{$c.url}' class="linkmore">{:L('了解更多')}</a>-->
+		<div class="col-sm-12 col-md-10 col-xs-12 col-lg-12 pro-tab nofloat clearb">
+			<?php $index=1; ?>
+				<div class="col-sm-4 col-md-4 col-xs-4 icons text-center pan-pro-head">
+					<i class="icon0"></i>
+					<a class="pro-tab-item" 
+						href='/uav/' 
+						title='无人机'>无人机</a>
+						<span>unmanned aerial vehicle</span>
+				</div>
+				
+				<div class="col-sm-4 col-md-4 col-xs-4 icons text-center pan-pro-head">
+					<i class="icon1"></i>
+					<a class="pro-tab-item" 
+						href='/platform/' 
+						title='平台系统'>平台系统</a>
+						<span>platform system</span>
+				</div>
+				
+				<div class="col-sm-4 col-md-4 col-xs-4 icons text-center pan-pro-head">
+					<i class="icon2"></i>
+					<a class="pro-tab-item" 
+						href='/parts/' 
+						title='部件配件'>部件配件</a>
+						<span>Parts chassis</span>
+				</div>
+				<?php $index++; ?>
+		</div>
+		<div class="clearb"></div>
+		<YP:subcat catid="T[home_product_id]" id="c" key='index'>
+			<div id='tcontent_{$c.id}' class="pro-tab-content col-sm-4 col-md-4 col-xs-12 ">
+				<div class="row" style='margin-left:0;margin-right:0;'>
+					
+							<div class="pan-pro">
+									<div class="padding-null has-mask">
+										
+										<div id="owl-example{$c.id}" class="owl-carousel">
+		
+											<YP:list name='Product' field='*' order='id desc' catid='" . $c[id] . "' limit='4'>
+											  <div>
+											  	<a href='{$r.url}' >
+													<img alt='{$r.title}' src='{$r.thumb|thumb2=###,297,240,2}' />
+												</a>
+											  </div>
+											  
+											</YP:list>
+										   
+										  
+										</div>
+										
+									</div>
+							</div>
+							
+							
+				</div>
+				
+			</div>
+		</YP:subcat>
+	</div>
+</div>
+<div class="gray pan">
+	<div class="container">
+		<h3 class='title'>{:L('Solution')}</h3>
+		<h2 class='title'>{:L('解决方案')}</h2>
+		<div class="row">
+			<div class="owl-carousel recommand-carousel" id="case-list">
+				<YP:list field='*' name='Solution' order='id desc' limit='16' posid='11' thumb='1'>
+					<div class="overout-outer li">
+						<a href='{$r.url}'  class="overout relative pan-feel" 
+							style='background-image: url({$r.thumb|thumb2=###,297,400})'>
+							<img alt='{$r.title}' src='{$r.thumb|thumb2=###,297,400}' />
+							<div class="no-animates pan-shuo">
+								<div class="pan-jiejuepic"></div><!-- 此处放图标-->
+								<div class="pan-title">{$r.title}</div>
+								<div class="title-line"></div>
+								
+							</div>
+						</a>
+					</div>
+				</YP:list>
+				
+			</div>
+		</div>
+	</div>
+</div>
+<div class="gray-light">
+	<div class="container">
+		<h3 class='title'>{:L('News Center')}</h3>
+		<h2 class='title'>{:L('新闻中心')}</h2>
+		<div class="row">
+			
+			<YP:list name='Article' field='*' order='id desc' limit='3' thumb='1'>
+			<div class="col-sm-4 col-md-4 col-xs-12 marginB20">
+				<a href='{$r.url}' >
+					<img alt='{$r.title}' src='{$r.pin_image}' />
+					
+				</a>
+				<dl class="news pan-news">
+					
+					<dt class='ddtitle clearfix'>
+						<a class='new-title' href='{$r.url}' >
+						 &nbsp;&nbsp;{$r.title}
+						</a>
+						<span class="news-time">{$r.createtime|toDate=###,'m'}/{$r.createtime|toDate=###,'d'}</span>
+					</dt>
+					<dd>{$r.summary}</dd>
+					<dd>{$r.summary}</dd>
+				</dl>
+			</div>
+			</YP:list>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<h3 class='title'>{:L('Cooperative unit')}</h3>
+	<h2 class='title'>{:L('合作伙伴')}</h2>
+	<div class="row">
+			<YP:link  typeid="3"  linktype="2" limit='8'>
+				<div class="pan-brand">
+					<a href="{$r['siteurl']}" target="_blank">
+						<img src="{$r['logo']}" alt="{$r['name']}">
+					</a>
+					
+				</div>
+			</YP:link> 
+	</div>
+</div>
+
+
+<script type="text/javascript" src="../Public/js/owl.carousel.js"></script>
+<script>
+	var length=$(".pan-brand").length;
+	var list=Math.floor(length/4)
+	var yu=length%4;
+	var num=0;
+	for(var i=1;i<list+2;i++){
+		num=i*4-1;
+	$(".pan-brand").eq(num).css("border-right","none");
+	
+	}
+	var last=list*4+yu-1
+	$(".pan-brand").eq(last).css("border-right","none")
+</script>
+
+<script type="text/javascript">
+	var bannerList = $('#banner-list').owlCarousel({
+		items: 1,
+		loop: true,
+		lazyLoad: true,
+		slideBy:1,
+		nav:true,
+		navText:['',''],
+		merge: true,
+		video: true,
+		autoplay: 5000,
+		videoPlay:false,
+		autoPlayHoverPause:true,
+		responsive:{}
+	});
+	$('#banner-list .carousel-left').click(function(){
+		bannerList.trigger('prev.owl', 500);
+	});
+	$('#banner-list .carousel-right').click(function(){
+		bannerList.trigger('next.owl', 500);
+	});
+	var owlCase = $('#case-list').owlCarousel({
+		items: 4,
+		loop: true,
+		lazyLoad: true,
+		slideBy:4,
+		nav:true,
+		navText:['',''],
+		merge: true,
+		video: true,
+		autoplay: false,
+		videoPlay:false,
+		autoPlayHoverPause:true,
+		responsive:{120:{items:2}, 560:{items:3}, 992:{items:3}, 1200:{items:4}}
+	});
+	
+	$('#changeGroup').click(function(){
+		owlCase.trigger('next.owl', 1000);
+	});
+
+	var owlLink = $('#link-list').owlCarousel({
+		items: 6,
+		loop: true,
+		lazyLoad: true,
+		slideBy:6,
+		nav:true,
+		navText:['',''],
+		merge: true,
+		video: true,
+		autoplay: false,
+		videoPlay:false,
+		autoPlayHoverPause:true,
+		responsive:{560:{items:3}, 992:{items:6}, 1200:{items:6}}
+	});
+	setTimeout(function(){ owlLink.trigger('play.owl',3000);},6000);
+	
+	
+	$('.jsq_block2 span').on('mouseover', function(){
+		$('.jsq_block2 span').removeClass('hover');
+		$(this).addClass('hover');
+	});
+
+	$('.pro-tab').on('click', '.pro-tab-item', function(){
+		$('.pro-tab .pro-tab-item').removeClass('active');
+		$('.pro-tab div.icons').removeClass('active');
+		$('.pro-tab-content').hide();
+		var target = $($(this).attr('href'));
+		$(this).addClass('active');
+		$(this).parent('div.icons').addClass('active');
+		target.css({opacity:0}).addClass('active').show();
+		setTimeout(function(){
+			target.css({opacity:1});
+		}, 10);
+		
+		return false;
+	})
+</script>
+<script type="text/javascript">
+	$('.owl-carousel').owlCarousel({
+	items: 1,
+	loop:true, // loop is true up to 1199px screen.
+	slideBy:1,
+//	nav:true, // is true across all sizes
+	dots:true,
+	dotsEach:true,
+//	margin:10, // margin 10px till 960 breakpoint
+	responsiveClass:true, // Optional helper class. Add 'owl-reponsive-' + 'breakpoint' class to main element.
+	
+	
+
+});
+</script>
+<!--[if lt IE 10]>
+<style>
+	#banner-list .owl-next, #banner-list .owl-prev{
+		display:block;
+	}
+</style>	
+<![endif]-->
+<style>
+	@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+		/* IE10+ CSS styles go here */
+		#banner-list .owl-next, #banner-list .owl-prev{
+			display:block;
+		}
+	}
+</style>

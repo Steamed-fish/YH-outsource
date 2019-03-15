@@ -1,0 +1,15 @@
+<div class="sub-cate">
+  <div class="container">
+    <div class="row">
+        <div>
+          <div class='no-animates cat-item hover'>
+            <a href="{$Categorys[$catid]['url']}" class='sub-name'>{$Categorys[$catid]['catname']}</a>
+            <span class='sub-pot icons'></span>
+          </div>
+          <div class="floatR padd-T-20">
+            {if $content}<a class="shang" href="{$Categorys[$catid]['url']}">{:L('返回列表')}</a>{else}{/if}
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

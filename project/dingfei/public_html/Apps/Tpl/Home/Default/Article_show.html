@@ -1,0 +1,68 @@
+<include file="Home:pos" />
+
+<div class='newdetail'>
+    <include file="Home:cats" />
+</div>
+
+<div class="container newdetail">
+  <div class='row'>
+    <div class="col-sm-9 col-md-9 col-xs-12 c-left">
+      <h1 class="bai">{$title}</h1>
+      <div class='stats'>
+        <span>{:L('发布时间')}: {$createtime|toDate=###,'Y-m-d'}</span>
+        <span>{:L('次浏览')}: {$hits}</span>
+        <span>{:L('分享到')}: 
+          <div class="f-icon icon-maring">
+              <!--<a href="" class=""></a><a href=""></a><a href=""></a><a href=""></a><a href=""></a><a href=""></a>-->
+              <!-- JiaThis Button BEGIN -->
+              <div class="jiathis_style animates">
+                  <a class="jiathis_button_fb"></a>
+                  <a class="jiathis_button_twitter"></a>
+                  <a class="jiathis_button_linkedin"></a>
+                  <a class="jiathis_button_weixin"></a>
+                  <a class="jiathis_button_tsina"></a>
+                  <a class="jiathis_button_cqq"></a>
+              </div>
+              <!--<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>-->
+              <!-- JiaThis Button END -->
+          </div>
+        </span>
+      </div>
+      <div class="content">
+          {$content}
+      </div>
+      <div class="xiaye pd f14 lh22" style="padding-top: 0;">
+        {if $prePage}<div>{:L('上一篇')}:<a class="" href="{$prePage.url}">{$prePage.title}</a></div>{else}{/if}
+        {if $nextPage}<div>{:L('下一篇')}:<a class="" href="{$nextPage.url}">{$nextPage.title}</a></div>{else}{/if}
+      </div>
+    </div>
+    <div class="col-sm-3 col-md-3 col-xs-12 c-right">
+      <div class="col-r-title">{:L('最新动态')}</div>
+      <ol >
+        <YP:list name='Article' field='*' order='id desc' limit='5' thumb='1'>
+          {if $key==0}
+            <li class="first">
+                <a href='{$r.url}' >
+                  <img alt='{$r.title}' src='{$r.thumb|thumb=###,219,135,1}' />
+                  <b>{$r.title|str_cut=###,15}</b>
+                  <span >{$r.summary}</span>
+                </a>
+            </li>
+          {else}
+            <li class="icons">
+              <a href='{$r.url}' >
+                <b>{$r.title|str_cut=###,15}</b>
+                <span >{$r.summary}</span>
+              </a>
+            </li>
+          {/if}
+        </YP:list>
+      </ol>
+    </div>
+  </div>
+</div><!--
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>-->
+
+      
+      
+      

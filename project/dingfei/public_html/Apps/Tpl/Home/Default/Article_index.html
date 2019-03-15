@@ -1,0 +1,27 @@
+<YP:flash flashid="4" />
+
+<include file="Home:pos" />
+
+<include file="Home:cats2" />
+
+<div class='container news-list-index'>
+<?php $index = 0; ?>
+<YP:subcat catid="$catid" id="rd">
+	<dl class="row new-index-item color-{$index}">
+		<dt class="col-sm-7 col-md-7 col-xs-12 padding-null">
+			<a href='{$rd.url}' ><img src="{$rd.image|thumb2=###,650,450,2}" /></a>
+			<a class='alink' href='{$rd.url}' >{$rd.catname}</a>
+		</dt>
+		<dd class="col-sm-5 col-md-5 col-xs-12">
+			<YP:list name='Article' order='id desc' catid='$rd[id]' limit='3'>
+				<div>
+					<h3><a href='{$r.url}' >{$r.title}</a></h3>
+					<p>{$r.description}</p>
+				</div>
+			</YP:list>
+		</dd>
+	</dl>
+	<?php $index++; if($index == 3){ $index = 0; } ?>
+</YP:subcat>
+
+</div>

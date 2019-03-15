@@ -1,0 +1,30 @@
+<include file="Home:pos" />
+
+<include file="Home:cats2" />
+
+<div class="container case-list">
+  <div class="row">
+    <ul class="carousel recommand-carousel">
+      <volist name="list" id="r">
+        <li class="col-sm-4 col-md-4 col-xs-6 overout-outer">
+          <a href='{$r.url}' 
+            class="overout not-margin" style='background-image: url({$r.thumb|thumb2=###,370,250,2})'>
+            <img alt='{$r.title}' src='{$r.thumb|thumb2=###,370,250,2}' />
+          </a>
+          <a href='{$r.url}' >
+            <div>
+              {$r.title}
+              <span>{$r.summary}</span>
+            </div>
+          </a>
+        </li>
+      </volist>
+    </ul>
+  </div>
+  <div class="row pagination-center">
+    <ul class="pagination">
+      {$pages}
+    </ul>
+  </div>
+</div>
+
