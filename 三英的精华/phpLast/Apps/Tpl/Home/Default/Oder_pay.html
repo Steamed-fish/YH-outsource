@@ -1,0 +1,125 @@
+<div style="min-height: 400px; paddgin-bottom: 60px; width: 990px; margin: auto; display: block;">
+	<div style="display: block;">
+		<div>
+			<div>
+				<!-- address -->
+				<div style="">
+					<h2>
+						<span>订单信息</span>
+					</h2>
+					<ul style="margin:0; padding:0; list-style: none;">
+					<!-- output address information begin -->
+						<li style="margin: 5px 0 7px;line-height: 32px;box-shadow: 5px 5px 0 #f3f3f3;position: relative;">
+							<div style="margin-left: 10px; display: block;display: inline-block;">
+								<label>
+									<span>
+										<span>{$province} {$city} {$area}</span>
+										<span> {address}</span>
+										<span>(</span>
+										<span>{$consignee}</span>
+										<span> 收)</span>
+										<em>
+											<empty name="$addr.mobile">
+												{$mobile}
+											<else />
+												{$tel}
+											</empty>
+										</em>
+									</span>
+								</label>
+							</div>
+						</li>
+					</volist>
+					</ul>
+					<!-- output address information end -->
+				</div>
+				<!-- title -->
+				<div style="display: block;">
+					<div style="margin-top: 15px;display: block;">
+						<div class="buy-td td-0">商品</div>
+						<div class="buy-td td-6">单价</div>
+						<div class="buy-td td-6">数量</div>
+						<div class="buy-td td-5">小计</div>
+					</div>
+				</div>
+				<!-- detail -->
+				<div class="order-order">
+					<switch name="type">
+						<case value="1" break="1">
+							<input type="hidden" name="confirm_type" value="product">
+						</case>
+						<case value="2" break="1">
+							<input type="hidden" name="confirm_type" value="cart">
+						</case>
+					</switch>
+					<!-- item begin -->
+					<volist name="product" id="pro">
+						<div class="order-item">
+							<switch name="type">
+								<case value="1" break="1">
+									<input type="hidden" name="id" value="{$pro.productid}">
+								</case>
+								<case value="2" break="1">
+									<input type="hidden" name="id" value="{$pro.id}">
+								</case>
+							</switch>
+							
+							<div class="order-itemInfo">
+								<div class="info-detail info-cell">
+									<div class="info-cell">
+										<img class="info-img" src="{$pro.thumb}">
+									</div>
+									<div class="info-cell info-msg">
+										<label class="info-title">{$pro.title}</label>
+									</div>
+								</div>
+								<!-- 单价 -->
+								<div class="info-price info-cell">{$pro.price|number_format=###,2}</div>
+							</div>
+							<!-- 修改数量 -->
+							<div class="order-quantity" style="margin-left: 130px;">
+								<div class="quantity-inner">
+									{$pro.number}
+								</div>
+							</div>
+							<!-- 小计 -->
+							<div class="order-itemPay">
+								<span class="simple-price">{$pro['price']*$pro['number']|number_format=###,2}</span>
+							</div>
+							<div class="seperator"></div>
+						</div>
+					</volist>
+					<!-- item end -->
+					<!-- orderExt -->
+					<div class="order-orderExt">
+						<div class="order-extInfo">
+							<div class="order-deliveryMethod">
+								<div class="delivery-title">运送方式</div>
+								<div class="delivery-select">
+									<div class="select-item">
+										<div class="select-info">
+											<div class="delivery-box">
+												<label>普通配送</label>
+												<span>快递 免邮</span>
+											</div>
+										</div>
+										<div id="shipping_fee" class="select-price">0.00</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 总计 -->
+					<div class="orderPay">
+						<span>合计</span>
+						<span>(含运费)</span>
+						<span class="price g_price">
+							<span>￥</span>
+							<em id="amount">{$amount|default='0.00'}</em>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

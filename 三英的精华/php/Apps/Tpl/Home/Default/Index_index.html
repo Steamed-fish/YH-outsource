@@ -1,0 +1,130 @@
+<main>
+	<ul class="maincontent start">
+		<li id="subnav1" data-title="WELCOME" class="stageslider">
+			<!--banner-->
+			<YP:flash flashid="1"/>
+			<!--banner-->
+
+		</li>
+		<li id="subnav3" data-title="Overview" class="hide_low_768">
+			<div class="page_teaser">
+				<div class="profile_button_container">
+					<div class="icon_list">
+						<div data-profilenumber="1" class="float_left">
+							<div class="profile_symbol float_left">
+								<div class="icon_text">Company Profile</div>
+								<a href="/about/" ><div class="icon_tool"></div></a>
+							</div>
+							<div class="profile_undertitle float_left">
+								<YP:block pos='Profile' /> 								
+								<div class="read_more"><a href="solution.html" >read more</a>
+									
+								</div>
+							</div>
+						</div>
+						<div data-profilenumber="2">
+							<div class="profile_symbol centerize">
+								<div class="icon_text">Service project</div>
+								<a href="/service/" ><div class="icon_spot"></div></a>
+							</div>
+							<div class="profile_undertitle centerize">
+								<YP:block pos='project' /> 							<div class="read_more"><a href="Team.html" >read more</a></div>
+							</div>
+						</div>
+						<div data-profilenumber="3" class="float_right">
+							<div class="profile_symbol float_right">
+								<div class="icon_text">Contact us</div>
+								<a href="/contact/" ><div class="icon_signpost"></div></a>
+							</div>
+							<div class="profile_undertitle float_right">
+								<YP:block pos='contact' />								
+								<div class="read_more"><a href="case.html" >read more</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+		<li id="subnav4" data-title="About us" style="background: #004662 url('../Public/images/in_img2.jpg') top center no-repeat;">
+					<div class="difference_teaser white">
+						<div class="text_box_right">
+							<div class="headline">
+								<h3 class="double"><div class="white">Egoal International Logistics Ltd</div></h3>
+							</div>
+							<div class="text">
+								<div class="white"><YP:block pos='in_abuot' /></div>
+<div class="white">EVERYDAY. EVERYWHERE.</div>							</div>
+							<a href="difference.html"  class="btn_full_teaser">About us</a>
+						</div>
+					</div>
+				</li>
+		<li id="subnav5" data-title="service project" style="background: #fefefe url('../Public/images/in_img.jpg') top center no-repeat;">
+			<div class="difference_teaser">
+				<div class="text_box_left">
+					<div class="headline">
+						<h3 class="double">Our service project</h3>
+					</div>
+					<div class="text">
+						<YP:block pos='in_service' />						
+					</div>
+					<a href="solution.html"  class="btn_full_teaser">Service project</a>
+				</div>
+			</div>
+		</li>
+		<li id="subnav6" data-title="News" style="background: #004561 url('../Public/images/in_img3.jpg') top center no-repeat;">
+			<div class="difference_teaser white">
+				<YP:list order="id desc" catid="24"  limit="1" posid="9">
+				<div class="text_box_right">
+					<div class="headline">
+						
+						<h3 class="double"><div class="white">{$r.title}</div></h3>
+					</div>
+					<div class="text">
+						<span class="white">
+							{$r.description}
+						</span>							</div>
+					<a href="{$r.url}"  class="btn_full_teaser">To see more news</a>
+				</div>
+				</YP:list>
+			</div>
+		</li>
+		
+		<li id="subnav7" data-title="customers" style="background: #ffffff url('../Public/images/in_img4.jpg') top center no-repeat;">
+			<div class="difference_teaser">
+				<div class="text_box_left">
+					<div class="headline">
+						<h3 class="double">Recognition from our customers</h3>
+					</div>
+					<div class="text">
+						<div class="black"><span lang="EN-US">
+							<p style="height: 25px;	background: url(../Public/images/pgl.png) no-repeat left center;"></p>
+							
+							<YP:block pos='in_customers' />
+							
+							<p style="height: 25px;background: url(../Public/images/pgr.png) no-repeat right center;">
+						</span></div>
+					</div>
+					<a href="/"  class="btn_full_teaser">See more evaluation</a>
+				</div>
+			</div>
+		</li>
+	</ul>
+	<div id="reload">
+		
+	</div>
+</main>
+<script>
+$(function(){
+	
+	if($(window).width()<768){
+		$('#subnav4').css('background-position','68% center');
+		$('#subnav5').css('background-position','20% center');
+		$('#subnav6').css('background-position','60% center');
+		$('#subnav7').css('background-position','30% center');
+	}
+
+});
+
+
+
+</script>

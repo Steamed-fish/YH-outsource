@@ -1,0 +1,51 @@
+
+
+<style>
+.table-list  {margin:10px;}
+.table-list ul.pic {}
+.table-list ul.pic li.use {background:#EFEFEF;}
+.table-list ul.pic li {float:left;position:relative;margin:10px 20px;_margin:10px 12px;width:200px;}
+.table-list ul.pic li span { width:202px;height:222px;}
+.table-list ul.pic li span a {border:1px solid #eee;width:200px;height:220px;*font-size: 220px;}
+.table-list ul.pic li img  {width:200px;height:220px;}
+.table-list ul.pic li  b {display:block;line-height:20px;height:20px;font-weight:normal;width:200px;overflow:hidden;text-align:left;}
+.table-list ul.pic li  em {position:absolute;right:0;bottom:20px;}
+.table-list ul.pic li b a {float:right;}
+</style>
+<script type="text/javascript">
+	$(function(){
+		$("#tpl").bind("change",function(){
+			var  a=$(this).attr("value");
+			var url = "/Public/Images/"+a+".jpg";
+			$.ajax({
+				url:"{:U('Share/updatetpl')}&tpl="+a,
+				type: "GET",
+				success: function(msg){
+						$("#image").attr("src",url);
+		         }
+			});
+			
+			
+		
+		});
+	});
+	
+</script>
+<div>
+
+{:Form::select(array('field'=>'tpl','options'=>$Tpl,'options_key'=>'value,filename'),$chose)}
+<img id="image" src="/Public/Images/{$chose}.jpg">
+</div>
+<div class="table-list">
+
+<ul class="pic">
+ 
+<volist name="list" id="vo">
+<li><span><a href="{:U($module_name.'/chose?id='.$vo[id])}"><img src="/Public/Images/share/{$vo.name}.jpg"></a></span><b><if condition="$vo['status']==1"><i style="float:right;color:#FB0000">已使用</i><else/><a href="{:U($module_name.'/chose?id='.$vo[id])}">未使用</a></if>{:L(name)}:{$vo.title}</b></li>
+</volist>
+</ul>
+</div>
+ 
+
+
+

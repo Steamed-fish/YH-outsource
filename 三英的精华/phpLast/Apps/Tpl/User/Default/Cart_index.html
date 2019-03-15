@@ -1,0 +1,727 @@
+<!--  <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<!--  <load href='__PUBLIC__/Js/area.js' /> -->
+ <style type="text/css">
+/* body{ background:#EEEEEE;margin:0; padding:0; font-family:"微软雅黑", Arial, Helvetica, sans-serif; }
+a{ color:#006600; text-decoration:none;}
+a:hover{color:#990000;}
+.top{ margin:5px auto; color:#990000; text-align:center;}
+.info select{ border:1px #993300 solid; background:#FFFFFF;}
+.info{ margin:5px; text-align:center;}
+.info #show{ color:#3399FF; }
+.bottom{ text-align:right; font-size:12px; color:#CCCCCC; width:1000px;} */
+.amount {
+	text-align: center;
+    display: inline-block;
+    width: 42px;
+    border: 1px solid #9DC1E4;
+    border-left: none;
+    border-right: none;
+    line-height: 24px;
+    height: 24px;
+}
+</style>
+
+	<div class="right">
+		 
+			<h5 class="title"><b>购物车列表</b></h5>
+			 
+					<table  class="search_table" width="100%">
+							<tr>
+								<td class="search">
+									<form action="{:URL($module_name.'/index')}" method="get">
+									<input type="hidden" name="g" value="User" />
+									<input type="hidden" name="m" value="{$Think.MODULE_NAME}" />
+									<input type="hidden" name="a" value="{$Think.ACTION_NAME}" />	
+
+									<input id="title" type="text" class="input-text" name="sn" value="{$Think.get.sn}" />
+									<input type="hidden" id="searchtype" name="searchtype" value="sn"/> 
+									<input type="submit" value="{:L('query')}"  class="button" />
+									</form>
+								</td>
+								
+							</tr>
+						</table>
+
+						<form name="myform" id="myform" action="" method="post">
+
+						<div class="table-list">
+							<table width="100%" cellspacing="0">
+								<thead> 
+									<tr> 
+								 	<th style="width: 25px;"><input type="checkbox" name="check_all"></th>
+									<th width="140" align="left">商品名称</th> 
+									<th width="70" align="left">商品价格</th>
+									<th  align="left" style="text-align: center;">数量</th> 
+									<th  align="left">总价</th>
+									<th width="160" align="center">
+										<button type="button" class="confirm-order-all">下单</button>
+										<button type="button" class="delete-cart">删除</button>
+									</th>
+									</tr> 
+								</thead> 
+								<tbody>
+									<volist name="list" id="vo" key="k">
+									<tr id="cart_{$vo.id}">
+									<td><input type="checkbox" name="check"></td>
+									<td><a href="{$vo.product_url}">{$vo.product_name} </a> </td>
+									<td><font color="red">{$vo.product_price|number_format=###,2}{:L(RMB)}</font></td>
+									<td style="text-align: center;">
+									<!-- 修改数量 -->
+										<input class="amount" value="{$vo['number']}">
+									</td>
+									<td>{$vo['number']*$vo['product_price']}</td> 
+									<td width="160" align="center"></td> 		
+									</tr>
+									</volist>
+								</tbody>
+							</table>
+ 
+						</form></div>    
+
+						<div id="pages" class="page">{$page}</div>
+						<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+						<!-- <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+						<script>
+						var modifyFlag = false;
+						var provinceid = 0;
+						var cityid = 0;
+						var areaid = 0;
+						var cartList = JSON.parse('{}');
+						
+						$().ready(function(){
+							/* init cartList */
+							var tr = $('.table-list tbody tr');
+							var checkbox;
+							var id=0;
+							$.each(tr, function(index, obj){
+								checkbox = $(obj).find('input[name="check"]');
+								id = this.id.substring(5, this.id.length);
+								if(checkbox.is(':checked') && cartExist(id) < 0)
+								{
+									cartList[jsonLength(cartList)] = id;
+								}
+								
+							});
+						});
+
+						$('input.amount').on('focus',function(){
+							this.oldVal = $(this).val()
+						});
+						
+						$('input.amount').on('blur',function(){
+							var newVal = Number($(this).val());
+							var $this = $(this);
+							if(newVal<1 || isNaN(newVal))
+							{
+								$(this).val(this.oldVal);
+							}else {
+								var cid = $(this).parents('tr:first')[0].id;
+								
+								$.ajax({
+									type:'post',
+									url:'/User/Cart/changeNumber',
+									dataType:'json',
+									data: {'cartid': cid.substring(5, cid.length), 'number': newVal},
+									success: function(data){
+										if(data.errno != 0)
+										{
+											$this.val($this[0].oldVal);
+										}else {
+											var td = $this.parent();
+											var ntd = td.next('td');
+											var ptd = td.prev('td');
+											var price = ptd.children('font').text().match(/^\d+(\.\d{2})?/)[0];
+											ntd.text(price * $this.val());
+										}console.log(data);
+									},
+									error:function(xhr){
+										console.log(xhr.responseText);
+									}
+								});
+							}
+						});
+
+						$('button.confirm-order-all').on('click', function(){
+							var length = jsonLength(cartList);
+							if(length)
+							{
+								var param = '[';
+								$.each(cartList, function(){
+									param += Number(this) + ',';
+								});
+								param = param.replace(/\,$/, ']');
+								var form = $('<form method="post"></form>');
+								form.attr({'action' : '/Order/confirmOrder'});
+								var input = $('<input type="hidden">');
+								input.attr({'name' : 'cartid'});
+								input.val(param);
+								form.append(input);
+								$(document.body).append(form);
+								form.submit();
+								console.log(param);
+							}
+						});
+						
+						$("button.open_address_modal").on('click', function(){
+							var $this = $(this);
+							var cid = $this.parents('tr')[0].id;
+							console.log(cid.substring(5,cid.length));
+							$.ajax({
+								type:'post',
+								url:'/User/UserAddress/lists',
+								dataType:'json',
+								success:function(data) {
+									if(data.errno==0)
+									{
+										var str = '<table>';
+										$.each(data.data, function(){
+											str += '<tr><td>';
+											if(this.isdefault==1)
+											{
+												str += '<input type="radio" name="user_address" value="' + this.id + '" checked></td>';
+											}else {
+												str += '<input type="radio" name="user_address" value="' + this.id + '"></td>';
+											}
+											str += '<td><span>' + this.province + this.city + this.area;
+											str += ' ' + this.address + ' ' + this.zipcode + ' ';
+											str += this.consignee + ' ';
+											if(this.tel != null && this.tel != '')
+											{
+												str += this.tel;
+											}else {
+												str += this.mobile;
+											}
+											str += '</span></td><td>';
+											if(this.isdefault==0)
+											{
+												str += '<button type="button" class="address-set-default">默认</button></td>';
+											}else {
+												str += '</td>';
+											}
+											str += '<td><button type="button" class="modify-address">修改</button></td>';
+											str += '<td><button type="button" class="delete-address">删除</button></td>';
+										});
+										str += '</table>';
+										$("#myModal .modal-body").html('<input type="hidden" class="cart_id" value="' + cid.substring(5,cid.length) +'">');
+										$("#myModal .modal-body").append(str);
+
+										$('button.address-set-default').on('click', function(){
+											setDefault(this);
+										});
+										$('button.modify-address').on('click', function(){
+											modifyAddress(this);
+										});
+										$('button.delete-address').on('click', function(){
+											deleteAddress(this);
+										});
+									}else if(data.errno==1) {
+										$("#myModal .modal-body").html('<button type="button" data-toggle="modal" data-target="#modal_add_address">添加收货地址</button>');
+									}else if(data.errno==-1) {
+										alert("请登录后操作！");
+									}
+								},
+								error:function(xhr){
+									console.log(xhr.responseText);
+								}
+							});
+						});
+						
+						$('button.delete-cart').on('click', function(){
+							var $this = $(this);console.log('delete');
+							var cid = $this.parents('tr')[0].id;
+							var param = '[';
+							$.each(cartList, function(){
+								param += Number(this) + ',';
+							});
+							param = param.replace(/\,$/, ']');console.log(param);
+							$.ajax({
+								type: 'post',
+								url: '/User/Cart/delete',
+								dataType: 'json',
+								data: {'cartid': param},
+								success: function(data){
+									if(data.errno == 0)
+									{
+										alert('删除成功');
+										window.location.reload();
+									}else if(data.errno == 1) {
+										alert('删除失败');
+									}else if(data.errno == 2) {
+										alert('参数错误');
+									}else {
+										alert('请登录后操作');
+									}
+								},
+								error:function(xhr){
+									console.log(xhr.responseText);
+								}
+							});
+						});
+						
+						$('button.add-address').on('click', function(){
+							modifyFlag = false;
+						});
+						
+						$("#create_order").on('click', function(){
+							var cartid = $('input[class="cart_id"]').val();
+							var addrid = $('input[name="user_address"]:checked').val();
+							$.ajax({
+								type:'post',
+								url:'/User/Order/create',
+								dataType:'json',
+								data:{'addrid':addrid,'cartid':cartid},
+								success:function(data) {
+									console.log(data);
+									console.log(data.errno);
+									if(data.errno==0)
+									{
+										alert('订单创建成功');
+										window.location.reload();
+									}else if(data.errno==1) {
+										alert('订单创建失败');
+									}else if(data.errno==201) {
+										alert('缺少收货地址参数');
+									}else if(data.errno==202) {
+										alert('收货地址不存在');
+									}else if(data.errno==3)  {
+										alert('参数错误');
+									}else {
+										alert('请登录后操作');
+									}
+								},
+								error:function(xhr){
+									console.log(xhr.responseText);
+								}
+							});
+						});
+						
+						$("#modal_add_address").on('shown.bs.modal', function(){
+							if(!modifyFlag)
+							{
+								var option = '<option value="0">省份</option>';
+								$.ajax({
+									type:'post',
+									url:'/User/Area/getArea',
+									dataType:'json',
+									success:function(data){
+										if(data.errno==0)
+										{
+											$.each(data.data, function(){
+												option += '<option value="' + this.id + '">' + this.name + '</option>';
+											});
+										}else {
+											console.log('没有地址数据');
+										}
+										$("#s_province").html(option);
+										$("#s_city").html('<option value="0">地级市</option>');
+										$("#s_county").html('<option value="0">市、县级市</option>');
+									},
+									error:function(xhr){
+										console.log(xhr.responseText);
+									}
+								});
+								$('#s_address').val('');
+								$('#s_consignee').val('');
+								$('#s_mobile').val('');
+								$('#s_tel').val('');
+								$('#s_zipcode').val('');
+							}
+						});
+						
+						$("#modal_add_address").on('hide.bs.modal', function(){
+							modifyFlag = false;
+						});
+						
+						$("#s_province").change(function(){
+							var option = '<option value="0">地级市</option>';
+							var province = $(this).val();
+							$.ajax({
+								type:'post',
+								url:'/User/Area/getArea',
+								dataType:'json',
+								data:{'areaid':province},
+								success:function(data){
+									if(data.errno==0)
+									{
+										$.each(data.data, function(){
+											option += '<option value="' + this.id + '">' + this.name + '</option>';
+										});
+										
+									}else {
+										console.log('没有地址数据');
+									}
+									$("#s_city").html(option);
+								},
+								error:function(xhr){
+									console.log(xhr.responseText);
+								}
+							});
+						});
+						
+						$("#s_city").change(function(){
+							var option = '<option value="0">市、县级市</option>';
+							var city = $(this).val();
+							$.ajax({
+								type:'post',
+								url:'/User/Area/getArea',
+								dataType:'json',
+								data:{'areaid':city},
+								success:function(data){
+									if(data.errno==0)
+									{
+										$.each(data.data, function(){
+											option += '<option value="' + this.id + '">' + this.name + '</option>';
+										});
+									}else {
+										console.log('没有地址数据');
+									}
+									$("#s_county").html(option);
+								},
+								error:function(xhr){
+									console.log(xhr.responseText);
+								}
+							});
+						});
+						
+						/* 新增收货地址 */
+						$("button#modal_add_address_btn").on('click', function(){
+							var province = $('#s_province').val();
+							var city = $('#s_city').val();
+							var area = $('#s_county').val();
+							var address = $('#s_address').val();
+							var consignee = $('#s_consignee').val();
+							var mobile = $('#s_mobile').val();
+							var tel = $('#s_tel').val();
+							var zipcode = $('#s_zipcode').val();
+							var isdefault = $('input[name="s_isdefault"]:checked').val();
+							
+							if(area==undefined || area==null || area=='')
+							{
+								alert("请选择收货地址");
+								return false;
+							}
+							if(!(/^0?(13|14|15|18)[0-9]{9}$/.test(mobile) || /^[0-9-()（）]{7,18}$/.test(tel)))
+							{
+								alert('请输入收件人联系方式');
+								return false;
+							}
+							if(consignee=='' || consignee==null)
+							{
+								alert('请输入收件人姓名！');
+								return false;
+							}
+							var id=0;
+							var url = '/User/UserAddress/add';
+							if(modifyFlag)
+							{
+								id = $('#modal_add_address .modal-body').find('input[name="address_id"]').val();
+								url = '/User/UserAddress/modify';
+							}
+							$.ajax({
+								type:'post',
+								url: url,
+								dataType:'json',
+								data:{
+									'addrid': id,
+									'consignee':consignee,
+									'country':'中国',
+									'province':province,
+									'city':city,
+									'area':area,
+									'address':address,
+									'zipcode':zipcode,
+									'tel':tel,
+									'mobile':mobile,
+									'isdefault':isdefault
+								},
+								success:function(data){
+									if(data.errno==0)
+									{
+										if(modifyFlag)
+										{
+											alert('收货地址修改成功');
+										}else {
+											alert('新增收货地址成功！');
+										}
+										
+										$("button#modal_add_address_btn").modal('hide');
+										window.location.reload();
+									}else if(data.errno==201) {
+										alert('缺少联系人！');
+									}else if(data.errno==202) {
+										alert('缺少地址信息');
+									}else if(data.errno==203) {
+										alert('缺少联系方式！');
+									}else if(data.errno==1) {
+										if(modifyFlag)
+										{
+											alert('收货地址信息修改失败！');
+										}else {
+											alert('收货地址新增失败！');
+										}
+									}else {
+										alert('请登录后操作！');
+									}
+								},
+								error:function(xhr){
+									console.log(xhr.responseText);
+								}
+							});
+						});
+						/* 设置默认地址 */ 
+						var setDefault = function(button){
+							var $this = $(button);
+							var input = $this.parents('tr:first').find('input[name="user_address"]');
+							var id = input.val();
+							$.ajax({
+								type: 'post',
+								url: '/User/UserAddress/setDefault',
+								dataType: 'json',
+								data: {
+									'addrid' : id
+								},
+								success: function(data){
+									if(data.errno==0)
+									{
+										window.location.reload();
+									}else if(data.errno==1) {
+										alert('设置失败');
+									}else if(data.errno==2) {
+										alert('该收货地址不存在');
+									}else {
+										alert('请登录操作！');
+									}
+								},
+								error:function(xhr){
+									console.log(xhr.responseText);
+								}
+							});
+						};
+						/* 删除地址 */
+						var deleteAddress = function(button){
+							var $this = $(button);
+							var input = $this.parents('tr:first').find('input[name="user_address"]');
+							var id = input.val();
+							$.ajax({
+								type: 'post',
+								url: '/User/UserAddress/delete',
+								dataType: 'json',
+								data: {
+									'addrid' : id
+								},
+								success: function(data){
+									if(data.errno==0)
+									{
+										window.location.reload();
+									}else if(data.errno==1) {
+										alert('删除失败');
+									}else if(data.errno==2) {
+										alert('该收货地址不存在');
+									}else {
+										alert('请登录操作！');
+									}
+								},
+								error:function(xhr){
+									console.log(xhr.responseText);
+								}
+							});
+						};
+						/* 修改地址信息 */
+						var modifyAddress = function(button){
+							var $this = $(button);
+							var input = $this.parents('tr:first').find('input[name="user_address"]');
+							var id = input.val();
+							$("#modal_add_address").modal('show');
+							$('#modal_add_address .modal-title').html('修改收货地址信息');
+							$('#modal_add_address .modal-body').append('<input type="hidden" name="address_id" value="' + id +'">');
+							$.ajax({
+								type: 'post',
+								url: '/User/UserAddress/info',
+								dataType: 'json',
+								data: {
+									'addrid' : id
+								},
+								success: function(data){
+									if(data.errno==0)
+									{
+										$('#s_address').val(data.data.address);
+										$('#s_consignee').val(data.data.consignee);
+										$('#s_mobile').val(data.data.mobile);
+										$('#s_tel').val(data.data.tel);
+										$('#s_zipcode').val(data.data.zipcode);
+										modifyFlag = true;
+										setAddress(data.data.province, data.data.city, data.data.area);
+									}else if(data.errno==1) {
+										alert('删除失败');
+									}else if(data.errno==2) {
+										alert('该收货地址不存在');
+									}else {
+										alert('请登录操作！');
+									}
+								},
+								error:function(xhr){
+									console.log(xhr.responseText);
+								}
+							});
+						};
+						
+						var setAddress = function(provinceid, cityid, areaid)
+						{
+							var option = '<option value="0">省份</option>';
+							$.ajax({
+								type:'post',
+								url:'/User/Area/getArea',
+								dataType:'json',
+								success:function(data){
+									if(data.errno==0)
+									{
+										$.each(data.data, function(){
+											if(this.id == provinceid)
+											{
+												option += '<option value="' + this.id + '" selected="true">' + this.name + '</option>';
+											}else {
+												option += '<option value="' + this.id + '">' + this.name + '</option>';
+											}
+										});
+									}else {
+										console.log('没有地址数据');
+									}
+									$("#s_province").html(option);
+									$("#s_city").html('<option value="0">地级市</option>');
+									$("#s_county").html('<option value="0">市、县级市</option>');
+								},
+								error:function(xhr){
+									console.log(xhr.responseText);
+								}
+							});
+							
+							var option = '<option value="0">地级市</option>';
+							$.ajax({
+								type:'post',
+								url:'/User/Area/getArea',
+								dataType:'json',
+								data:{'areaid':provinceid},
+								success:function(data){
+									if(data.errno==0)
+									{
+										$.each(data.data, function(){
+											if(this.id == cityid)
+											{
+												option += '<option value="' + this.id + '" selected="true">' + this.name + '</option>';
+											}else {
+												option += '<option value="' + this.id + '">' + this.name + '</option>';
+											}
+										});
+										
+									}else {
+										console.log('没有地址数据');
+									}
+									$("#s_city").html(option);
+								},
+								error:function(xhr){
+									console.log(xhr.responseText);
+								}
+							});
+							
+							var option = '<option value="0">市、县级市</option>';
+							$.ajax({
+								type:'post',
+								url:'/User/Area/getArea',
+								dataType:'json',
+								data:{'areaid':cityid},
+								success:function(data){
+									if(data.errno==0)
+									{
+										$.each(data.data, function(){
+											if(this.id == areaid)
+											{
+												option += '<option value="' + this.id + '" selected="true">' + this.name + '</option>';
+											}else {
+												option += '<option value="' + this.id + '">' + this.name + '</option>';
+											}
+										});
+									}else {
+										console.log('没有地址数据');
+									}
+									$("#s_county").html(option);
+								},
+								error:function(xhr){
+									console.log(xhr.responseText);
+								}
+							});
+						};
+						
+						$('input[name="check"]').on('change', function(){
+							var cid = $(this).parents('tr:first')[0].id;
+							var id = cid.substring(5,cid.length);
+							var index = cartExist(id);
+							if($(this).is(':checked'))
+							{
+								if(index < 0)
+								{
+									cartList[jsonLength(cartList)] = id;
+								}
+								if($('.table-list tbody tr').length == jsonLength(cartList))
+								{
+									$('input[name="check_all"]').prop('checked', true);
+								}console.log($('.table-list tbody tr'));
+							}else {
+								if(index >= 0)
+								{
+									delete cartList[index];
+									var i=0;
+									var newList = {};
+									$.each(cartList, function(){
+										if(this != id)
+										{
+											newList[i] = Number(this);
+											i++;
+										}
+									});
+									cartList = newList;
+								}
+								$('input[name="check_all"]').prop('checked', false);
+							}
+						});
+						
+						$('input[name="check_all"]').on('change', function(){
+							var tr = $(this).parents('table:first').find('tbody').find('tr');
+							if($(this).is(':checked'))
+							{
+								$.each(tr, function(index, obj){
+									$(obj).find('input[name="check"]').prop('checked', true);
+									cartList[index] = this.id.substring(5, this.id.length);
+								});
+							}else {
+								$.each(tr, function(index, obj){
+									$(obj).find('input[name="check"]').prop('checked', false);
+								});
+								cartList = {};
+							}console.log(cartList);
+						});
+						
+						var cartExist = function(cartid)
+						{
+							var index = -1;
+							$.each(cartList, function(i, obj){
+								if(obj == cartid)
+								{
+									index = i;
+									return false;
+								}
+							});
+							return index;
+						}
+						var jsonLength = function(jsonObj)
+						{
+							var length = 0;
+							$.each(jsonObj, function(index, obj){
+								length++;
+							});
+							return length;
+						}
+						</script>
+
+		 
+	</div>
+ 

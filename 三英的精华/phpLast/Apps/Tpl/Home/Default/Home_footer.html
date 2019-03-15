@@ -1,0 +1,50 @@
+<div class="footer">
+	<div class="container">
+		<div class="row footer-border">
+			<div class="col-sm-8 col-xs-12 padding-null">
+				<div class="logo2"><img src="../Public/images/logo2.png"></div>
+				<a href="" class="foot-tel">{$call}</a>
+				<a href="" class="foot-email">Email:{$site_email}</a>
+				<p class="foot-email">Address：{$address}</p>
+			</div>
+			<div class="col-sm-4 col-xs-6 padding-null">
+				<div class="fx-search">
+					<input name="key" placeholder="Input a keyword search…" class="search" type="text">
+					<button type="submit" class="search-sub"></button>
+					<div class="share">
+						<a class="icon-g" href="{$google}"></a><a class="icon-t" href="{$twitter}"></a>
+						<a class="icon-n" href="{$instagram}"></a><a class="icon-y" href="{$YouTube}"></a>
+						<a class="icon-b" href="{$YouTube}"></a><a class="icon-f" href="{facebook}"></a>
+					</div>
+					<p class="foot-add f-right">{$copyright}</p>
+				</div>
+			</div>
+		</div>
+		<div class="marginLR">
+			<div class="col-xs-12">
+				<div class="footer-menu">
+					<a href="" class="border-none">HOME</a>
+					<YP:subcat catid="0" id="r" key="k">
+					<a href="{$r.url}">{$r.catname}</a>
+						</YP:subcat>
+				</div>
+				<div class="f-right">
+					<div class="dropdown">
+						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+							LINK<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+							<li role="presentation"><a target="_blank" role="menuitem" tabindex="-1" href="#">Action</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="../Public/js/bootstrap.min.js"></script>
+</body>
+</html>

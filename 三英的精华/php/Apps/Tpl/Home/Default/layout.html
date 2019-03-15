@@ -1,0 +1,12 @@
+<include file="Home:header"/>
+
+		{__CONTENT__}
+ 
+<script type="text/javascript">
+	function resetVerifyCode(){
+	var timenow = new Date().getTime();
+	document.getElementById('verifyImage').src='./index.php?g=Home&m=Index&a=verify#'+timenow;
+}
+</script>
+<include file="Home:footer"/>
+

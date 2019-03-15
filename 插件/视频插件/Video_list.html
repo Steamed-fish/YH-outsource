@@ -1,0 +1,102 @@
+<div class="container">
+    {if $l=='en'}
+    <div class="row">
+        <div class="catpos"><h2><a href="/">HOME&nbsp;&nbsp;|&nbsp;&nbsp;</a> <YP:catpos  catid="catid" space="&nbsp;&nbsp;|&nbsp;&nbsp;" /></h2></div>
+        <div class="row">
+        <div class="col-sm-9 col-xs-12">
+            <div class="row">
+            <volist name="list" id="r" order="listorder desc , id desc" key="k"  field="*">
+            <div class="col-md-4 col-xs-6 col-640">
+                <div class="video-list">
+                    <div id="video{$k}" class="video-img" img-src="{$r.thumb}" video-src="{$r.video}{if $r[video]=='' || $r[video]==null}{$r.videoPath}{/if}">
+                        <img src="{$r.thumb}">
+                        <div class="video-img-window">
+                            <div class="play"></div>
+                        </div>
+                    </div>
+                    <a href="{$r.url}">{$r.title}</a></div>
+            </div>
+            </volist>
+            </div>
+        </div>
+        <div class="col-sm-3 col-xs-12">
+            <div class="row-right">
+                <div class="pro-menu">
+                    <h2 class="pro-menuHead">Videos</h2>
+                    <YP:subcat catid="49" id="r" key="k">
+                        <a href="{$r.url}" class="animates"><em></em>{$r.catname}</a>
+                    </YP:subcat>
+                </div>
+                <include file="Home:productnav"/>
+            </div>
+        </div>
+            </div>
+        <div class="pageList">
+            <nav>
+                <ul class="pagination">
+                    {$pages}
+                </ul>
+            </nav>
+        </div>
+    </div>
+    {else}
+    <div class="row">
+        <div class="catpos"><h2><a href="/">HOME&nbsp;&nbsp;|&nbsp;&nbsp;</a> <YP:catpos  catid="catid" space="&nbsp;&nbsp;|&nbsp;&nbsp;" /></h2></div>
+        <div class="row">
+            <div class="col-sm-9 col-xs-12">
+                <div class="row">
+                    <volist name="list" id="r" order="listorder desc , id desc" key="k"  field="*">
+                        <div class="col-md-4 col-xs-6 col-640">
+                            <div class="video-list">
+                                <div id="video{$k}" class="video-img" img-src="{$r.thumb}" video-src="{$r.video}{if $r[video]=='' || $r[video]==null}{$r.videoPath}{/if}">
+                                    <img src="{$r.thumb}">
+                                    <div class="video-img-window">
+                                        <div class="play"></div>
+                                    </div>
+                                </div>
+                                <a href="{$r.url}">{$r.title}</a></div>
+                        </div>
+                    </volist>
+                </div>
+            </div>
+            <div class="col-sm-3 col-xs-12">
+                <div class="row-right">
+                    <div class="pro-menu">
+                        <h2 class="pro-menuHead">Videos</h2>
+                        <YP:subcat catid="92" id="r" key="k">
+                            <a href="{$r.url}" class="animates"><em></em>{$r.catname}</a>
+                        </YP:subcat>
+                    </div>
+                    <include file="Home:productnav"/>
+                </div>
+            </div>
+        </div>
+        <div class="pageList">
+            <nav>
+                <ul class="pagination">
+                    {$pages}
+                </ul>
+            </nav>
+        </div>
+    </div>
+    {/if}
+</div>
+<div class="mar"></div>
+<style>
+.banner-bg{background:url("../Public/images/pro-banner.png") no-repeat center;height:488px;}.banner-border{top:518px;}
+.jwlogo{display:none;}/*.jwpreview{background-color:#fff!important;}*/</style>
+<script src="../Public/jwplayer/jwplayer.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $(".video-img").each(function(k,v){
+            jwplayer($(v).attr("id")).setup({
+                'flashplayer': '../Public/jwplayer/jwplayer.flash.swf',
+                'image': $(v).attr("img-src"),
+                'id': 'playerID',
+                'width': '100%',
+                'aspectratio':'10:8',
+                'file': $(v).attr("video-src")
+            });
+        });
+    })
+</script>

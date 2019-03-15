@@ -1,0 +1,104 @@
+
+
+					<!--ditu -->
+					<div class="map-container" id="map" style="width:100%;height:500px;">
+					</div>
+					<div id="maskInner" style="display: none;">
+						<div class="singleMap" id="singleMap" style="width:100%;height:400px;">
+						</div>
+					</div>
+					<div class="arealist">
+						<table class="tttt"  cellspacing="0" cellpadding="0" border="0">
+	<tbody>
+		<tr data-title="美联致美整形医院" data-city="" data-area="" data-address="道里区西十道街24号" data-tel="0451-84651000" data-long="126.628312" data-lat="45.777951">
+
+		</tr>
+		<tr data-title="女王美容美发" data-city="鸡西市" data-area="开发区" data-address="道里区西十道街24号(进女王传奇spa)" data-tel="0451-87886888" data-long="126.628151" data-lat="45.77791">
+
+		</tr>
+	</tbody>
+</table>
+					</div>
+					<script src="http://www.guangxia.com/Apps/Tpl/Home/Default/Public/js/jquery-1.11.1.min.js"></script>
+					<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=RAWVTPP9k0LChMq5RWjKhgVhcLLGevFH"></script>
+					<script type="text/javascript">
+					function run(){
+									map.clearOverlays();
+									$('.tttt tr').each(function(k,v){
+										var long = $(this).attr('data-long');
+										var lat = $(this).attr('data-lat');
+										var point = new BMap.Point(long,lat);
+										var title = v.storetitle;
+										var address = v.storeaddress;
+										var tel = v.storetel;
+										addMarker(point, title, address, tel);
+										console.log(point);
+									})
+						
+					}
+									//通过返回的数据在地图添加标注
+
+						/*------------------------------*/
+						var addMark = null;
+						var map = null;
+					</script>
+					
+					<script type="text/javascript">
+						// 百度地图API功能
+						var map = new BMap.Map("map");
+						map.centerAndZoom(new BMap.Point("107.860449", "34.65688"), 17); //初始化地图，设置中心点坐标和地图级别
+						map.enableScrollWheelZoom();
+						map.addControl(new BMap.NavigationControl()); //添加默认缩放平移控件
+
+						//运行一次
+						run();
+						
+						function addMarker(point, title, address, tel) {
+							map.centerAndZoom(point, 12);
+							var marker = new BMap.Marker(point);
+							map.addOverlay(marker);
+							var opts = {
+								width: 200, // 信息窗口宽度
+								height: 0, // 信息窗口高度
+								title: title // 信息窗口标题
+							}
+							var infoWindow = new BMap.InfoWindow('<p>地址：' + address + '</p><p>电话：' + tel + '</p>', opts); // 创建信息窗口对象
+
+							marker.addEventListener('click', function() {
+								this.openInfoWindow(infoWindow);
+							});
+
+						}
+					</script>
+					
+					
+					<!--ditu -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--加入联美-->
+<div class="beautifulWrap03 menberWrapCommon anchor" data-indicator="加入联美">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="hd text-center">
+					<em class="zs1 sprite"></em>
+					<h2 class="lianmei">
+						Join the Mege Union
+					</h2>
+					<h3>
+						加入联美
+					</h3>
+				</div>
+				<div class="bd">
+					<h3 class="title text-center">
+						友情链接
+					</h3>
+					<YP:block pos="lianmeiweixin" />
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

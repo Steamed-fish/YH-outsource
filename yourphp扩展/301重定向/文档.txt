@@ -1,0 +1,8 @@
+在数据库中添加  INSERT INTO mq_config VALUES('redirect','301重定向','6','1','0');
+在Tpl->Admin 中修改 Config_sys.html 添加redirect选择项如果需要使用L方法 还需要在Lang->zh-cn中添加对应文字。
+在baseAction 中添加 
+		if ($this->sysConfig['redirect']) 或者 if (C('redirect')&&preg_match ("/^mqu/",$_SERVER['HTTP_HOST'] )) {
+				send_http_status(301);
+				$url = 'http://www.'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+				Header( "Location: $url" );
+			}

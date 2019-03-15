@@ -1,0 +1,147 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html style="height: 90%;">
+<head>
+<meta charset="UTF-8">
+<title>微信扫码支付</title>
+<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="renderer" content="webkit">
+	<title></title>
+	<link rel="stylesheet" href="../Public/css/style.css" />
+	<link rel="stylesheet" href="../Public/css/bootstrap.css" />
+	<!--[if lt IE 9]>
+       <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+       <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+       <![endif]-->
+       <!--[if lt IE 8]>
+       <style type="text/css">
+       	.col-md-3{width: 20%;}
+       	.col-md-9{width: 70%;}
+       </style>
+	<![endif]-->
+</head>
+<body style="height: 100%;">
+	<div id="wrapper" style="height: 100%;">
+		<div class="pay" style="height: 100%;">
+			<div class="pay-head">
+				<div class="container f18">
+					支付中心
+				</div>
+			</div>
+			<div class="container" style="height: 100%;">
+				<div class="pay-body row" style="height: 100%;">
+					<div class="col-md-3" style="height: 100%;">
+						<div class="pay-detail">
+							<div class="pay-money ct">
+								<h3 class="f16"><span class="f30">{:sprintf("%.2f", $amount)}</span>元</h3>
+							</div>
+							<div class="pay-inner">
+								<ul>
+									<li>商品名称：<span>订单支付</span></li>
+									<li>交易单号：<span>{$sn}</span></li>
+									<li>交易对方：<span>英虎网络</span></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-9">
+						<div class="xun-box ct">
+							<div class="xun-head clearfix">
+								<div class="fl cur" style="width: 100%;">微信扫码支付</div>
+							</div>
+							<div class="xun-body kuai1">
+								<br />
+								<div class="clearfix">
+								<empty name="code_url">
+									<img src="">
+								<else />
+									<img src="/Qrcode/index?data={$code_url}">
+								</empty>
+								</div>
+								<!-- 提示信息 -->
+								<p>请用微信扫描二维码支付</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../Public/js/jquery-min.js" ></script>
+	
+	<script>
+		$(document).ready(function(){
+			if($('.xun-body .clearfix img').attr('src') == '')
+			{
+				$('.xun-body .clearfix img').height($('.xun-body .clearfix img').width());
+			}
+			
+			var return_url = '{$returnUrl}';
+			
+			var messageBox = $('.xun-body p');
+			messageBox.css('color', '');
+
+			// 下单成功，等待支付中，设置轮询订单状态
+			//设置每隔3000毫秒执行一次load() 方法  
+		    var myIntval = setInterval(function() {
+		        load();
+		    }, 3000);
+			console.log('test');
+		    var uri;
+		    var secs = 5;
+		    function daoNum(url){
+			    uri = url;
+				for(var i=secs;i>=0;i--){
+				    setTimeout("doUpdate("+i+")",(secs-i)*1000);
+				}
+		    }
+			
+		    function doUpdate(num){
+				messageBox.innerHTML = '支付成功,将在'+num+'秒后自动跳转到会员中心';
+				if(num == 0){
+					location.href = uri;
+				}
+		    }
+
+		    function load()
+		    {
+				var id = '{$id}';
+				var sn = '{$sn}';
+
+				$.ajax({
+					type: 'post',
+					url: '/User/Wxpay/query',
+					dataType: 'json',
+					data: {
+						'id': id,
+						'sn': sn
+					},
+					success: function(data){
+						if(data.errno == 0)
+						{
+							messageBox.html('支付成功');
+							messageBox.css('');
+							var form = $('<form action="/User/Wxpay/returnUrl" method="POST"></form>');
+							var input = $('<input type="hidden" value="' + id + '">');
+							form.append(input);
+							$(document.body).append(form);
+							form.submit();
+						}else if(data.errno == 1) {
+							messageBox.html('请用微信扫描二维码支付');
+							//messageBox.css('color', 'red');console.log('here');
+						}else if(data.errno == 2) {
+							if(confirm('订单信息不存在，是否返回首页'))
+							{
+								window.location.href = '/';
+							}else {
+								clearInterval(myIntval);
+							}
+						}
+					},
+				});
+		    }
+		});
+	</script>
+</body>
+</html>

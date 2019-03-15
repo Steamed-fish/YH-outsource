@@ -1,0 +1,87 @@
+<div id="evaluation">
+<main>
+  <ul class="maincontent">
+    <li id="subnav1" data-title="News" style="background: #f5f7f8 url(../Public/images/in_img5.jpg) no-repeat center center;">
+      <div class="page_headline_block">
+        <h3 class="">Evaluation</h3>
+        <div  class="text ">
+        	Read the latest news of Egoal. We provide insights of internal and external events, fairs and meetings, but also of activities in the single bureaus and countries. Furthermore you can read about our newest technologies for freight forwarding, new Egoal offices or programs and certificates.
+        </p>
+          
+        </div>
+        <a href="#learn_more" class="btn_learn_more">learn more</a> 
+      </div>
+    </li>
+    <!--2-->
+    <li id="subnav2" data-title="evaluate list" style="background: #FFFFFF ;">
+      <div class="new  clearfix">
+      	
+      	<volist name="list" id="r" >
+					<dl>
+						<dt><img src="../Public/images/pre_img.jpg"  width="100%"/></dt>
+						<dd>
+							<p><span>Customer :</span> {$r.name}</p>
+							<p><span>Customer :</span> {$r.createtime|toDate=###,'Y-m'} {$r.title}</p>
+							<p><span>Evaluation :</span><br>{$r.liuyan}</p>
+							
+						</dd>
+					</dl>
+      	</volist>
+      
+      </div>
+      <div class="huanye">
+      	{$pages}
+      	
+      </div>
+      
+      
+      
+    </li>
+   	<li id="subnav3" data-title="evaluate" style="background: #ffffff ">
+   		  <div class="evaluate">
+  	<h4>I want to evaluate:</h4>
+		<form class="sider_form" action="{:URL('User-Post/insert')}" method="post">
+		
+	<input type="hidden"  name="catid" value="{$catid}" />
+	<input type="hidden" id="moduleid" name="moduleid" value="14" />
+	<input type="hidden" id="lang" name="lang" value="{$langid}" />
+    <input type="hidden" id="title" name="title" value="" />
+    
+
+    <div class=" col-sm-6  mgb"><input placeholder="You Name"  name="name" class="c-input" type="text"></div>
+    <div class=" col-sm-6  mgb"><input placeholder="You Phone" name="phone" class="c-input" type="text"></div>
+    <div class=" col-sm-6  mgb"><input placeholder="You Company" name="company" class="c-input" type="text"></div>
+    <div class=" col-sm-6  mgb"><input placeholder="You Email" name="email" class="c-input" type="text"></div>
+    <div class="col-sm-12">
+        <textarea name="liuyan" class="c-textarea lh22" placeholder="Your Evaluation"></textarea>
+    </div>
+    <div class="t-sub">
+        <button type="submit" class="sub-btn">Submit</button>
+    </div>
+    
+	</form>
+  
+  	
+  </div>
+
+		</li>
+  </ul>
+</main>
+
+
+
+
+</div>
+<script>
+$(function(){
+	
+	if($(window).width()<768){
+		$('#subnav1').css('background-position','20% center');
+	}
+
+});
+
+
+
+</script>
+

@@ -1,0 +1,106 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="renderer" content="webkit">
+		<title></title>
+		<link rel="stylesheet" href="../Public/css/bootstrap.css" />
+		<link rel="stylesheet" href="../Public/css/style.css" />
+		<link rel="stylesheet" href="../Public/css/style_20170425.css" />
+	</head>
+	<body>
+		<div id="wrapper">
+			<div class="index-main">
+				<div class="container">
+					<div class="jieguo pos">
+						<div class="order-info clearfix">
+							<div class="fl">
+								<div class="pap"><a href="/">首页</a> <a href="/index.php?g=User&m=Order&a=show&id={$order.id}">订单详情</a></div>
+								<if  condition="($pay_status eq 0 AND $order_type eq 0)">
+									<h2 class="f24 p-title">支付成功</h2>
+									<p class="order-time">预计5天内发货</p>
+									<p class="post-info">收货信息：{$order.consignee} {$telephone}    {$address.province}  {$address.city}  {$address.area}  {$order.address}</p>
+								<elseif condition="$order_type eq -1" />
+									<h2 class="f24 p-title">订单不存在</h2>
+									
+								<else />
+									<h2 class="f24 p-title">支付失败</h2>
+									
+									<p class="order-time">请在  <span class="pay-time">23小时59分</span> 内完成支付, 超时后将取消订单</p>
+								</if>
+							</div>
+							<div class="fr">
+								<div class="pap2"><a href="/" style="margin-right: 10px;">首页</a> <a href="/index.php?g=User&m=Order&a=show&id={$order.id}">订单详情</a></div>
+								<p class="pay-qian">
+									应付总额 : <span><em class="f24">{$order['amount']|number_format=###,2}</em>元</span>
+								</p>
+								<a href="javascript:void(0);" class="show-detail fr">
+									订单详情
+									<i class="ic-xia"></i>
+								</a>
+							</div>
+						</div>
+						<i class="zuobian"></i>
+						<div class="order-detail">
+							<ul>
+								<li class="clearfix">
+									<div class="p-lable fl">订单号:</div>
+									<div class="p-content fl product-color">{$order.sn}</div>
+								</li>
+								<li class="clearfix">
+									<div class="p-lable fl">收货信息:</div>
+									<div class="p-content fl">{$order.consignee} {$telephone}    {$address.province}  {$address.city}  {$address.area}  {$order.address}</div>
+								</li>
+								<li class="clearfix">
+									<div class="p-lable fl">商品名称:</div>
+									<div class="p-content fl">Soobit Pad</div>
+								</li>
+								<li class="clearfix">
+									<div class="p-lable fl">配送时间:</div>
+									<div class="p-content fl">周一至周日</div>
+								</li>
+								<li class="clearfix">
+									<div class="p-lable fl">发票信息:</div>
+									<div class="p-content fl">纸质发票 {$order.invoice_title}</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<style>
+			.pap{display: none;}
+			@media only screen and (max-width:678px ) {
+				.pap2{display: none;}
+				.pap{display: block;float: right;}
+				
+			}
+			@media only screen and (max-width: 520px) {
+				.pap{margin-right: 30%;margin-top: 5px;}
+			}
+		</style>
+		<script type="text/javascript" src="../Public/js/jquery-min.js" ></script>
+		<script type="text/javascript" src="../Public/js/bootstrap.min.js" ></script>
+		<script>
+			$(document).ready(function(){
+				$(".order-detail").slideUp(0);
+				var pan=1;
+				$(".show-detail").click(function(){
+					
+					$(".order-detail").slideToggle();
+					if(pan){
+					$(".post-info").css("opacity","0")
+						pan=0;
+					}else{
+						$(".post-info").css("opacity","1");
+						pan=1
+					}
+				})
+				
+			})
+		</script>
+	</body>
+</html>

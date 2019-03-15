@@ -1,0 +1,40 @@
+
+
+<form name="myform" id="myform" action="<if condition="$action_name=='upload'">{:U($module_name.'/insert')}<else />{:U($module_name.'/update')}</if>" method="post">
+<table cellpadding=0 cellspacing=0 class="table_form" width="100%">
+	<tr>
+		  <td width="120"><font color="red">*</font>{:L('title')}</td>
+		  <td><input type="text" id="title" name="name" value="{$vo.name}" class="input-text" size="50" validate="required:true,cn_username:true, minlength:2, maxlength:20"/></td>
+	</tr>
+	
+	<tr>
+		  <td>文件名</td>
+		  <td><input type="text" id="tpl" name="tpl" value="{$vo.tpl}" class="input-text" size="50" validate="required:true" /></td>
+	</tr>
+
+ 
+	<tr>
+		  <td>图片</td>
+		  <td>
+		   <div class="pic_box"  ><div id="pic_aid_box" style="display:none;"></div>
+			<input type="text"  id="pic" name="pic"  value="{$vo['pic']}" class="input-text" size="40"/><input type="button" class="button" value="上传" onclick="javascript:swfupload('pic_uploadfile','pic','{:L(uploadfiles)}',1,1,0,10,'jpeg,jpg,png,gif',5,230,'{$yourphp_auth}',yesdo,nodo)" />  <a href="javascript:void(0);" onclick="showpicbox($('#pic').val());"> 预览</a></div>
+		
+		 </td>
+	</tr>
+
+
+	<tr>
+		  <td>{:L(STATUS)}</td>
+		  <td>{:Form::radio(array('field'=>'status','options'=>array('1'=>L('display_yes'),'0'=>L('display_no'))),$vo['status'])}</td>
+	</tr>
+	 
+ 
+</table>
+<div  class="btn">
+<if condition="$vo['id']!=''"><input TYPE="hidden" name="id" value="{$vo.id}"></if>
+
+<INPUT TYPE="submit"  value="{:L('dosubmit')}" class="button" >
+<input TYPE="reset"  value="{:L('cancel')}" class="button">
+</div>
+</form>
+

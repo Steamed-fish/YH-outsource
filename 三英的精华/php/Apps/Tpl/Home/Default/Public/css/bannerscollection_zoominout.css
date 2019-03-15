@@ -1,0 +1,730 @@
+/*
+skins available:
+	- opportune
+	- majestic
+	- generous
+*/
+
+/* the container */
+.ken_img {
+	position: relative !important; 
+	/*left: 0 !important; 
+	top: 0 !important;*/
+	display: block;
+	max-width: none !important;
+	min-width: none !important;
+	max-height: none !important;
+	min-height: none !important;
+	/*width: auto !important;
+	height: auto !important;*/
+	margin:0 !important;
+	border:none !important;
+	padding:0 !important;
+}
+.setAsBg {
+	position:fixed;
+	z-index:0;
+	margin:0;
+	padding:0;
+	left:0;
+	top:0;
+	overflow: hidden;
+}
+.bannerscollection_zoominout {
+	position:relative;
+	line-height:20px;
+        margin: 112px 0 0 0;
+}
+.bannerscollection_zoominout img {
+	position:relative;
+	display: block;
+	max-width:inherit;
+	max-height:inherit;
+	-webkit-backface-visibility: hidden;
+	*max-width:200%;
+	*max-height:200%;
+	/*width:inherit;
+	height:inherit;	*/
+}
+.bannerscollection_zoominout_list {
+	margin:0;
+	padding:0;
+	list-style:none;
+	display:none;
+}
+
+.bannerscollection_zoominout .contentHolderVisibleWrapper {
+	position:absolute;
+	overflow:hidden;
+	margin-top:0px;
+	*margin-top:-20px;
+}
+.bannerscollection_zoominout .contentHolder {
+	position:absolute;
+}
+.bannerscollection_zoominout .contentHolderUnit {
+	/*position:relative;
+	float:left;*/
+	display:block;
+	overflow:hidden;
+}
+
+
+.mycanvas {
+	/*border:1px solid #ff0000;*/
+	position:absolute;
+	top:8px;
+	right:10px;
+	z-index:10;
+}
+.myloader {
+	background:url("../images/fancybox_loading@2x.gif");
+	width:48px;
+	height:48px;
+	position:absolute;
+	left:48%;
+	top:48%;
+	z-index:5;
+}
+
+
+
+/***opportune SKIN***/
+.bannerscollection_zoominout.opportune .contentHolderVisibleWrapper {
+	position:absolute;
+	overflow:hidden;
+	margin-top:0px;
+}
+
+.bannerscollection_zoominout.opportune .bannerControls {
+	position:absolute;
+	left:0;
+	top:0;
+	z-index:20;
+	width:100%;
+}
+
+.bannerscollection_zoominout.opportune .leftNav {
+	position:absolute;
+	left:0px;
+	width:63px;
+	height:72px;
+	background:url("../images/leftNavOFF.png") 0 0 no-repeat;
+	cursor: pointer;
+}
+.bannerscollection_zoominout.opportune .leftNav:hover {
+	background:url("../images/leftNavON.png") 0 0 no-repeat;
+}
+.bannerscollection_zoominout.opportune .rightNav {
+	position:absolute;
+	right:0px;
+	width:63px;
+	height:72px;
+	background:url("../images/rightNavOFF.png") 0 0 no-repeat;
+	cursor: pointer;
+}
+.bannerscollection_zoominout.opportune .rightNav:hover {
+	background:url("../images/rightNavON.png") 0 0 no-repeat;
+}
+.bannerscollection_zoominout.opportune .bottomNav {
+	position:absolute;
+	width:0px;
+	height:24px;
+	bottom:-56px;
+	z-index:3;
+	padding-left:9px;
+}
+.bannerscollection_zoominout.opportune .bottomNavButtonOFF {
+	float:left;
+	display:block;
+	width:12px;
+	height:12px;
+	background:url("../images/bottomNavOFF.png") 0 0 no-repeat;
+	padding-left:6px;
+	cursor: pointer;
+	-webkit-box-sizing:content-box;
+	-moz-box-sizing:content-box;
+	box-sizing:content-box;		
+}
+
+.bannerscollection_zoominout.opportune .bottomNavButtonON {
+	float:left;
+	display:block;
+	width:12px;
+	height:12px;
+	padding-left:6px;
+	background:url("../images/bottomNavON.png") 0 0 no-repeat;
+	cursor: pointer;
+}
+
+
+
+.bannerscollection_zoominout.opportune .bottomOverThumb {
+	position:absolute;
+	width:88px;
+	height:95px;
+	background:url("bottomOverThumbBg.png")/*tpa=https://www.deugro.com/skins/opportune/bottomOverThumbBg.png*/ 0px 0px no-repeat;
+	bottom:25px;
+	margin-left:-44px;
+}
+.bannerscollection_zoominout.opportune .innerBottomOverThumb {
+	position:relative;
+	width:80px;
+	height:80px;
+	margin:4px 0 0 4px;
+	overflow:hidden;
+}
+.bannerscollection_zoominout.opportune .bottomOverThumb img {
+
+}
+.bannerscollection_zoominout.opportune .playOver {
+	position:absolute;
+	width:73px;
+	height:73px;
+	background:url("play_overOFF.png")/*tpa=https://www.deugro.com/skins/opportune/play_overOFF.png*/ 0 0 no-repeat;
+	display:none;
+	z-index:4;
+	cursor: pointer;
+}
+
+.bannerscollection_zoominout.opportune .playOver:hover {
+	background:url("play_overON.png")/*tpa=https://www.deugro.com/skins/opportune/play_overON.png*/ 0 0 no-repeat;
+	display:none;
+	z-index:4;
+	cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***majestic SKIN***/
+.bannerscollection_zoominout.majestic .bannerControls {
+	position:absolute;
+	left:0;
+	top:0;
+	z-index:20;
+	width:100%;
+}
+
+.bannerscollection_zoominout.majestic .leftNav {
+	position:absolute;
+	left:0px;
+	width:70px;
+	height:70px;
+	background:url("leftNavOFF-1.png")/*tpa=https://www.deugro.com/skins/majestic/leftNavOFF.png*/ 0 0 no-repeat;
+	cursor: pointer;
+}
+.bannerscollection_zoominout.majestic .leftNav:hover {
+	background:url("leftNavON-1.png")/*tpa=https://www.deugro.com/skins/majestic/leftNavON.png*/ 0 0 no-repeat;
+}
+.bannerscollection_zoominout.majestic .rightNav {
+	position:absolute;
+	right:0px;
+	width:70px;
+	height:70px;
+	background:url("rightNavOFF-1.png")/*tpa=https://www.deugro.com/skins/majestic/rightNavOFF.png*/ 0 0 no-repeat;
+	cursor: pointer;
+}
+.bannerscollection_zoominout.majestic .rightNav:hover {
+	background:url("rightNavON-1.png")/*tpa=https://www.deugro.com/skins/majestic/rightNavON.png*/ 0 0 no-repeat;
+}
+
+.bannerscollection_zoominout.majestic .playOver {
+	position:absolute;
+	width:73px;
+	height:73px;
+	background:url("play_overOFF-1.png")/*tpa=https://www.deugro.com/skins/majestic/play_overOFF.png*/ 0 0 no-repeat;
+	display:none;
+	z-index:4;
+	cursor: pointer;
+}
+.bannerscollection_zoominout.majestic .playOver:hover {
+	background:url("play_overON-1.png")/*tpa=https://www.deugro.com/skins/majestic/play_overON.png*/ 0 0 no-repeat;
+	display:none;
+	z-index:4;
+	cursor: pointer;
+}
+
+/* thumbs */
+.bannerscollection_zoominout.majestic .thumbsHolderWrapper {
+	position:absolute;
+	height:135px;
+	width:100%;
+	overflow:hidden;
+	padding:0;
+	z-index:2;
+}
+.bannerscollection_zoominout.majestic .thumbsHolderVisibleWrapper {
+	position:absolute;
+	width:100%;
+	height:135px;
+	overflow:hidden;
+}
+.bannerscollection_zoominout.majestic .thumbsHolder {
+	position:absolute;	
+}
+.bannerscollection_zoominout.majestic .thumbsHolder_ThumbOFF {
+	float:left;
+	display:block;
+	width:107px;
+	height:60px;
+	cursor: pointer;
+}
+
+
+.bannerscollection_zoominout.majestic .thumbsHolder_ThumbOFF img {
+	position:relative;
+}
+
+.bannerscollection_zoominout.majestic .thumbsHolder_ThumbON {
+	background:url("thumbActiveArrow.png")/*tpa=https://www.deugro.com/skins/majestic/thumbActiveArrow.png*/ center 0px no-repeat;
+}
+
+.bannerscollection_zoominout.majestic .thumbsHolder_ThumbON img {
+	position:relative;
+}
+
+
+.bannerscollection_zoominout.majestic .carouselLeftNav {
+	position:absolute;
+	width:16px;
+	height:135px;
+	background:url("carouselLeftNavOFF.png")/*tpa=https://www.deugro.com/skins/majestic/carouselLeftNavOFF.png*/ 0 0 no-repeat;
+	cursor: pointer;
+}
+
+.bannerscollection_zoominout.majestic .carouselLeftNav:hover {
+	background:url("carouselLeftNavON.png")/*tpa=https://www.deugro.com/skins/majestic/carouselLeftNavON.png*/ 0 0 no-repeat;
+}
+
+.bannerscollection_zoominout.majestic .carouselLeftNavDisabled {
+	background:url("carouselLeftNavDisable.png")/*tpa=https://www.deugro.com/skins/majestic/carouselLeftNavDisable.png*/ 0 0 no-repeat;
+	cursor:default;
+}
+.bannerscollection_zoominout.majestic .carouselLeftNavDisabled:hover {
+	background:url("carouselLeftNavDisable.png")/*tpa=https://www.deugro.com/skins/majestic/carouselLeftNavDisable.png*/ 0 0 no-repeat;
+}
+
+.bannerscollection_zoominout.majestic .carouselRightNav {
+	position:absolute;
+	width:16px;
+	height:135px;
+	background:url("carouselRightNavOFF.png")/*tpa=https://www.deugro.com/skins/majestic/carouselRightNavOFF.png*/ 0 0 no-repeat;
+	cursor: pointer;
+}
+
+.bannerscollection_zoominout.majestic .carouselRightNav:hover {
+	background:url("carouselRightNavON.png")/*tpa=https://www.deugro.com/skins/majestic/carouselRightNavON.png*/ 0 0 no-repeat;
+}
+
+.bannerscollection_zoominout.majestic .carouselRightNavDisabled {
+	background:url("carouselRightNavDisable.png")/*tpa=https://www.deugro.com/skins/majestic/carouselRightNavDisable.png*/ 0 0 no-repeat;
+	cursor:default;
+}
+.bannerscollection_zoominout.majestic .carouselRightNavDisabled:hover {
+	background:url("carouselRightNavDisable.png")/*tpa=https://www.deugro.com/skins/majestic/carouselRightNavDisable.png*/ 0 0 no-repeat;
+}
+
+
+
+
+
+/***generous SKIN***/
+.bannerscollection_zoominout.generous .bannerControls {
+	position:absolute;
+	left:0;
+	top:0;
+	z-index:20;
+	width:100%;
+}
+
+.bannerscollection_zoominout.generous .leftNav {
+	position:absolute;
+	left:0px;
+	margin-top:-16px;
+	width:60px;
+	height:110px;
+	background:url("leftNavOFF-2.png")/*tpa=https://www.deugro.com/skins/generous/leftNavOFF.png*/ 0 0 no-repeat;
+	cursor: pointer;
+}
+.bannerscollection_zoominout.generous .leftNav:hover {
+	background:url("leftNavON-2.png")/*tpa=https://www.deugro.com/skins/generous/leftNavON.png*/ 0 0 no-repeat;
+}
+.bannerscollection_zoominout.generous .rightNav {
+	position:absolute;
+	right:0px;
+	margin-top:-16px;
+	width:60px;
+	height:110px;
+	background:url("rightNavOFF-2.png")/*tpa=https://www.deugro.com/skins/generous/rightNavOFF.png*/ 0 0 no-repeat;
+	cursor: pointer;
+}
+.bannerscollection_zoominout.generous .rightNav:hover {
+	background:url("rightNavON-2.png")/*tpa=https://www.deugro.com/skins/generous/rightNavON.png*/ 0 0 no-repeat;
+}
+
+.bannerscollection_zoominout.generous .playOver {
+	position:absolute;
+	width:73px;
+	height:73px;
+	background:url("play_overOFF-2.png")/*tpa=https://www.deugro.com/skins/generous/play_overOFF.png*/ 0 0 no-repeat;
+	display:none;
+	z-index:4;
+	cursor: pointer;
+}
+
+.bannerscollection_zoominout.generous .playOver:hover {
+	background:url("play_overON-2.png")/*tpa=https://www.deugro.com/skins/generous/play_overON.png*/ 0 0 no-repeat;
+	display:none;
+	z-index:4;
+	cursor: pointer;
+}
+
+
+
+/* thumbs */
+.bannerscollection_zoominout.generous .thumbsHolderWrapper {
+	position:absolute;
+	background:url("thumbsBg.png")/*tpa=https://www.deugro.com/skins/generous/thumbsBg.png*/ repeat-x;
+	height:110px;
+	width:100%;
+	z-index:2;
+	overflow:hidden;
+}
+.bannerscollection_zoominout.generous .thumbsHolderVisibleWrapper {
+	position:absolute;
+	width:100%;
+	height:110px;
+	overflow:hidden;
+}
+.bannerscollection_zoominout.generous .thumbsHolder {
+	position:absolute;
+}
+.bannerscollection_zoominout.generous .thumbsHolder_ThumbOFF {
+	float:left;
+	display:block;
+	width:110px;
+	height:65px;
+	cursor: pointer;
+}
+
+.bannerscollection_zoominout.generous .thumbsHolder_ThumbOFF a img, .thumbsHolder_ThumbOFF a  { border: none; overflow: hidden; float: left;  }
+.bannerscollection_zoominout.generous .thumbsHolder_ThumbOFF a:hover { border: #F00 2px solid; }
+.bannerscollection_zoominout.generous .thumbsHolder_ThumbOFF a:hover img  { margin: -2px; }
+
+.bannerscollection_zoominout.generous .thumbsHolder_ThumbOFF img {
+	position:relative;
+}
+
+.bannerscollection_zoominout.generous .thumbsHolder_ThumbON {
+	background:url("thumbActiveArrow-1.png")/*tpa=https://www.deugro.com/skins/generous/thumbActiveArrow.png*/ center 0px no-repeat;	
+}
+
+.bannerscollection_zoominout.generous .thumbsHolder_ThumbON a img, .thumbsHolder_ThumbON a  { border: none; overflow: hidden; float: left; }
+.bannerscollection_zoominout.generous .thumbsHolder_ThumbON a:hover { border: #F00 3px solid; }
+.bannerscollection_zoominout.generous .thumbsHolder_ThumbON a:hover img  { margin: -3px; }
+
+.bannerscollection_zoominout.generous .carouselLeftNav {
+	position:absolute;
+	width:44px;
+	height:110px;
+	background:url("carouselLeftNavOFF-1.png")/*tpa=https://www.deugro.com/skins/generous/carouselLeftNavOFF.png*/ 0 0 no-repeat;
+	cursor: pointer;
+}
+
+.bannerscollection_zoominout.generous .carouselLeftNav:hover {
+	background:url("carouselLeftNavON-1.png")/*tpa=https://www.deugro.com/skins/generous/carouselLeftNavON.png*/ 0 0 no-repeat;
+}
+
+.bannerscollection_zoominout.generous .carouselLeftNavDisabled {
+	background:url("carouselLeftNavDisable-1.png")/*tpa=https://www.deugro.com/skins/generous/carouselLeftNavDisable.png*/ 0 0 no-repeat;
+	cursor:default;
+}
+.bannerscollection_zoominout.generous .carouselLeftNavDisabled:hover {
+	background:url("carouselLeftNavDisable-1.png")/*tpa=https://www.deugro.com/skins/generous/carouselLeftNavDisable.png*/ 0 0 no-repeat;
+}
+
+.bannerscollection_zoominout.generous .carouselRightNav {
+	position:absolute;
+	width:44px;
+	height:110px;
+	background:url("carouselRightNavOFF-1.png")/*tpa=https://www.deugro.com/skins/generous/carouselRightNavOFF.png*/ 0 0 no-repeat;
+	cursor: pointer;
+}
+
+.bannerscollection_zoominout.generous .carouselRightNav:hover {
+	background:url("carouselRightNavON-1.png")/*tpa=https://www.deugro.com/skins/generous/carouselRightNavON.png*/ 0 0 no-repeat;
+}
+
+.bannerscollection_zoominout.generous .carouselRightNavDisabled {
+	background:url("carouselRightNavDisable-1.png")/*tpa=https://www.deugro.com/skins/generous/carouselRightNavDisable.png*/ 0 0 no-repeat;
+	cursor:default;
+}
+.bannerscollection_zoominout.generous .carouselRightNavDisabled:hover {
+	background:url("carouselRightNavDisable-1.png")/*tpa=https://www.deugro.com/skins/generous/carouselRightNavDisable.png*/ 0 0 no-repeat;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*********************************Text Styles***************************************************/
+
+.bannerscollection_zoominout_texts {
+	position:absolute;
+	z-index:2;
+	display: none;
+	width:100%;
+}
+.bannerscollection_zoominout_text_line {
+	position:absolute;
+}
+/****/
+
+
+
+/***OpportuneFixedDimensionsTexts***/
+.textElement_opportune {
+	font: 22px 'Futura W02 Book Oblique', Verdana, Helvetica, sans-serif;
+	line-height:28px;
+	color:#fff;
+    letter-spacing: 1px;
+}
+
+.textElement11_opportune {
+	font: 22px 'Futura W02 Book Oblique', Verdana, Helvetica, sans-serif;
+	line-height:28px;
+	color:#fff;
+        letter-spacing: 1px;
+}
+
+.textElement11_opportune a {
+	text-transform:uppercase;
+	/*color:#ff6c00;*/
+	text-decoration:none;
+}
+
+.textElement11_opportune a:hover {
+	background-color: #ffc538;
+	text-decoration: none;
+}
+
+.textElement12_opportune {
+	font: 18px 'ratio_mediummedium', Verdana, Helvetica, sans-serif;
+	/*line-height:27px;*/
+	color:#fff;
+}
+
+.textElement12_opportune button {
+	color:#fff;
+	height: 54px;
+        background: #fabc00;
+        border: 0 none;
+        border-radius: 5px;
+        width: 263px;
+        text-shadow: 1px 1px 0px rgba(231, 174, 0, 1);
+}
+
+.textElement12_opportune button:hover {
+	background: #ffc538;
+}
+
+.textElement21_opportune {
+	font: 22px 'Futura W02 Book Oblique', Verdana, Helvetica, sans-serif;
+	line-height:28px;
+	color:#fff;
+        letter-spacing: 1px;
+}
+
+.textElement22_opportune {
+	font: 18px 'ratio_mediummedium', Verdana, Helvetica, sans-serif;
+	/*line-height:27px;*/
+	color:#fff;
+}
+
+.textElement22_opportune button {
+	color:#fff;
+	height: 54px;
+        background: #fabc00;
+        border: 0 none;
+        border-radius: 5px;
+        width: 263px;
+        text-shadow: 1px 1px 0px rgba(231, 174, 0, 1);
+}
+
+.textElement22_opportune button:hover {
+	background: #ffc538;
+}
+
+.textElement31_opportune {
+	font: 22px 'Futura W02 Book Oblique', Verdana, Helvetica, sans-serif;
+	line-height:28px;
+	color:#fff;
+        letter-spacing: 1px;
+}
+
+.textElement32_opportune {
+	font: 18px 'ratio_mediummedium', Verdana, Helvetica, sans-serif;
+	/*line-height:27px;*/
+	color:#fff;
+}
+
+.textElement32_opportune button {
+	color:#fff;
+	height: 54px;
+        background: #fabc00;
+        border: 0 none;
+        border-radius: 5px;
+        width: 263px;
+        text-shadow: 1px 1px 0px rgba(231, 174, 0, 1);
+}
+
+.textElement32_opportune button:hover {
+	background: #ffc538;
+}
+
+.textElement41_opportune {
+	font: 22px 'Futura W02 Book Oblique', Verdana, Helvetica, sans-serif;
+	line-height:28px;
+	color:#fff;
+        letter-spacing: 1px;
+}
+
+.textElement42_opportune {
+	font: 18px 'ratio_mediummedium', Verdana, Helvetica, sans-serif;
+	/*line-height:27px;*/
+	color:#fff;
+}
+
+.textElement42_opportune button {
+	color:#fff;
+	height: 54px;
+        background: #fabc00;
+        border: 0 none;
+        border-radius: 5px;
+        width: 263px;
+        text-shadow: 1px 1px 0px rgba(231, 174, 0, 1);
+}
+
+.textElement42_opportune button:hover {
+	background: #ffc538;
+}
+
+.textElement43_opportune {
+	font: bold 18px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:25px;
+	color:#FFFFFF;
+}
+
+.textElement51_opportune {
+	font: 22px 'Futura W02 Book Oblique', Verdana, Helvetica, sans-serif;
+	line-height:28px;
+	color:#fff;
+        letter-spacing: 1px;
+}
+
+.textElement52_opportune {
+	font: 18px 'ratio_mediummedium', Verdana, Helvetica, sans-serif;
+	/*line-height:27px;*/
+	color:#fff;
+}
+
+.textElement52_opportune button {
+	color:#fff;
+	height: 54px;
+        background: #fabc00;
+        border: 0 none;
+        border-radius: 5px;
+        width: 263px;
+        text-shadow: 1px 1px 0px rgba(231, 174, 0, 1);
+}
+
+.textElement52_opportune button:hover {
+	background: #ffc538;
+}
+
+
+.textElement53_opportune {
+	font: 204px 'Arial', Verdana, Helvetica, sans-serif;
+	line-height:204px;
+	text-transform:uppercase;
+	color:#ffffff;
+}
+
+.textElement54_opportune {
+	font: 15px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:21px;
+	text-transform:uppercase;
+	color:#ffffff;
+}
+
+
+.textElement54_opportune a {
+	color:#ffffff;
+}
+
+.textElement54_opportune a:hover {
+	color:#FF0000;
+}
+
+
+
+.textElement61_opportune {
+	font: bold 32px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:35px;
+	text-transform:uppercase;
+	color:#ffffff;
+}
+.textElement62_opportune {
+	font: bold 18px 'Droid Sans', Verdana, Helvetica, sans-serif;
+	line-height:25px;
+	text-transform:uppercase;
+	color:#ffffff;
+}
+
+
+
+
+
+
+.hideElement {
+	display:none;
+}
+
+/*
+.noTransition {
+	-moz-transition:none;
+	-webkit-transition:none;
+	-o-transition:color 0 ease-in;
+	transition:none;
+	-webkit-transform:none;
+	-moz-transform:none;
+	-o-transform:none;
+	transform:none;
+}*/

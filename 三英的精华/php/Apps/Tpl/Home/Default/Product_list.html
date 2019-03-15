@@ -1,0 +1,65 @@
+<div class="about">
+        <div class="about_t">
+        	<div class="container">
+                <h2>Prouducts</h2>
+                <div class="locat"><img src="../Public/images/home.png" alt=""> &gt <YP:catpos  catid="catid" space="&gt;" /></div>
+        	</div>
+        </div>
+
+    <div class="container pd">
+	
+	<div class=" col-sm-3 pro_l col-xs-12" style="overflow:hidden">
+    	<div class="">
+            <div class="lvse pro-drodown f24"  >Categories</div>
+            <ul class="pdl-b">
+            	<YP:subcat  catid="21" id="rd" >
+                <li class="sanjiao "><a href="{$rd.url}" class="">{$rd[catname]} &gt </a></li>
+ 
+              </YP:subcat>  
+            </ul>
+        </div>
+        
+
+
+
+    </div>
+	<div class="col-sm-9 pro_r">
+		
+    		<volist name="list" id="r">	
+    			
+        <div class="pdr-b">
+            <div class="pdr-t">
+               
+                <div class="fl ">
+                    <div class="pdr-b-img">
+                    	<a href="{$r.url}"><img src="{$r.thumb}"  alt=""></a>
+                    </div>
+                     
+                   
+                    <div class="ct lh22 p1"><a href="{$r.url}">{$r.title}</a></div>
+                    <div class="chanpintijiao1">
+                        <a class="chanpintijiao" style="display:block;" href="{$r.url}"></a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+        </volist>
+        <div class="clear"></div>
+         <!-- huanye -->
+        <div class="huanye">
+		    	{$pages}
+		</div>
+
+
+    </div>
+
+        <div class="clear"></div>
+        
+       
+    </div>
+
+
+</div>

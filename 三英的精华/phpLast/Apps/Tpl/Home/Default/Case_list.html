@@ -1,0 +1,26 @@
+<div class="location">
+  <p><a href="index.html" >Home</a>  >> <YP:catpos  catid="catid" space="&gt;" /> </p>
+</div>
+
+
+<div class="main">
+  <!--caseleft end-->
+  <div class="caseright">
+	<p class="casetype">Asia</p>
+	<p>Read our customer case in Asia below to see how Kefid help customers reduce costs and improve margins. Contact our regional sale manager to learn more details.</p>
+	
+	<ul class="caseindex caselist">
+		
+		<volist name="list" id="r">
+	  <li><a href="{$r.url}" ><img src="{$r.thumb}"  alt="{$r.title}" />
+		  <p>{$r.title}</p>
+		  <p><span>Material : </span>{$r.material}</p>
+		  <p class="diandiandian"><span>Equipment : </span>{$r.xinghao}</p></a>
+	  </li>
+	  </volist>
+	</ul>
+	
+	<ul class="pagelist huanye2">
+	</ul>
+  </div><!--caselist end-->
+</div>

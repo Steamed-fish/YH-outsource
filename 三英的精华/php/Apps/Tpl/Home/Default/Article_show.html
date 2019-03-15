@@ -1,0 +1,51 @@
+<div id="news_de">
+	<?php  $pre=M($module)->where("id<$id and catid=$catid and lang=$lang")->find();
+       $next=M($module)->where("id>$id and catid=$catid and lang=$lang")->find();
+       
+?> 
+<main>
+  <ul class="maincontent">
+    <li id="subnav1" data-title="News" style="background: #f5f7f8 url(../Public/images/news_de.jpg) no-repeat center center;">
+      <div class="page_headline_block">
+      	
+
+        <h3 class="bai">{$createtime|toDate=###,'Y-m'} | {$title}</h3>
+        <div  class="text bai">
+        	{$description}
+        </p>
+          
+        </div>
+        <a href="#learn_more" class="btn_learn_more">learn more</a> 
+      </div>
+    </li>
+    <!--2-->
+    <li id="subnav2" data-title="new list" style="background: #FFFFFF ;">
+    	
+      <div class="newde clearfix">
+      	<div class="pd">
+      		{$content}
+      		
+      		
+      	</div>
+
+      	<div class="xiaye pd f14 lh22" style="padding-top: 0;">
+        	<p class="shang"><span class="fw">Previous :</span><a href="{$pre.url}">{if $pre}{$pre.title}{else}{/if}</a></p>
+        	<p class="xia"><span class="fw">Next :</span><a href="{$next.url}">{$next.title}</a></p>
+        </div>
+
+      </div>
+      
+      
+      
+      
+    </li>
+   
+
+  </ul>
+</main>
+
+
+
+
+</div>
+

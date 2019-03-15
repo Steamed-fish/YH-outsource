@@ -1,0 +1,88 @@
+
+<div id="freight">
+<main>
+  <ul class="maincontent">
+    <li id="subnav1" data-title="freight" style="background: #f5f7f8 url(../Public/images/freight_bg.jpg) no-repeat center center;">
+      <div class="page_headline_block">
+        <h3 class="">Freight price query</h3>
+        <div  class="text ">
+        	Please provide information about your freight, including the departure, destination and cargo Date. Used to indicate the icon for the column must be filled“*”
+        </p>
+          
+        </div>
+        <a href="#learn_more" class="btn_learn_more">learn more</a> 
+      </div>
+    </li>
+		<!--2-->
+   	<li id="subnav2" data-title="freight" style="background: #ffffff ">
+   		  <div class="freight">
+  	
+					<form class="sider_form" action="{:URL('User-Post/insert')}" method="post">
+					
+				<input type="hidden"  name="catid" value="{$catid}" />
+				<input type="hidden" id="moduleid" name="moduleid" value="15" />
+				<input type="hidden" id="lang" name="lang" value="{$langid}" />
+			  <input type="hidden" id="title" name="title" value="" />
+			   
+			   <div id="freight1">
+			   	<div class="fre_t">1. Select the freight service</div>
+			   	<div class="fre_b">* You need what kind of goods moving services</div>
+			   	<ul>
+			   		<li><input type="radio" name="way" id="" value="Ari transport" />Ari transport</li>
+			   		<li><input type="radio" name="way" id="" value="LCL shipments" />Shipping (LCL shipments)</li>
+			   		<li><input type="radio" name="way" id="" value="FCL shipments" />Shipping (FCL shipments)</li>
+			   		<li><input type="radio" name="way" id="" value="Express" />Express</li>
+			   	</ul>
+			   	
+			   	<div class="fre_t">2.Place and time</div>
+			   	<div class="fre_b">From the bottom:</div>
+					<div class="frelist">
+						<p>* Country or region：</p>
+						<select name="guojia" id="select_id">
+							<?php $qqlist=M('quanqiu')->select();?> 
+							<volist name="qqlist" id="r" >
+             	<option selected="selected">{$r.title}</option>
+							</volist>
+            </select>					
+					</div>
+					<div class="frelist">
+						<p>* City</p>
+						<input type="text" name="city" id="" value="" />
+					</div>
+					<div class="frelist">
+						<p>When do you want to shipped</p>
+						
+						<input class="time" name="time" value="">
+					</div>
+					<div class="fre_t">3. The goods weight</div>
+			   	<div class="frelist" style="padding-top: 20px;">
+						<p>Weight</p>
+						<input type="text" name="weight" id="" value="" />
+					</div>
+					<div class="fre_t">4. Fill in your information</div>
+					<ul class="form">
+						<li><p>* Name</p><input type="text" name="name" id="" value="" /></li>
+						<li><p>* Telephone</p><input type="text" name="dianhua" id="" value="" /></li>
+						<li><p>* Email</p><input type="text" name="email" id="" value="" /></li>
+					</ul>
+						
+					<div class="t-sub">
+			        <button type="submit" class="sub-btn">Submit</button>
+			    </div>
+				</form>
+  
+  	
+  </div>
+
+		</li>
+  </ul>
+
+</main>
+
+
+
+
+</div>
+
+
+

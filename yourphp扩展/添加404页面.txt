@@ -1,0 +1,1 @@
+在部署模式下。就是关了debug。在config中添加 'URL_404_REDIRECT'=>'http://www.baidu.com/'配置即可

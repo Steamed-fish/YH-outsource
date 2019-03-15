@@ -1,0 +1,6 @@
+1. 在后台添加date字段
+2.在添加修改createtime时 修改date字段
+3. 在emptyAction中 修改为$group   =  defined('GROUP_NAME')?GROUP_NAME.'/':''; $bae = A($group.$m); 在伪静态时直接读取对应Action而不是Base
+4.在对应Action中重写对应方法
+5.修改$where 添加date索引。获取所有date?另建date表是否更高效？
+6.this->assage("date",date);page中修改 $page->parameter["date"] =  $date; pageurl if（date）.=  (strpos($url,'?')?'&':"?")."date=".$date;

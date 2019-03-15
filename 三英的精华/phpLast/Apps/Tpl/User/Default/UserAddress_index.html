@@ -1,0 +1,403 @@
+<load href='__PUBLIC__/Css/address.min.css' />
+
+<style>
+a{ color:#006600; text-decoration:none;}
+a:hover{color:#990000;}
+.top{ margin:5px auto; color:#990000; text-align:center;}
+.info select{ border:1px #993300 solid; background:#FFFFFF;}
+.info{ margin:5px; text-align:center;}
+.info #show{ color:#3399FF; }
+.bottom{ text-align:right; font-size:12px; color:#CCCCCC; width:1000px;}
+</style>
+
+<div class="right">
+	<div class="main-wrap">
+		<h2 class="h2-single">
+			<span class="entity">收货地址</span>
+		</h2>
+		<!-- form box begin -->
+		<div class="form-box">
+			<div class="item item-title">
+				<span class="item-label tsl">新增收货地址</span>
+				<span class="tsl">电话号码、手机号选填一项, 其余均为必填项</span>
+			</div>
+			<form>
+				<input type="hidden" id="id" name="addrid" value="{$address.id}">
+				<div class="item item-devision">
+					<span class="item-label tsl">
+						所在地区<i>*</i>
+					</span>
+					<div class="ks-clear clearfix">
+						<div>
+							<select id="s_province" name="province" style="width: 90px;">
+								<option value="0">省份</option>
+								<volist name="provinces" id="province">
+									<switch name="province.selected">
+										<case value="1" break="1">
+											<option value="{$province.id}" selected="true">{$province.name}</option>
+										</case>
+										<case value="0" break="1">
+											<option value="{$province.id}">{$province.name}</option>
+										</case>
+									</switch>
+								</volist>
+							</select>  
+						    <select id="s_city" name="city" style="width: 90px;" >
+						    	<option value="0">地级市</option>
+						    	<volist name="cities" id="city">
+									<switch name="city.selected">
+										<case value="1" break="1">
+											<option value="{$city.id}" selected="true">{$city.name}</option>
+										</case>
+										<case value="0" break="1">
+											<option value="{$city.id}">{$city.name}</option>
+										</case>
+									</switch>
+								</volist>
+						    </select>  
+						    <select id="s_county" name="area" style="width: 90px;">
+						    	<option value="0">市、县级市</option>
+						    	<volist name="areas" id="area">
+									<switch name="area.selected">
+										<case value="1" break="1">
+											<option value="{$area.id}" selected="true">{$area.name}</option>
+										</case>
+										<case value="0" break="1">
+											<option value="{$area.id}">{$area.name}</option>
+										</case>
+									</switch>
+								</volist>
+						    </select>
+						</div>
+					</div>
+					
+					<div class="msg hide" id="J_MsgAddress">
+						<i></i>
+						<div class="msg-cnt"></div>
+					</div>
+				</div>
+				<div class="item item-street">
+					<span class="item-label tsl">
+						详细地址<i>*</i>
+					</span>
+					<div class="ks-combobox ks-combobox-focused" id="J_ComboboxStreet" aria-pressed="false">
+						<div class="ks-combobox-input-wrap">
+							<textarea class="ks-combobox-input i-ta disabled tsl" 
+									aria-combobox="list" role="combobox" 
+									autocomplete="off" name="address" 
+									id="J_Street" aria-label="详细地址" 
+									placeholder="建议您如实填写详细收货地址，例如街道名称，门牌号码，楼层和房间号等信息" 
+									data-inner_placeholder="d_p_input_inner_detailAddress" 
+									data-pattern="^[\s\S]{5,120}$" data-msg="d_p_detailAddress_msg" 
+									data-ph="建议您如实填写详细收货地址，例如街道名称，门牌号码，楼层和房间号等信息" 
+									disabled="disabled"><empty name="address.address"><else />{$address.address}</empty></textarea>
+						</div>
+					</div>
+					<div class="msg hide" id="J_MsgStreet">
+						<i></i>
+						<div class="msg-cnt"></div>
+					</div>
+				</div>
+				<div class="item item-postcode" id="J_ItemPostCode">
+					<span class="item-label tsl" data-phase-id="d_p_postCode">邮政编码 </span>
+					<div class="item-warp">
+					<input name="zipcode" aria-label="邮政编码" maxlength="16" 
+						data-item="postcode" placeholder="如您不清楚邮递区号，请填写000000" 
+						data-inner_placeholder="d_p_input_inner_postCode" 
+						data-ph="如您不清楚邮递区号，请填写000000" data-pattern="^.{0,16}$" 
+						data-msg="d_p_postCode_msg" class="i-text tsl" 
+						id="J_PostCode" type="text" value="{$address.zipcode}">
+					</div>
+				</div>
+				<div class="item item-name" id="J_ItemName">
+					<span class="item-label tsl" data-phase-id="d_p_receiverName">收货人姓名 <i>*</i></span>
+					<div class="item-warp">
+					<input name="consignee" class="i-text tsl" aria-label="收货人姓名" 
+						type="text" id="J_Name" placeholder="长度不超过25个字符" 
+						data-inner_placeholder="d_p_input_inner_fullName" 
+						data-pattern="^.{2,25}$" data-msg="d_p_fullName_msg" 
+						data-ph="长度不超过25个字符" value="{$address.consignee}">
+					</div>
+					<div class="msg hide" id="J_MsgName">
+						<i></i>
+						<div class="msg-cnt"></div>
+					</div>
+				</div>
+				<div class="item item-mobile">
+					<span class="item-label tsl">手机号码 </span>
+					<div class="item-warp">
+						<input name="mobile" class="i-text tsl" 
+							aria-label="手机号码" type="text" 
+							id="J_Mobile" placeholder="电话号码、手机号码必须填一项" 
+							data-inner_placeholder="d_p_input_inner_mobile" 
+							data-pattern="^\d{6,20}$" data-ph="电话号码、手机号码必须填一项" 
+							data-msg="d_p_mobile_msg" value="{$address.mobile}">
+					</div>
+				</div>
+				<div class="item item-phone">
+					<span class="item-label tsl">电话号码 </span>
+					<div class="item-warp">
+						<input name="tel" maxlength="10" 
+							class="i-text i-text-short tsl" 
+							id="J_PhoneCode" aria-label="电话号码" 
+							placeholder="电话号码" 
+							data-inner_placeholder="d_p_input_inner_phoneCode" 
+							data-ph="电话号码" type="text" value="{$address.tel}">
+					</div>
+				</div>
+				<div class="item item-set-default" id="j_ItemSetDefault">
+					<input type="checkbox" class="i-chk" name="isdefault" id="J_SetDefault" <notempty name="address[isdefault]">checked</notempty>>
+					<label for="J_SetDefault" class="tsl" data-phase-id="d_p_saveAsDefaultAddress">设置为默认收货地址</label>
+				</div>
+			</form>
+			<div class="item">
+				<button type="submit" class=" btn  tsl" data-phase-id="d_p_saveSubmit" onclick="onSubmit();">保存</button>
+				<div class="msg hide" id="J_MsgSubmit">
+					<i></i>
+					<div class="msg-cnt"></div>
+				</div>
+			</div>
+		</div>
+		<!-- form box end -->
+		<!-- address list begin -->
+		<div class="tbl-deliver-address">
+			<div class="caption mtb10"></div>
+			<table border="0" cellspacing="0" cellpadding="0" class="tbl-main">
+				<colgroup>
+					<col class="col-man">
+					<col class="col-area">
+					<col class="col-address">
+					<col class="col-postcode">
+					<col class="col-phone">
+					<col class="col-actions">
+				</colgroup>
+				<tbody>
+					<tr class="thead-tbl-grade">
+						<th>收货人</th>
+						<th>所在地区</th>
+						<th>详细地址</th>
+						<th>邮编</th>
+						<th>电话/手机</th>
+						<th>操作</th>
+						<th></th>
+					</tr>
+					<volist name="list" id="vo">
+						<tr class="thead-tbl-address">
+							<input type="hidden" name="addrid" value="{$vo.id}">
+							<td>{$vo.consignee}</td>
+							<td> {$vo.province} {$vo.city} {$vo.area} </td>
+							<td>{$vo.address}</td>
+							<td>{$vo.zipcode}</td>
+							<td><empty name="$vo.mobile">{$vo.mobile}<else />{$vo.tel}</empty></td>
+							<td>
+								<a href="javascript:void(0)" class="modify">修改</a>
+								<a href="javascript:void(0)" class="del">删除</a>
+							</td>
+							<td class="thead-tbl-status">
+								<input type="hidden" value="{$vo.isdefault}">
+								<a class="note implicit <empty name='vo.isdefault'>hide</empty>" href="javascript:void(0)">默认</a>
+							</td>
+						</tr>
+					</volist>
+				</tbody>
+			</table>
+		</div>
+		<!-- address list end -->
+	</div>
+</div>
+
+<script>
+
+var province = $('#s_province').val();
+var city = $("#s_city").val();
+var county = $('#s_county').val();
+var textarea = $('#J_Street');
+if(province>0 && city>0 && county>0)
+{
+	textarea.removeClass('disabled');
+	textarea.removeAttr('disabled');
+}else {
+	textarea.addClass('disabled');
+	textarea.attr('disabled', 'disabled');
+}
+
+$('#s_province').on('change', function(){
+	var province = $(this).val();
+	if(province > 0)
+	{
+		$.ajax({
+			type:'post',
+			url:'/User/Area/getArea',
+			dataType:'json',
+			data:{'areaid':province},
+			success:function(data){
+				var option = '<option value="0" selected>地级市</option>';
+				if(data.errno==0)
+				{
+					$.each(data.data, function(){
+						option += '<option value="' + this.id + '">' + this.name + '</option>';
+					});
+					
+				}else {
+					console.log('没有地址数据');
+				}
+				$("#s_city").html(option);
+				$('#s_county').html('<option value="0" selected>市、县级市</option>');
+			},
+			error:function(xhr){
+				console.log(xhr.responseText);
+			}
+		});
+	}else {
+		$("#s_city").html('<option value="0" selected>地级市</option>');
+		$('#s_county').html('<option value="0" selected>市、县级市</option>');
+	}
+
+	var textarea = $('#J_Street');
+	textarea.addClass('disabled');
+	textarea.attr('disabled', 'disabled');
+});
+
+$('#s_city').on('change', function(){
+	var city = $(this).val();
+	if(city > 0)
+	{
+		$.ajax({
+			type:'post',
+			url:'/User/Area/getArea',
+			dataType:'json',
+			data:{'areaid':city},
+			success:function(data){
+				var option = '<option value="0" selected>市、县级市</option>';
+				if(data.errno==0)
+				{
+					$.each(data.data, function(){
+						option += '<option value="' + this.id + '">' + this.name + '</option>';
+					});
+					
+				}else {
+					console.log('没有地址数据');
+				}
+				$("#s_county").html(option);
+			},
+			error:function(xhr){
+				console.log(xhr.responseText);
+			}
+		});
+	}else {
+		$('#s_county').html('<option value="0" selected>市、县级市</option>');
+	}
+	
+	var textarea = $('#J_Street');
+	textarea.addClass('disabled');
+	textarea.attr('disabled', 'disabled');
+});
+
+$('#s_county').on('change', function(){
+	var province = $('#s_province').val();
+	var city = $('#s_city').val();
+	var county = $('#s_county').val();
+	var textarea = $('#J_Street');
+	if(province>0 && city>0 && county>0)
+	{
+		textarea.removeClass('disabled');
+		textarea.removeAttr('disabled');
+	}else {
+		textarea.addClass('disabled');
+		textarea.attr('disabled', 'disabled');
+	}
+});
+
+var onSubmit = function()
+{
+	var province = $('#s_province').val();
+	var city = $('#s_city').val();
+	var county = $('#s_county').val();
+	var address = $('#J_Street').text();
+	var zipcode = $('#J_PostCode').val();
+	var consignee = $('#J_Name').val();
+	var mobile = $('#J_Mobile').val();
+	var tel = $('#J_PhoneCode').val();
+	var isdefault = $('#J_SetDefault').is(':checked') ? 1 : 0;
+	
+	if(!(province>0 && city>0 && county>0 && county!='' && county!=null && county!=undefined))
+	{
+		alert("请设置地址");
+		return false;
+	}
+	if(consignee=='' || consignee==null)
+	{
+		alert('请设置收件人姓名！');
+		return false;
+	}
+	if(mobile=='' && tel=='')
+	{
+		alert('请设置收件人联系方式！');
+		return false;
+	}
+	var form = $('form');
+	var id = $('#id').val();
+	if(id==null || id=='')
+	{
+		form.attr({'action':'/User/UserAddress/createAddress'});
+	}else{
+		form.attr({'action':'/User/UserAddress/modifyAddress'});
+	}
+	form.submit();
+	
+}
+
+$('td a.modify').on('click', function(){
+	var form = $('<form method="post"></form>');
+	form.attr({'action': '/User/UserAddress'});
+	form.append($(this).parents('tr:first').children('input[name="addrid"]'));
+	$(document.body).append(form);
+	form.submit();
+});
+
+$('td a.del').on('click', function(){
+	var form = $('<form method="post"></form>');
+	form.attr({'action': '/User/UserAddress/deleteAddress'});
+	form.append($(this).parents('tr:first').children('input[name="addrid"]'));
+	$(document.body).append(form);
+	form.submit();
+});
+
+$('tbody td.thead-tbl-status').hover(function(){
+	var a = $(this).children('a');
+	var isdefault = $(this).children('input').val();
+	if(a && isdefault == 0)
+	{
+		a.removeClass('hide');
+	}
+},function(){
+	var a = $(this).children('a');
+	var isdefault = $(this).children('input').val();
+	if(a && isdefault == 0)
+	{
+		a.addClass('hide');
+	}
+});
+
+$('tbody td.thead-tbl-status a').on('click', function(){
+	var id = $(this).parents('tr').children('input[name="addrid"]').val();
+	$.ajax({
+		type: 'post',
+		url: '/User/UserAddress/setDefault',
+		dataType: 'json',
+		data: {'addrid': id},
+		success: function(data){
+			if(data.errno == 0)
+			{
+				location.href = '/User/UserAddress';
+			}else if(data.errno == 1) {
+				alert('设置失败');
+			}else if(data.errno == 2) {
+				alert('收货地址不存在');
+			}else {
+				alert('请登录后操作');
+			}
+		},
+	});
+});
+</script>

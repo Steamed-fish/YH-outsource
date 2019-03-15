@@ -1,0 +1,128 @@
+<div class="about">
+        <div class="about_t">
+        	<div class="container">
+                <h2>Prouducts</h2>
+                <div class="locat"><img src="../Public/images/home.png" alt=""> &gt <YP:catpos  catid="catid" space="&gt;" /></div>
+        	</div>
+        </div>
+
+    <div class="container pd">
+	
+	<div class=" col-sm-3 pro_l col-xs-12" style="overflow:hidden">
+    	<div class="">
+            <div class="lvse pro-drodown f24"  >Categories</div>
+            <ul class="pdl-b">
+            	<YP:subcat  catid="21" id="rd" >
+                <li class="sanjiao "><a href="{$rd.url}" class="">{$rd[catname]} &gt </a></li>
+ 
+              </YP:subcat>  
+            </ul>
+        </div>
+        
+
+
+
+    </div>
+        <div class="col-sm-9 pro_show_r">
+            <div class="lunbo col-sm-6">
+        
+            <div class="big_pro_img">
+                <img src="{$r.thumb}"  alt="{$r.title}">
+            </div>
+             <div class="sm_pro_img">
+                <span class="pro-left"><img src="../Public/images/pro-left.png" alt="{$r.title}"></span>
+                <div class="zhizhao">
+                    <ul>
+                    	<volist name="pics" id="r">
+                        	<li><img src="{$r.filepath}"  alt=""></li>
+                        </volist>
+                    </ul>
+                </div>
+                <span class="pro-right"><img src="../Public/images/pro-right.png" alt=""></span>
+             </div>  
+            
+         <script>
+         
+         </script>
+        </div>
+            <div class="col-sm-6">
+                <h3 class=" f24">{$title}</h3>
+                <ul class="f14" style="line-height:24px">
+                    {$canshu}
+                </ul>
+                <div class="pro_show_xp">
+                    <a href="" class="a1"></a>
+                    <a href="" class="a2"></a>
+                    <a href="" class="a3"></a>
+                    <a href="javascript:;" class="a4"></a>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div class="pro_show_b">
+                <h2 class="lvse">Product Details</h2>
+                <p>{$content}</p>
+                
+          </div>  
+    
+    
+        </div>
+        
+        <div class="clear"></div>
+       
+    </div>
+
+
+</div>
+
+<div class="xunpan_bg" style="display:none">
+	<div class="xunp">
+    	<div class="xunp_t"><img src="../Public/images/logo.png" width="126" class="fl" alt=""><p class="fr f14 fw " style="padding-top:20px" ><span>*</span> Required</p></div>
+        <ul>
+        	<form class="sider_form" action="{:URL('User-Post/insert')}" method="post">
+            			
+            		<input type="hidden"  name="catid" value="{$catid}" />
+					<input type="hidden" id="moduleid" name="moduleid" value="8" />
+					<input type="hidden" id="lang" name="lang" value="{$langid}" />
+                    <input type="hidden" id="title" name="title" value="Contact Us" />
+
+        	<li class="biaoti"><p>Products :</p><p class="p2"  >{$title} <input type="hidden" name="contact_pro" id="" value="{$title}" /></p></li>
+        	<li class="for"><p><span>*</span> Name :</p><p class="p2"><input type="text" name="username" ></p></li>
+            <li><p><span></span> Company :</p><p class="p2"><input type="text" name="company" ></p></li>
+        	<li><p><span></span> Address :</p><p class="p2"><input type="text" name="address" ></p></li>
+        	<li><p><span>*</span> E-mail : </p><p class="p2"><input type="text" name="email" ></p></li>
+        	<li><p><span>*</span> Tel :</p><p class="p2"><input type="text" name="telephone" ></p></li>
+        	<li><p><span></span> Fax :</p><p class="p2"><input type="text" name="Fax" ></p></li>
+        	<li class="message"><p><span>*</span> Message :</p><p class="p2"> <textarea name="content" ></textarea></p></li>
+        	<li class="sub"><p></p><p class="p2"> <input type="submit" value="" ></p></li>
+        	</form>
+        </ul>
+        <div class="close1">
+        	X
+        </div>
+    </div>
+	
+</div>
+
+<script>
+$(function(){
+	 $('.pro_show_xp .a4').click(function(){	
+	 	$('.xunpan_bg').show(0);
+	 });
+	 $('.close1').click(function(){	
+	 	$('.xunpan_bg').hide(0);
+	 });
+	
+	
+	
+	
+	
+	
+	
+});
+
+
+
+
+</script>
+
+

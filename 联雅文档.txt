@@ -1,0 +1,5 @@
+表 Home 首页内容（模型）  和表 Homenav 首页导航  导航建议生成缓存文件 （表未建，字段根据需要自己增加）
+广告管理表  Ad（模型）
+分享 Share 表未添加（模型）
+产品属性 Property（空模型）
+SeoAction（用于统一管理seo  栏目的seo写在Category表中，内容页的seo写在模型表中如产品：Product）

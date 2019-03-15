@@ -1,0 +1,4 @@
+File_type。html文件中images \ image添加cc字段
+
+images \ image 字段在form输出代码中添加
+.$info['setup']['cc']

@@ -1,0 +1,1059 @@
+<link href="../Public/css/style.css" rel="stylesheet" type="text/css" />
+<style>
+.section-body .select {
+	border-color: rgb(255, 103, 0);
+}
+</style>
+
+<div id="wrapper">
+	<div class="account pos">
+		
+		<div class="container">
+			<div class="checkout-box">
+				<div class="section-address margin">
+					<div class="section-header"><h2 class="f18">收货地址</h2></div>
+					
+					
+					<empty name="isGuest">
+					<div class="section-body clearfix">
+						<volist name="address" id="addr">
+							<div class="address-list xiu-address {if $addr[isdefault]}select{/if}">
+								<div class="has-address">
+									<input type="hidden" name="user_address" value="{$addr.id}" />
+									<dl>
+										<dt class="f20 nofw p-name">{$addr.consignee}</dt>
+										<dd class="iphone p-phone">
+											<empty name="$addr.mobile">
+												{$addr.mobile}
+											<else />
+												{$addr.tel}
+											</empty>
+										</dd>
+										<dd class="iaddress p-address">{$addr.province} {$addr.city} {$addr.area}</dd>
+										<dd class="itextarea p-textarea">{$addr.address}</dd>
+									</dl>
+									<span class="product-color xiugai"{if $addr[isdefault]}style="display: inline;"{/if}>修改</span>
+								</div>
+							</div>
+						</volist>
+						
+						<div class="address-list add-address">
+							
+							
+							<div class="not-address">
+								<i class="add-icon">+</i>
+								<span>添加新地址</span>
+							</div>
+						</div>
+					</div>
+					<else />
+					
+					<div class="no-address">
+						<div class="xiugai-box">
+							<div class="xiugai-body clearfix">
+								<div class="form-section form-name pos">
+									<input class="input-text" type="text" name="consignee" id="consignee" value="" placeholder="收货人姓名"/>
+								</div>
+								
+								<div class="form-section form-iphone pos">
+									<input class="input-text" type="text" name="telephone" id="telephone" value="" placeholder="收货人手机号"/>
+								</div>
+								
+								<div class="address-search pos">
+									<input type="hidden" id="province" value="" />
+									<input type="hidden" id="city" value="" />
+									<input type="hidden" id="area" value="" />
+									<input class="input-text" type="text" name="" id="edit_address" value="" placeholder="选择省/市/区" readonly="true"/>
+									<i class="xiala"></i>
+									
+									<div class="hide-search hide">
+										<div>
+											
+											<span class="select-address-close"></span>
+											<div class="search-address-wrapper shuru">
+												<div class="search-section pos">
+													<i class="search-icon"></i>
+													<input class="search-input" type="text" name="" id="" value="" placeholder="街道、乡镇、小区或商圈名称" readonly="true"/>
+													<span class="icon-del"></span>
+												</div>
+												
+												<div class="search-example">
+													例如：北京 华润五彩城
+												</div>
+												
+												<div class="switch-type">
+													<a href="javascript:void(0)" class="J_switchTypeTrigger product-color">直接选择地址></a>
+												</div>
+											</div>
+											<div class="xuanze search-address-wrapper hide">
+												<div class="J_fourAddressWrapper">
+													<div class="select-box clearfix">
+														<div class="cho-sheng" data-abc = "选择省份/自治区">选择省份/自治区</div>
+														<div class="cho-shi hide" data-abc = "选择城市/地区">选择城市/地区</div>
+														<div class="cho-qu hide" data-abc = "选择区县">选择区县</div>
+														
+													</div>
+													
+													<div class="options-box">
+														<ul class="options-list clearfix sheng">
+															<li class="options" data-value="2" data-txt="北京">北京</li>
+															<li class="options" data-value="3" data-txt="北京">天津</li>
+															<li class="options" data-value="4" data-txt="北京">广东</li>
+															<li class="options" data-value="5" data-txt="北京">广西</li>
+															
+														</ul>
+														<ul class="options-list clearfix hide shi">
+															<li class="options" data-value="2" data-txt="北京市">珠海市</li>
+															<li class="options" data-value="3" data-txt="北京市">深圳市</li>
+															<li class="options" data-value="4" data-txt="北京市">佛山市</li>
+															<li class="options" data-value="5" data-txt="北京市">江门市</li>
+															
+														</ul>
+														<ul class="options-list clearfix hide qu">
+															<li class="options" data-value="2" data-txt="北京市">北京市</li>
+															<li class="options" data-value="3" data-txt="北京市">北京市</li>
+															<li class="options" data-value="4" data-txt="北京市">北京市</li>
+															<li class="options" data-value="5" data-txt="北京市">北京市</li>
+															
+														</ul>
+													</div>
+												</div>
+												<div class="switch-type">
+													<a href="javascript:void(0)" class="J_switchTypeTriggers product-color"> 搜索地址快速定位></a>
+												</div>
+											</div>
+										
+										</div>
+									</div>
+								</div>
+								
+								
+								
+								<div class="from-textarea">
+									<textarea id="edit_detail" name="address" rows="" cols="" class="" placeholder="详细地址"></textarea>
+								</div>
+								
+								<div class="form-section form-zheng pos">
+									<input class="input-text" type="text" name="zipcode" id="zipcode" value="" placeholder="邮政编码"/>
+								</div>
+								
+								<div class="form-section form-biao pos">
+									<input class="input-text" type="text" name="email" id="email" value="" placeholder="邮箱"/>
+								</div>
+								
+								<div class="cuowu-tip"></div>
+							</div>
+							
+							
+							
+						</div>
+					</div>
+					</empty>
+				</div>
+				
+				
+				<div class="section-options margin clearfix liuli paytype">
+					<div class="fl f20 sec-head">支付方式</div>
+					<ul class="fl product-color f12">
+						<li class="cur" data-type="1">在线支付 （财付通）</li>
+						<li class="" data-type="2">微信扫码支付</li>
+						<li class="" data-type="3">支付宝扫码支付</li>
+					</ul>
+				</div>
+				
+				<div class="section-options margin clearfix express">
+					<div class="fl f20 sec-head">配送方式</div>
+					<select id="express" name="express">
+					<volist name="shipping" id="express">
+						<option value="{$express.id}">{$express.name}（<empty name="express['price']">免运费<else />{$express.price}元</empty>）</option>
+					</volist>
+					</select>
+				</div>
+				
+				<div class="section-options margin clearfix liuli">
+					<div class="fl f20 sec-head">配送时间</div>
+					<ul class="fl product-color f12">
+						<li class="cur">不限送货时间：周一至周日</li>
+					</ul>
+				</div>
+				
+				<div class="section-options margin clearfix liuli fapiao">
+					<div class="fl f20 sec-head">发票</div>
+					<ul class="fl product-color f12">
+						<li class="cur" data-type="0">普通发票（纸质）</li>
+						<li data-type="1">普通发票（纸质）</li>
+					</ul>
+					
+					<div class="geredanwei pos hidden">
+						<input type="text" name="" id="invoice_title" value="个人" readonly="true"/>
+						<span class="f12">填写个人/单位名称</span>
+						
+						<p>发票内容:购买商品明细</p>
+					</div>
+				</div>
+				
+				
+				<div class="section-goods margin">
+					
+					<div class="goods-head clearfix">
+						<h3 class="fl f20">商品</h3>
+						<div class="fanhui fr" style="display:none;">
+							<a href="">返回购物车<em class="fw">></em></a>
+						</div>
+					</div>
+					
+					<div class="goods-body">
+						<ul>
+						<volist name="products" id="product">
+							<li class="clearfix">
+								<input type="hidden" name="productid" value="{$product.productid}">
+								<input type="hidden" name="cartid" value="{$product.id}">
+								<div class="prod-pic"><a href="{$product.url}" ><img src="{$product.thumb}"/></a></div>
+								<div class="prod-name"><a href="{$product.url}">{$product.title}</a></div>
+								<div class="prod-dan">{$product.price}元*<span name="number">{$product.number}</span></div>
+								<div class="youwuhuo">有货</div>
+								<div class="prod-zong product-color">{$product['price']*$product['number']|number_format=###,2} 元</div>
+							</li>
+						</volist>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="section-count margin clearfix">
+					<div class="section-count-left fl" style="display: none;">
+						<div class="youhuijuan">
+							<i class="youhui-icon"></i>
+							使用优惠券
+						</div>
+						<div class="lipinka">
+							<i class="youhui-icon"></i>
+							使用礼品卡
+						</div>
+					</div>
+					<div class="section-count-right fr">
+						<ul>
+							<li><label>商品件数 :</label><span>{$number}件</span></li>
+							<li><label>金额合计 :</label><span>{$amount|number_format=###,2} 元</span></li>
+							<li style="display: none;"><label>活动优惠 :</label><span>-0元</span></li>
+							<li style="display: none;"><label>优惠券抵扣 :</label><span>-0元</span></li>
+							<li><label>运费 :</label><span class="shipping"><empty name="shipping['0']['price']">免运费<else />{$shipping['0']['price']} 元</empty></span></li>
+							<li><label>应付总额 :</label><span><i class="zongjia">{$amount|number_format=###,2}</i> 元</span></li>
+						</ul>
+					</div>
+				</div>
+				
+				
+				
+				<div class="section-bar clearfix">
+					<div class="fr">
+						<a href="javascript:void(0)" class="jiesuan f14">去结算</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<empty name="isGuest">
+		<div class="xiugai-dan">
+			<div class="xiugai-box">
+				<input type="hidden" id="addrid" value="" />
+				<div class="xiugai-box-head clearfix">
+					<span class="fl f20">添加收货地址</span>
+					<i class="fr close-box f20">x</i>
+				</div>
+				
+				<div class="xiugai-body clearfix">
+					<div class="form-section form-name pos">
+						<input class="input-text" type="text" name="consignee" id="consignee" value="" placeholder="收货人姓名"/>
+					</div>
+					
+					<div class="form-section form-iphone pos">
+						<input class="input-text" type="text" name="telephone" id="telephone" value="" placeholder="收货人手机号"/>
+					</div>
+					
+					<div class="address-search pos">
+						<input type="hidden" id="province" value="" />
+						<input type="hidden" id="city" value="" />
+						<input type="hidden" id="area" value="" />
+						<input class="input-text" type="text" name="" id="edit_address" value="" placeholder="选择省/市/区"/>
+						<i class="xiala"></i>
+						
+						<div class="hide-search hide">
+							<div>
+								
+								<span class="select-address-close"></span>
+								
+								<div class="xuanze search-address-wrapper">
+									<div class="J_fourAddressWrapper">
+										<div class="select-box clearfix">
+											<div class="cho-sheng" data-abc = "选择省份/自治区">选择省份/自治区</div>
+											<div class="cho-shi hide" data-abc = "选择城市/地区">选择城市/地区</div>
+											<div class="cho-qu hide" data-abc = "选择区县">选择区县</div>
+											
+										</div>
+										
+										<div class="options-box">
+											<ul class="options-list clearfix sheng">
+												<li class="options" data-value="2" data-txt="北京">北京</li>
+												<li class="options" data-value="3" data-txt="北京">天津</li>
+												<li class="options" data-value="4" data-txt="北京">广东</li>
+												<li class="options" data-value="5" data-txt="北京">广西</li>
+												
+											</ul>
+											<ul class="options-list clearfix hide shi">
+												<li class="options" data-value="2" data-txt="北京市">珠海市</li>
+												<li class="options" data-value="3" data-txt="北京市">深圳市</li>
+												<li class="options" data-value="4" data-txt="北京市">佛山市</li>
+												<li class="options" data-value="5" data-txt="北京市">江门市</li>
+												
+											</ul>
+											<ul class="options-list clearfix hide qu">
+												<li class="options" data-value="2" data-txt="北京市">北京市</li>
+												<li class="options" data-value="3" data-txt="北京市">北京市</li>
+												<li class="options" data-value="4" data-txt="北京市">北京市</li>
+												<li class="options" data-value="5" data-txt="北京市">北京市</li>
+												
+											</ul>
+										</div>
+									</div>
+									
+								</div>
+							
+							</div>
+						</div>
+					</div>
+					
+					
+					
+					<div class="from-textarea">
+						<textarea id="edit_detail" name="address" rows="" cols="" class="" placeholder="详细地址"></textarea>
+					</div>
+					
+					<div class="form-section form-zheng pos">
+						<input class="input-text" type="text" name="zipcode" id="zipcode" value="" placeholder="邮政编码"/>
+					</div>
+					
+					<div class="form-section form-biao pos">
+						<input class="input-text" type="text" name="" id="" value="" placeholder="地址标签"/>
+					</div>
+					
+					<div class="cuowu-tip"></div>
+				</div>
+				
+				
+				<div class="xiugai-foot">
+					<a href="javascript:void(0);" class="btn-primary">保存</a>
+					<a href="javascript:void(0);" class="btn-gray">取消</a>
+				</div>
+			</div>
+		</div>
+		</empty>
+		
+	</div>
+</div>
+<script>
+	$(document).ready(function(){
+		$('#express').change(function(){
+			var express = $(this).find('option:selected').text().match(/[\d]+(\.[\d]+)?/);
+			var money = 0;
+			if(express!=null && express[0]!='')
+			{
+				money = parseFloat(express[0]);
+			}else {
+				money = 0.0;
+			}
+			var amount = money;
+			
+			$('.goods-body ul li').each(function(){
+				amount += parseFloat($(this).children('div[class="prod-zong product-color"]').html().match(/[\d]+(\.[\d]+)?/));
+			});
+			if(money > 0)
+			{
+				$('div.section-count-right ul .shipping').html(money.toFixed(2) + '元');
+			}else {
+				$('div.section-count-right ul .shipping').html('免运费');
+			}
+			$('div.section-count-right ul i').html(amount.toFixed(2));
+		});
+		
+		$('.paytype ul li').click(function(){
+			$('.paytype ul li').each(function(index, el){
+				$(this).removeClass('cur');
+			});
+			$(this).addClass('cur');
+		});
+		$('.fapiao ul li').click(function(){
+			$('.fapiao ul li').each(function(index, e){
+				$(this).removeClass('cur');
+			});
+			$(this).addClass('cur');
+			if($(this).data('type') > 0)
+			{
+				$('.fapiao .geredanwei').removeClass('hidden');
+			}else {
+				$('.fapiao .geredanwei').addClass('hidden');
+			}
+		});
+		
+		var sheng = $(".sheng li");
+		var shi = $(".shi li");
+		var qu = $(".qu li");
+		var choSheng = $(".cho-sheng");
+		var choShi = $(".cho-shi");
+		var choQu = $(".cho-qu");
+		var inputed = $(".address-search .input-text");
+		var cho = $(".select-box div");
+
+		var province = $('.options-box .sheng');
+		province.html('');
+		$.ajax({
+			type: 'post',
+			url: '/User/Area/getArea',
+			dataType: 'json',
+			success: function(data){
+				if(data.errno==0)
+				{
+					var li = '';
+					$.each(data.data, function(){
+						li += '<li class="options" data-value="' + this.id + '" data-txt="'+this.name+'">' + this.name + '</li>';
+					});
+					province.html(li);
+					sheng = $(".sheng li");
+					address(sheng,choSheng);
+					choss(sheng,choSheng);
+				}else {
+					//console.log('没有地址数据');
+				}
+			},
+		});
+		
+		function address(panda,alin){
+			for(var i=0;i<panda.length;i++){
+				panda.eq(i).click(function(){
+					var shengMing = $(this).text();
+					alin.text(shengMing);
+					alin.addClass("cur");
+					alin.next().removeClass("hide");
+					
+					if($(this).parent().hasClass('sheng'))
+					{
+						$("#province").val($(this).data('value'));
+						loadCityList($(this).data('value'));
+					}else if($(this).parent().hasClass('shi')) {
+						$("#city").val($(this).data('value'));
+						loadAreaList($(this).data('value'));
+					}else if($(this).parent().hasClass('qu')) {
+						$('#area').val($(this).data('value'));
+					}
+					 
+					$(".options-list").each(function(){
+						$(this).addClass("hide")
+					})
+					if(panda.parent().hasClass("qu")){
+						panda.parent().removeClass("hide")
+						$(".hide-search").addClass("hide");
+						$(".xiala").css("background-image","url(../Public/images/laxia.png)")
+						var address="";         //获取地址的值
+						for(var j=0;j<cho.length;j++){
+							address += cho.eq(j).text()+" "
+						}
+						inputed.val(address)    //添加到地址框中
+					}else{
+						panda.parent().next().removeClass("hide")
+					}
+				})
+			}
+			
+			
+		
+		}
+		
+		
+		function choss(panda,alin){
+			
+			alin.on('click',function(){
+				if($(this).hasClass("cur")){
+					$(this).removeClass("cur");
+					$(this).text($(this).data("abc"));
+					
+					
+					$(this).next().removeClass("cur");
+					$(this).next().addClass("hide")
+					$(this).next().text($(this).next().data("abc"))
+					
+					
+					
+					$(this).next().next().removeClass("cur");
+					$(this).next().next().text($(this).next().next().data("abc"));
+					$(this).next().next().addClass("hide");
+					
+					$(".options-list").each(function(){
+						$(this).addClass("hide");
+					})
+					panda.parent().removeClass("hide");
+					
+				}else{
+				}
+			})
+		}
+		
+		//点击选择地址，弹出选择地址的框
+		inputed.click(function(){
+			$(".hide-search").removeClass("hide");
+			$(".xiala").css("background-image","url(../Public/images/dle.png)");
+			
+		})
+		
+		//点击x，关闭选择地址框
+		$(".xiala").click(function(){
+			$(".hide-search").addClass("hide");
+			$(".xiala").css("background-image","url(../Public/images/laxia.png)")
+		})
+		
+		//点击直接选择地址，弹出选择地址栏
+		$(".J_switchTypeTrigger").click(function(){
+			$(".xuanze").removeClass("hide");
+			$(".shuru").addClass("hide");
+		})
+		
+		//点击搜索地址快速定位，关闭选择地址栏
+		$(".J_switchTypeTriggers").click(function(){
+			$(".xuanze").addClass("hide");
+			$(".shuru").removeClass("hide");
+		})
+		
+		//点击x，清除搜索地址框中的值
+		$(".icon-del").click(function(){
+			$(".search-input").val("");
+		})
+		
+		//点击添加地址，弹出
+		$(".add-address").click(function(){
+			$(".xiugai-dan").fadeIn(300);
+			
+		})
+		
+		//点击x，关闭
+		$(".close-box").click(function(){
+			$(".xiugai-dan").fadeOut(300);
+		})
+		
+		<empty name="isGuest">
+		xiu();
+		function xiu(){
+			
+			$(".section-body").on("click",".xiu-address",function(){
+				var xiuw = $(".xiu-address");
+				for(var i=0;i<xiuw.length;i++){
+					xiuw.eq(i).css("border-color","#e0e0e0")
+					xiuw.eq(i).children().children("span").fadeOut(0);
+					xiuw.eq(i).removeClass('select');
+				}
+				$(this).children().children("span").fadeIn(0);
+				$(this).css("border-color","#ff6700");
+				$(this).addClass('select');
+			})
+			
+			
+			
+			$(".xiugai").click(function(){
+				$(".xiugai-dan").fadeIn(300);
+				var div = $(this).parent();
+				var addrid = div.children('input').val();
+				var consignee = div.find('dt').html();
+				var mobile = div.find('dd[class="iphone p-phone"]').html();
+				var address = div.find('dd[class="iaddress p-address"]').html();
+				var detail = div.find('dd[class="itextarea p-textarea"]').html();
+				
+				$('#addrid').val(addrid);
+				$(".xiugai-dan").find('span[class="fl f20"]').html("修改收货地址");
+				$.ajax({
+					type: 'post',
+					url: '/User/UserAddress/info',
+					dataType: 'json',
+					data: {
+						'addrid' : addrid
+					},
+					success: function(data){
+						if(data.errno==0)
+						{
+							$('#consignee').val(data.data.consignee);
+							
+							if(data.data.tel == '')
+							{
+								$('#telephone').val(data.data.mobile);
+							}else {
+								$('#telephone').val(data.data.tel);
+							}
+							
+							$("#province").val(data.data.province);
+							$('#city').val(data.data.city);
+							$('#area').val(data.data.area);
+							$("#edit_address").val(address);
+							$('#edit_detail').val(detail);
+							$('#zipcode').val(data.data.zipcode);
+							
+						}else if(data.errno==1) {
+							alert('修改失败');
+						}else if(data.errno==2) {
+							alert('该收货地址不存在');
+						}else {
+							alert('请登录操作！');
+						}
+					},
+					error:function(xhr){
+						//console.log(xhr.responseText);
+					}
+				});
+			})
+		}
+		
+		newAdd();
+		function newAdd(){
+			//修改收货地址信息或新增收货地址信息
+			$(".xiugai-foot .btn-primary").click(function(){
+				var addrid = $('#addrid').val();
+				var consignee = $('#consignee').val();
+				var telephone = $('#telephone').val();
+				var province = $('#province').val();
+				var city = $('#city').val();
+				var area = $('#area').val();
+				var address = $('#edit_detail').val();
+				
+				if(consignee == '')
+				{
+					$('div.cuowu-tip').html('缺少联系人');
+					return false;
+				}else if(!(/^[0-9-()（）]{7,18}$/.test(telephone) || /^0?(13|14|15|18)[0-9]{9}$/.test(telephone))) {
+					$('div.cuowu-tip').html('缺少联系方式');
+					return false;
+				}else if(province==0 || province == '' || city == 0 || city == '' || area == 0 || area == '') {
+					$('div.cuowu-tip').html('缺少收货地址');
+					return false;
+				}else if(address == '') {
+					$('div.cuowu-tip').html('缺少详细地址');
+					return false;
+				}
+
+				var mobile = (/^0?(13|14|15|18)[0-9]{9}$/.test(telephone)) ? telephone : '';
+				var tel = (mobile == '') ? telephone : '';
+				
+				$('div.cuowu-tip').html('');
+				
+				if(addrid > 0)
+				{
+					$('#addrid').val('');
+					$('#consignee').val('');
+					$('telephone').val('');
+					$('#province').val('');
+					$('#city').val('');
+					$('area').val('');
+					$('#edit_detail').val('');
+					$(".form-name .input-text").val("");
+					$(".form-iphone .input-text").val("");
+					$(".address-search .input-text").val("");
+					$(".from-textarea textarea").val("");
+					
+					$.ajax({
+						type: 'post',
+						url: '/User/UserAddress/modify',
+						dataType: 'json',
+						data: {
+							'addrid': addrid,
+							'consignee': consignee,
+							'province': province,
+							'city': city,
+							'area': area,
+							'address': address,
+							'tel': tel,
+							'mobile': mobile
+						},
+						success: function(data){
+							if(data.errno == 0)
+							{
+								window.location.reload();
+							}else if(data.errno == 1) {
+								alert('新增地址失败');
+							}else if(data.errno == 201) {
+								alert('缺少联系人');
+							}else if(data.errno == 202) {
+								alert('缺少地址信息');
+							}else if(data.errno == 203) {
+								alert('缺少联系方式');
+							}
+							$(".xiugai-dan").fadeOut(300);
+						},
+						error:function(xhr){
+							//console.log(xhr.responseText);
+						}
+					});
+				}else {
+					$('#addrid').val('');
+					$('#consignee').val('');
+					$('telephone').val('');
+					$('#province').val('');
+					$('#city').val('');
+					$('area').val('');
+					$('#edit_detail').val('');
+					$(".form-name .input-text").val("");
+					$(".form-iphone .input-text").val("");
+					$(".address-search .input-text").val("");
+					$(".from-textarea textarea").val("");
+					
+					$.ajax({
+						type: 'post',
+						url: '/User/UserAddress/add',
+						dataType: 'json',
+						data: {
+							'consignee': consignee,
+							'province': province,
+							'city': city,
+							'area': area,
+							'address': address,
+							'tel': tel,
+							'mobile': mobile
+						},
+						success: function(data){
+							if(data.errno == 0)
+							{
+								window.location.reload();
+							}else if(data.errno == 1) {
+								alert('新增地址失败');
+							}else if(data.errno == 201) {
+								alert('缺少联系人');
+							}else if(data.errno == 202) {
+								alert('缺少地址信息');
+							}else if(data.errno == 203) {
+								alert('缺少联系方式');
+							}
+							$(".xiugai-dan").fadeOut(300);
+						},
+						error:function(xhr){
+							//console.log(xhr.responseText);
+						}
+					});
+					
+				}
+			})
+			
+			
+			$(".btn-gray").click(function(){
+				$(".form-name .input-text").val("");
+				$(".form-iphone .input-text").val("");
+				$(".address-search .input-text").val("");
+				$(".from-textarea textarea").val("");
+				$(".xiugai-dan").fadeOut(300);
+				$(".shuru").addClass("hide");
+			})
+		}
+		
+		</empty>
+		
+		// 地址：省的选择改变事件时，加载市的地址列表
+		var loadCityList = function(province){
+			
+			if(province > 0)
+			{
+				$.ajax({
+					type: 'post',
+					url: '/User/Area/getArea',
+					dataType: 'json',
+					data: {'areaid': province},
+					success: function(data){
+						if(data.errno==0)
+						{
+							var city = $('.options-box .shi');
+							city.html('');
+							var li = '';
+							$.each(data.data, function(){
+								li += '<li class="options" data-value="' + this.id + '" data-txt="'+this.name+'">' + this.name + '</li>';
+							});
+							city.html(li);
+							$('#city').val('');
+							$('#area').val('');
+							shi = $(".shi li");
+							choShi = $(".cho-shi");
+							address(shi,choShi);
+							choss(shi,choShi);
+						}else {
+							//console.log('没有地址数据');
+						}
+					},
+					error:function(xhr){
+						//console.log(xhr.responseText);
+					}
+				});
+			}
+		}
+
+		// 地址：市的选择改变事件时，加载区/县的地址列表
+		var loadAreaList = function(city){
+			
+			if(city > 0)
+			{
+				$.ajax({
+					type: 'post',
+					url: '/User/Area/getArea',
+					dataType: 'json',
+					data: {'areaid': city},
+					success: function(data){
+						if(data.errno==0)
+						{
+							var area = $('.options-box .qu');
+							area.html('');
+							var li = '';
+							$.each(data.data, function(){
+								li += '<li class="options" data-value="' + this.id + '" data-txt="'+this.name+'">' + this.name + '</li>';
+							});
+							area.html(li);
+							$('#area').val('');
+							qu = $(".qu li");
+							choQu = $(".cho-qu");
+							address(qu,choQu);
+						}else {
+							//console.log('没有地址数据');
+						}
+					},
+				});
+			}
+		}
+		<empty name="isGuest">
+		// 提交订单
+		$('.jiesuan').on('click', function(){
+			var addrid = $('.section-body .select').find('input').val();
+			
+			if(addrid == undefined)
+			{
+				alert('请选择收货地址');
+				return false;
+			}
+			
+			var url = '/User/Order/create';
+			var item = $('div.goods-body');
+			
+			var productid = {};
+			var cartid = {};
+			$('.goods-body ul input[name="productid"]').each(function(index, el){
+				if($(this).val() != 0)
+				{
+					productid[index]=$(this).val();
+				}
+			});
+			$('.goods-body ul input[name="cartid"]').each(function(index, el){
+				if($(this).val() != 0)
+				{
+					cartid[index]=$(this).val();
+				}
+			});
+			
+			var number = {};
+			$('.goods-body ul span[name="number"]').each(function(index, el){
+				number.index = $(this).text();
+			});
+			var paytype = $('.paytype ul li[class=cur]').data('type');
+			var shippingType = $('#express').val();
+			var invoice = $('.fapiao ul li[class="cur"]').data('type');
+			var invoiceTitle = $('#invoice_title').val();
+			$.ajax({
+				type: 'post',
+				url: url,
+				dataType: 'json',
+				data: {
+					'addrid': addrid,
+					'paytype': paytype,
+					'shipping': shippingType,
+					'invoice': invoice,
+					'invoiceTitle': invoiceTitle,
+					'productid': productid,
+					'cartid': cartid,
+					'number': number
+				},
+				success: function(data) {
+					if(data.errno == 0)
+					{
+						var payUrl = data.url;
+						var inputs = data.input;
+						var form = $('<form method="POST">'+inputs+'</form>');
+						form.attr({'action': payUrl});
+						$(document.body).append(form);
+						form.submit();
+					}else if(data.errno == 1) {
+						alert('订单创建失败');
+					}else if(data.errno == 201) {
+						alert('缺少收货地址');
+					}else if(data.errno == 202) {
+						alert('收货地址不存在');
+					}else {
+						alert('请登录后操作');
+					}
+				},
+				error:function(xhr){
+					//console.log(xhr.responseText);
+				}
+			});
+		});
+		
+		<else />
+		
+		// 提交订单
+		$('.jiesuan').on('click', function(){
+			if(!validateAddress())
+			{
+				return false;
+			}
+			if(!confirm("是否确认提交订单！"))
+			{
+				return false;
+			}
+			// address infomation
+			var consignee = $('#consignee').val();
+			var telephone = $('#telephone').val();
+			var province = $('#province').val();
+			var city = $('#city').val();
+			var area = $('#area').val();
+			var address = $('#edit_detail').val();
+			var email = $('#email').val();
+			var zipcode = $('#zipcode').val();
+			
+			var paytype = $('.paytype ul li[class=cur]').data('type');
+			//var shippingType = $('#express').val();
+			var invoice = $('.fapiao ul li[class="cur"]').data('type');
+			var invoiceTitle = $('#invoice_title').val();
+			
+			var shipping = $('#express').val();
+			
+			var url = '/User/Order/create';
+			var item = $('div.order-item');
+			var goods = $('.goods-body ul li');
+			if(goods.length == 1)
+			{
+				var id = goods.children('input[name="productid"]').val();
+				var cartid = goods.children('input[name="cartid"]').val();
+				var number = goods.find('span[name="number"]').text();
+			}else {
+				var id = {};
+				var cartid = {};
+				var number = {};
+				$.each(goods, function(index, el){
+					id.index = $(el).children('input[name="productid"]').val();
+					cartid.index = $(el).children('input[name="cartid"]').val();
+					number.index = $(el).find('span[name="number"]').text();
+				});
+			}
+			$.ajax({
+				type: 'post',
+				url: url,
+				dataType: 'json',
+				data: {
+					'productid': id,
+					'number': number,
+					'consignee': consignee,
+					'mobile': telephone,
+					'province': province,
+					'city': city,
+					'area': area,
+					'address': address,
+					'shipping':shipping,
+					'email': email,
+					'zipcode': zipcode,
+					'paytype': paytype,
+					'invoice': invoice,
+					'invoiceTitle': invoiceTitle
+				},
+				success: function(data) {
+					if(data.errno == 0)
+					{
+						window.location.href = data.url;
+					}else if(data.errno == 1) {
+						alert('订单创建失败，请重新提交订单');
+					}else if(data.errno == 202) {
+						alert('收货地址不存在');
+					}else if(data.errno == 301) {
+						alert('收货人信息不能为空');
+					}else if(data.errno == 302) {
+						alert('请输入正确的手机号码');
+					}else if(data.errno == 303) {
+						alert('请输入正确的邮箱');
+					}else if(data.errno == 304 || data.errno == 305) {
+						alert('收货地址信息不正确');
+					}else if(data.errno == 306) {
+						alert('详细地址不能为空');
+					}
+				},
+				error:function(xhr){
+					//console.log(xhr.responseText);
+				}
+			});
+		});
+		
+		var validateAddress = function() {
+			var err = $('.cuowu-tip');
+			var consignee = $('#consignee').val();
+			var telephone = $('#telephone').val();
+			var province = $('#province').val();
+			var city = $('#city').val();
+			var area = $('#area').val();
+			var address = $('#edit_detail').val();
+			var email = $('#email').val();
+			
+			if(consignee == '' || consignee == null || consignee == undefined)
+			{
+				err.html('收货人姓名不能为空');
+				return false;
+			}else {
+				err.html('');
+			}
+			if(telephone == '' || telephone == null || telephone == undefined)
+			{
+				err.html('收货人手机号码不能为空');
+				return false;
+			}else {
+				err.html('');
+			}
+			if(/^0?(13|14|15|18)[0-9]{9}$/.test(telephone))
+			{
+				err.html('');
+			}else {
+				err.html('请输入正确的手机号码');
+				return false;
+			}
+			if(province == '' || province == null || province == undefined)
+			{
+				err.html('请设置收货地址信息');
+				return false;
+			}else {
+				err.html('');
+			}
+			if(city == '' || city == null || city == undefined)
+			{
+				err.html('请设置收货地址信息');
+				return false;
+			}else {
+				err.html('');
+			}
+			if(address == '' || address == null || address == undefined)
+			{
+				err.html('请设置详细地址信息');
+				return false;
+			}else {
+				err.html('');
+			}
+			if(email == '' || email == null || email == undefined)
+			{
+				err.html('请输入邮箱地址以便下单成功后通知');
+				return false;
+			}else {
+				err.html('');
+			}
+			if(/^\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}$/.test(email))
+			{
+				err.html('请输入正确的邮箱地址以便下单成功后通知');
+				return false;
+			}else {
+				err.html('');
+			}
+			return true;
+		}
+		
+		</empty>
+	});
+</script>

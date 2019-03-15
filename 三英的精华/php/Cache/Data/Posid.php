@@ -1,0 +1,2 @@
+<?php
+return array ( 2 => array ( 'id' => '2', 'name' => '首页幻灯片', 'listorder' => '0', ), 7 => array ( 'id' => '7', 'name' => '首页projects', 'listorder' => '0', ), 8 => array ( 'id' => '8', 'name' => '留言', 'listorder' => '0', ), 9 => array ( 'id' => '9', 'name' => '新闻头条', 'listorder' => '0', ), ); ?>

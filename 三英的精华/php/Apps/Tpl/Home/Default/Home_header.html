@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+
+	<meta charset="utf-8">
+		<!--[if lt IE 9]>
+<script>
+document.createElement('header');
+document.createElement('nav');
+document.createElement('section');
+document.createElement('article');
+document.createElement('figure');
+document.createElement('aside');
+document.createElement('footer');
+document.createElement('hgroup');
+</script>
+<![endif]-->	
+    <meta name="renderer" content="webkit"><!--360 极速模式-->
+    
+	<meta name="description" content="deugro - project freight forwarding. it takes the best minds to make the right moves." />
+    <meta name="keywords" content="deugro, project freight forwarding, direct inquiry" />
+    <meta name="robots" content="index, follow" />
+    
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+
+<link rel="shortcut icon" href="../Public/images/icon.ico" />
+
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+                
+    <link rel="stylesheet" media="screen" type="text/css" href="../Public/css/bootstrap.css"  />
+    <link rel="stylesheet" media="screen" type="text/css" href="../Public/css/boot_libs.css"  />
+    <link rel="stylesheet" media="screen" type="text/css" href="../Public/css/glyphicon.min.css"  />
+    
+    <link rel="stylesheet" media="screen" type="text/css" href="../Public/css/bannerscollection_zoominout.css"  />
+    <link rel="stylesheet" media="screen" type="text/css" href="../Public/css/jquery-ui-1.9.0.custom.min.css"  />
+    <link rel="stylesheet" href="../Public/css/tahoma.ttf" />
+    <link rel="stylesheet" media="screen" type="text/css" href="../Public/css/main.css"  />
+    <link rel="stylesheet" media="screen" type="text/css" href="../Public/css/print.css"  />
+    <script type="text/javascript" src="../Public/js/jquery-1.10.1.min.js" ></script>
+    <script type="text/javascript" src="../Public/js/bootstrap.min.js" ></script>
+    <script type="text/javascript" src="../Public/js/scrollspy.min.js" ></script>
+    <script type="text/javascript" src="../Public/js/jquery-ui.min.js" ></script>
+    <script type="text/javascript" src="../Public/js/jquery.ui.touch-punch.min.js" ></script>
+    <script type="text/javascript" src="../Public/js/bannerscollection_zoominout.js" ></script>
+    <script type="text/javascript" src="../Public/js/jquery.fancybox.pack.js" ></script>
+
+
+</head>
+
+<body>
+<!-- header -->
+    <header>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	
+	<div class="nav_wrapper">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<div class="navbar-inner">
+				<div class="container">
+					<a href="/" >
+						<img src="{$logo}" width="150"  alt="logo" class="header_logo" />
+					</a>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						
+        <ul class="nav navbar-nav">
+        	<YP:subcat catid="0" id="r" key="k">
+            <li><a href="{$r.url}" >{$r.catname}</a></li>
+            </YP:subcat>
+        </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+			<a href="http://dev.kinnit.com:24180/App/CargoTracking" class="search search_bar_box" target="_blank">TRACKING</a>
+			
+	</div>
+</nav>
+
+<script>
+	$(document).ready(function() {
+		$('.navbar-toggle').on('click', function(){
+			$('.navbar-default .navbar-toggle').toggleClass('active');
+		});
+		
+	});
+</script>		
+</header>
+
+<!-- 导航  end --> 
+    
+
+</body>
+
+

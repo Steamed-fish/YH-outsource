@@ -1,0 +1,65 @@
+<main id="pic">
+	<ul class="maincontent">
+		<volist name="list" id="r" order='listorder asc' key='k' >
+			
+		{if $k%2!=0}	
+		
+		<li id="subnav{$k}" data-title="{$r.title}" style="background: #e9e7e4 url('{$r.bg}') center top no-repeat;">
+			<div class="difference_teaser ">
+				<div class="text_box_right">
+					<div class="headline">
+						<h3 class="double"><div class="">{$r.title}</div></h3>
+					</div>
+					<div class="text">
+						
+<div class="">{$r.description}</div>							</div>
+					<a href="/contact/"  class="btn_full_teaser">Online consulting</a>
+				</div>
+			</div>
+		</li>
+		
+		{else}
+		
+		<li id="subnav{$k}" data-title="{$r.title}" style="background: #004561 url('{$r.bg}') center top no-repeat;">
+			<div class="difference_teaser ">
+				<div class="text_box_left bai">
+					<div class="headline">
+						<h3 class="double"><div class="">{$r.title}</div></h3>
+					</div>
+					<div class="text">
+						
+<div class="">{$r.description}</div></div>
+					{if $k==4}
+					<a href="http://gzjym.vip.360fob.com/cargowebsite/websiteEn/style_two/index.html
+"  class="btn_full_teaser" target="_blank">More queries</a>
+					{else}
+					<a href="/contact/"  class="btn_full_teaser">Online consulting</a>
+					
+					{/if}
+				</div>
+			</div>
+		</li>
+
+		
+		
+		
+		
+		{/if}
+
+		</volist>
+</main>
+<script>
+$(function(){
+	if($(window).width()<768){
+		$('#pic li:odd').css('background-position','35% center');
+		$('#pic li:even').css('background-position','75% center');
+		$('#pic #subnav7').css('background-position','60% center');
+		$('#pic #subnav1').css('background-position','90% center');
+		$('#pic #subnav3').css('background-position','90% center');
+	}
+
+});
+
+
+
+</script>

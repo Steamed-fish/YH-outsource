@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta name="description" content="{$seo_description}">
+	<meta name="keywords" content="{$seo_keywords}">
+	<meta charset="utf-8">
+	<meta name="renderer" content="webkit"><!--360 极速模式-->
+	<link rel="shortcut icon" href="/Apps/Tpl/Home/Default/Public/images/favicon.ico" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+	<title>{$seo_title}</title>
+	<link href="../Public/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="../Public/css/owl.carousel.css" rel="stylesheet" type="text/css" />
+	<link href="../Public/css/index.css" rel="stylesheet" type="text/css" />
+	<link href="../Public/css/all.css" rel="stylesheet" type="text/css" />
+	<link href="../Public/css/app.css" rel="stylesheet" type="text/css" />
+	<!--[if lt IE 9]>
+	<script src="../Public/js/html5.js"></script>
+	<script src="../Public/js/respond.min.js"></script>
+	<![endif]-->
+	<script type="text/javascript" src="../Public/js/jquery-min.js"></script>
+</head>
+<body>
+<div class="header">
+	<div class="container relative">
+		<div class="row">
+			<div class="logo">
+				<a href=""><img src="{$logo}"/></a>
+			</div>
+			<div class="ol-nav">
+				<div class="nav-app">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+				<ul class="nav-hide">
+					<YP:subcat catid="0" id="r" key="k">
+					<li><a {if $r[id]==$bcid}id="nav-li"{/if} href="{$r.url}">{$r.catname}</a></li>
+						</YP:subcat>
+				</ul>
+			</div>
+			<a href="tel:{$call}">
+				<div class="right-call">
+					<em>FREE HOTLINE</em>
+					<i>{$call}</i>
+				</div>
+			</a>
+		</div>
+	</div>
+</div>

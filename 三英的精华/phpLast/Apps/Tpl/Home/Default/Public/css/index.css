@@ -1,0 +1,58 @@
+.banner{position:relative;}
+.banner img{width:100%;}
+#banner-list .owl-next, #banner-list .owl-prev{background:url("../images/icon.png") no-repeat;width:25px;height:38px;position: absolute;top:-15em;}
+#banner-list .owl-next{background-position: center -750px;right: 25px;}
+#banner-list .owl-prev{background-position: center -700px;left: 25px;}
+#banner-list .owl-dot span{background-color:#fff;width: 40px;height: 4px;-webkit-border-radius: 0px;-moz-border-radius: 0px;border-radius: 0;filter:Alpha(Opacity=100);opacity: 1;}
+#banner-list .owl-dots .owl-dot.active span{background-color:#fd5b06;}
+#banner-list .owl-controls{top: -35px;}
+.case-index{}
+.case-index-p{color:#999999;font-family:'Calibri';font-size:16px;margin-bottom: 56px;text-align:center;text-transform:uppercase;}
+.case-index-h2{margin-top:65px;font-family:'SwisB';font-size:35px;color:#3b3b3b;text-transform:uppercase;text-align:center;}
+.case-index-list{}
+.case-index-list a{text-transform:uppercase;text-align:center;font-size:18px;display:block;width:initial;height:70px;font-size:18px;font-family:'Calibri';
+    color:#656565;background-color:#f1f1f1;border-top:5px solid #f1f1f1;line-height:70px;font-weight:bold;}
+.case-index-list a:hover,#case-on{border-top:5px solid #fd5b06;}
+.case-border{border-left:1px solid #d1d1d1;border-right:1px solid #d1d1d1;}
+.key-case{}
+.key-case p{height:59px;padding-top:20px;text-align:center;color:#656565;overflow:hidden;margin-bottom:0px;}
+.key-case a{display:block;}
+.key-case a:hover p{background-color:#006488;color:#fff;}
+.key-case a:hover em{display:block;}
+.key-caseImg{position:relative;filter:Alpha(Opacity=80);opacity: 0.8;}
+.key-case em{display:none;height:60px;position:absolute;background-color: rgba(0,0,0,0.8);-webkit-background-color: rgba(0,0,0,0.8);-moz-background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0,0,0,0.8);bottom: 0px;left: 0px;width: 100%;color:#fff;line-height:60px;text-align:center;font-style:normal;font-family:'Calibri';}
+.case-page{background-color:#f1f1f1;padding:15px 0;}
+.page-index{text-align:center;width:250px;margin:0 auto;height: 50px;}
+.page-index span{display:inline-block;width:52px;height:50px;background:url("../images/icon.png") no-repeat center;-webkit-border-radius:5px;-moz-border-radius:5px;
+    border-radius:5px;background-color: #fff;cursor:pointer;}
+.page-index span:hover{background-color:#006488;}
+.page-index span.page-left{background-position: center -278px;}
+.page-index span.page-right{background-position: center -580px;}
+.page-index span.page-left:hover{background-position: center -378px;}
+.page-index span.page-right:hover{background-position: center -480px;}
+.page-index span.page-ok{background-position: center -80px;margin-right: 8px;margin-left: 8px;}
+.page-index span.page-ok:hover{background-position:center -180px;}
+.index-pro-container{margin-top:85px;}
+.index-pro{background-color:#f8f8f8;padding: 0;padding-top:30px;}
+.index-pro img{margin-top:20px;}
+.index-pro h2{font-size:20px;color:#3b3b3b;font-family:'SwisB';font-weight:bold;padding-left:20px;}
+.index-pro h3 a{font-family:'Calibri';font-size:16px;color:#656565;padding-left:20px;}
+.index-pro span{display:block;padding-left:20px;}
+.index-pro span a{color:#999999;font-family:'Calibri';}
+.index-proH2{text-transform:uppercase;font-size:35px;color:#3b3b3b;font-family:'Calibri';text-align:center;margin-top:85px;}
+.index-pro p{border-bottom:1px dashed #c8c8c8;padding:5px 0;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+.index-pro p a,.index-pro p em{color:#999999;font-family:'Calibri';}
+.index-pro p a{margin-bottom:10px;}
+.index-pro p em{display:block;font-style:normal;line-height: 16px;}
+.paddingLR{padding-left:20px;padding-right:20px;}
+.index-pro a.mar10,{margin-bottom:10px;margin-top:0;}
+.border-head{background:url("../images/border-head.png") no-repeat center;}
+.border-head2{background:url("../images/border-head2.png") no-repeat center;}
+.about-us{color:#999999;font-size:16px;text-align:center;font-family:'Calibri';width:50%;margin: 0 auto;}
+.honor-head{margin-bottom38px;font-family:'Microsoft Yahei', arial, sans-serif;font-weight:bold;text-transform:uppercase;text-align:center;}
+.honor-p{color:#999999;font-family:'Calibri';text-align:center;line-height: 23px;}
+.fill{margin-top:80px;background:url("../images/border-bg.png") repeat;padding:63px 0;}
+.fill-h2{font-family:'SwisB';font-size:30px;color:#3b3b3b;}
+.index-input{height:55px;width:100%; border:none;text-indent:15px;line-height:55px;}
+.fill-p{font-family:Calibri;font-size:16px;color:#999999;margin-top:42px;}

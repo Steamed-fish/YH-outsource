@@ -1,0 +1,224 @@
+<footer>
+	<div class="foot_t">
+		<ul class="servier_b">
+			<li class="servier_bt">Service project</li>
+			<?php $servier_list=M('picture')->select();?>
+			<volist name="servier_list" id="r">
+			<li><a href="/contact/">{$r.title}</a></li>
+			</volist>
+		</ul>
+		<div class="foot_r">
+			<div class="foot_rt">Online message</div>
+			<form class="sider_form" action="{:URL('User-Post/insert')}" method="post">
+		
+				<input type="hidden"  name="catid" value="{$catid}" />
+				<input type="hidden" id="moduleid" name="moduleid" value="8" />
+				<input type="hidden" id="lang" name="lang" value="{$langid}" />
+			    <input type="hidden" id="title" name="title" value="" />
+			    
+			
+			    <div class=" col-sm-6  mgb10"><input placeholder="NAME"  name="username" class="c-input" type="text"></div>
+			    <div class=" col-sm-6  mgb10"><input placeholder="EMAIL" name="email" class="c-input" type="text"></div>
+			    <div class="col-sm-12">
+			        <textarea name="content" class="c-textarea lh22" placeholder="LEAVE A MESSAGE"></textarea>
+			    </div>
+			    <div class="t-sub">
+			        <button type="submit" class="sub-btn"></button>
+			    </div>
+			    
+			</form>
+		</div>
+		
+		<div class="clear"></div>
+	</div>
+
+<div class="foot_b">
+	<YP:block pos='foot' />
+</div>		
+</footer>
+	<figure class="scrollbox navbar-example">
+		<ul class="nav nav-custom">
+		</ul>
+	</figure>
+<script>
+		$(document).ready(function() {
+			// Pick ids from scope (.maincontent)
+			var i = 0;
+			$('.maincontent > li').each(function() {
+				var _this = $(this);  
+				var thisID = _this.attr('id');
+				var thisDT = _this.attr('data-title');
+				
+				if (i) {
+					if(thisDT == 'Destination Filter'){
+						thisID = 'destination_filter';
+					}
+					
+					if(!_this.hasClass('stageimage')){
+						if(thisDT.match(/\//g)){
+							thisDT = thisDT.replace('\/', '\/<br>');
+							$('.nav-custom').append('<li><a href="#' + thisID + '" data-id="' + thisID + '" class="double-height">' + thisDT + '</a></li>');
+						}else{
+							$('.nav-custom').append('<li><a href="#' + thisID + '" data-id="' + thisID + '">' + thisDT + '</a></li>');
+						}
+					}
+				} else {
+						$('.nav-custom').append('<li><span>' + thisDT + '</span><a href="#' + thisID + '" data-id="' + thisID + '"></a></li>');
+				}
+				i++;
+			});
+			
+			$('.nav-custom li').on('mouseenter', function() {
+				$(this).children('a').fadeIn(300).css('display','block');
+			}).on('mouseleave', function() {
+				$(this).children('a').fadeOut(300);
+			}).on('click', function(event) {
+				event.preventDefault();
+				
+				var dataId = $(this).children('a').attr('data-id');
+				var newPosi = $('#' + dataId).offset().top;
+				var abstand = $('.navbar').outerHeight();
+				
+				$('html,body').animate({scrollTop: newPosi - abstand}, 800);
+			});
+			
+			$('body').scrollspy({target: '.navbar-example', offset: 120});
+			var offset = ($('body').find('.maincontent').hasClass('start'))? 0: 120;
+			if(offset == 0){
+				$('figure .nav-custom li').removeClass('active');
+				$('figure .nav-custom li:first-child').addClass('active');
+			}
+		});
+	</script>
+<script>
+			//Learn more
+			$().ready(function() {
+				$('.btn_learn_more').on('click', function() {
+					//event.preventDefault();
+					var knot = $('#subnav2');
+					
+					if (knot.css('display') == 'none'){
+						knot = $('#subnav3');
+					}else if(knot == 'undefined'){
+						knot = $('.content_list');
+					}
+					
+					var abstand = $('.navbar').outerHeight();
+					var learnMore = knot.offset().top;
+					
+					$('html,body').animate({scrollTop: learnMore-abstand}, 800);
+				});
+													
+					//IE9 Hotfix: Button-Position
+					(function(){
+						var uAgent = navigator.userAgent;
+						if(uAgent.match(/MSIE 9.0/g) || uAgent.match(/MSIE 8.0/g)){
+							//console.log('MSIE 9');
+							$('.bannerscollection_zoominout_texts .textElement_opportune').css({
+								'left': '256px',
+								 'top': '502px',
+								 'position': 'relative'
+								});
+						}
+					})();
+				
+				var a = $(window).width();
+				var b = $(window).height();
+				var dil = $('.textElement_opportune').attr('data-initial-left');
+				var dit = $('.textElement_opportune').attr('data-initial-top');
+				var dfl = $('.textElement_opportune').attr('data-final-left');
+				var dft = $('.textElement_opportune').attr('data-final-top');
+				
+				if (a > 768 && a < 1200) {
+					console.log('Init forced resize');
+					slider_resize(a, b);
+				}
+				
+				var resizeTimer;
+				$( window ).resize(function(e) {
+					clearTimeout(resizeTimer);
+					resizeTimer = setTimeout(function() {
+						// Run code here, resizing has "stopped"
+						var a = $(window).width();
+						var b = $(window).height();
+						//console.log('Breite: ' + a + ' Höhe: ' + b);
+						
+						if (a > 768 && a < 1200) {
+							slider_resize(a, b);
+							console.log('resized.');
+						}else{
+							console.log('Init reset.')
+							$('.textElement_opportune').attr('data-initial-left', dil);
+							$('.textElement_opportune').attr('data-initial-top', dit);
+							$('.textElement_opportune').attr('data-final-left', dfl);
+							$('.textElement_opportune').attr('data-final-top', dft);
+							slider_resize(a, b);
+						}
+					}, 250);
+				});
+				
+				function slider_resize(screen_width, screen_height){
+					//Set resized value of slider
+					if (screen_width > 768 && screen_width < 839) {
+						console.log('#1a');
+						f = 146;
+						n = 2024;
+					} else if (screen_width > 838 && screen_width < 919) {
+						console.log('#1b');
+						f = 216;
+						n = 1906;
+					} else if (screen_width > 918 && screen_width < 1200) {
+						console.log('#2');
+						//f = 246;
+						//n = 1400;
+						
+						f = 286;
+						n = 1200;
+					} else {
+						f = dfl;
+						n = dft;
+					}
+					$('.textElement_opportune').attr('data-initial-left', 0);
+					$('.textElement_opportune').attr('data-initial-top', n);
+					$('.textElement_opportune').attr('data-final-left', f);
+					$('.textElement_opportune').attr('data-final-top', n);
+				}
+				
+				//stageslider
+				var screen_width = $(window).width();
+				var screen_height = $(window).height();
+				$('#bannerscollection_zoominout_opportune').bannerscollection_zoominout({
+					skin: 'opportune',
+					 responsive: true,
+					 responsiveRelativeToBrowser: true,
+					 width: 2500,
+					 height: 1359,
+					 width100Proc: true,
+					 height100Proc: true,
+					 autoPlay: 5,
+					 loop: true,
+					 //width: (screen_width - 40),
+					 //height: (screen_height - (112 - 54)),
+					 circleRadius: 8,
+					 circleLineWidth: 4,
+					 circleColor: "#ffffff", //849ef3
+					 circleAlpha: 50,
+					 behindCircleColor: "#000000",
+					 behindCircleAlpha: 20,
+					 fadeSlides: false,
+					 thumbsWrapperMarginTop: 20,
+					 showNavArrows: false,
+					 showPreviewThumbs: false,
+					 enableTouchScreen: false
+					});
+						var availableTags = ["deugro","oil","the","difference","solutions","freight","freight forwarding","team","Thomas C. Press","Solutions","Cases","Local Team","office","Case Study","countries","employees","contact","logistics","projects","mission","about deugro","compliance","QHSES","Innovation","R & D","Equipment","TED","Chartering","DMP","Global Key Account Management","family","History","Minds over matter","HR Development","Career","CoC","ACCP","Foreign Corrupt Practices Act","UK Bribery Act 201","Enterprise Resource Planning","ERP-System","Sustainability","Certificates","Haulage Equipment","transport","location","Transport Engineering Department","Engineering","vessel","Goldhofer","shipping","risk management","network","breakbulk","heavy lift","bulk cargo","ro-ro carriers","vessel tracking systems","Vessel directories","GKAM","customers","service","deugro’s Most Promising","experience","professionals","trainee","expertise","skills","human resources","general cargo services","air freight","customs clearance","inland transportation","warehousing","specialists","partners","turnkey solutions","ocean freight services","ocean & inland waterways","portfolio","day-to-day routine","Full Container Loads (FCL)","automotive logistics","delivery","vessel chartering","insurance","documentation","restrictions","port","hinterland transport","remote","jetty","infrastructure","rules","economy service","deugro Economy","deugro Speed","door-to-door","transit","deugro Premium","Speed service","Premium service","aircraft chartering","on-board courier","air freight","hand-carry solutions","commodity handling","freight pricing","pricing","IATA","Project freight forwarding","planning","budgetary","Renewables","Petrochemical","transport solutions","packaging","distribution","expediting solutions","suppliers","investors","contractors","petrochemical","gas","supply chain","IT solutions","interface","Purchase order","vendor management","track and trace","Tax/duty","report","KPIs","4PL","LLP","control","technologies","data access","data protection","market","special services","special solutions","destination","POSH Semco","offshore","tug","barge","collaboration","Offshore transport","execution","Project Consulting","knowledge","Juste Alisauskaite","Simon Wasum","Klaus Strahmann","News","Imprint","Sitemap","General Terms & Conditions","Privacy","Contact","region","area","city","fertilizer","Tatarstan","Russian Federation","Antwerp","Mendeleevsk","submerged turret production (STP)","MAERSK FPSO Peregrino","Singapore","Brazil","Australia","wind turbines","Mooring","Gullen Range Wind Farm","China","PNG LNG Project","Papua New Guinea","joint ventures","purchase","Jobs","business","large-scale projects","conditions","apply","staff","quality","growth","development",""];
+	$('.form-control').autocomplete({
+		source: availableTags,
+		minLength: 3,
+	open : function(){
+		$(this).autocomplete('widget').css('z-index', 100);
+		return false;
+	}
+	});
+			});
+		</script>

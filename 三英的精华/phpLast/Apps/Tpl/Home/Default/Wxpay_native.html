@@ -1,0 +1,114 @@
+<style>
+    #myDiv{display: none;padding-top: 28px;}
+    .NOTPAY { color: #aaa; }
+    .SUCCESS { color: #4caf50; }
+    .PAYERROR { color: #ff0000; }
+    .USERPAYING, .REVOKED, .REFUND, .CLOSED{color: #ff8000;}
+.login_main {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    box-sizing: border-box;
+    height: 500px;
+    left: 50%;
+    margin: -150px auto 0 -190px;
+    padding: 50px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 380px;
+}
+</style>
+<!--div class="all_banner" style="background: #141313 url(/Uploads/201607/578da065295f4.jpg) 50% 0 no-repeat;"></div-->
+<div id="member">
+    <!--div class="all_banner" style="background: #141313 url(/Uploads/201607/578da065295f4.jpg) 50% 0 no-repeat;"></div-->
+    <link type="text/css" rel="stylesheet" href="/Yourphp/Tpl/User/Default/Public/css/user.css">
+    <div class="main">
+        <div class="login_plugins_bg--" style="display: block; height: 720px; text-align: center;">
+            <div class="login_main">
+                <h2>微信扫码支付</h2>
+                <p class="error">&nbsp;</p>
+                <div class="login_form">
+                    <div class="login-form-list">
+                        <div class="login-form-item"> <img alt="微信扫码支付" src="<?php echo $url;?>" style="width:276px;height:276px;" /> </div>
+                        <div class="box-divider"></div>
+                    </div>
+                </div>
+                <div id="myDiv"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    //设置每隔3000毫秒执行一次load() 方法  
+    var myIntval = setInterval(function() {
+        load()
+    }, 3000);
+	
+	
+    var uri;
+    var secs = 3;
+    function daoNum(url){
+	    uri = url;
+		for(var i=secs;i>=0;i--){
+		    setTimeout("doUpdate("+i+")",(secs-i)*1000);
+		}
+    }
+    
+    function doUpdate(num){
+		messageBox.innerHTML = '支付成功,将在'+num+'秒后自动跳转到首页';
+		if(num == 0){
+			location.href = uri;
+		}
+    }
+    
+    function load() {
+    	var id = "<?php echo $orderid?>";
+    	var out_trade_no = "<?php echo $num?>";
+    	
+    	$.ajax({
+    		type: 'post',
+    		url: '/Wxpay/query',
+    		dateType: 'json',
+    		data: {'ddno': id, 'out_trade_no': out_trade_no},
+    		success: function(data) {
+    			messageBox = document.getElementById("myDiv");console.log(data);
+    			if(messageBox && messageBox.style){
+                    messageBox.style.display = 'block';
+                    messageBox.className = eval(data);
+                }
+    			if(eval(data) == 'SUCCESS')
+    			{
+    				messageBox.innerHTML = '支付成功';
+                    //alert(transaction_id);  
+                    //延迟3000毫秒执行tz() 方法
+		
+                    clearInterval(myIntval);
+					daoNum('https://' + window.location.host);
+    			} else if(eval(data) == 'REFUND') {
+    				messageBox.innerHTML = '转入退款';
+                    clearInterval(myIntval);
+    			} else if(eval(data) == 'NOTPAY') {
+    				messageBox.innerHTML = '请扫码支付';
+    			} else if (eval(data) == 'CLOSED') {
+                    messageBox.innerHTML = '已关闭';
+                    clearInterval(myIntval);
+                } else if (eval(data) == 'REVOKED') {
+                    messageBox.innerHTML = '已撤销';
+                    clearInterval(myIntval);
+                } else if (eval(data) == 'USERPAYING') {
+                    messageBox.innerHTML = '用户支付中';
+                } else if (eval(data) == 'PAYERROR') {
+                    messageBox.innerHTML = '支付失败';
+                    clearInterval(myIntval);
+                }
+    		},
+    		error:function(xhr){
+				console.log(xhr.responseText);
+			}
+    	});
+    }
+    
+    
+  
+</script>
